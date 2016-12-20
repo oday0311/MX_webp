@@ -14,6 +14,110 @@
 		FAC487941E08CA43001F55A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC487921E08CA43001F55A1 /* Main.storyboard */; };
 		FAC487961E08CA43001F55A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC487951E08CA43001F55A1 /* Assets.xcassets */; };
 		FAC487991E08CA43001F55A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC487971E08CA43001F55A1 /* LaunchScreen.storyboard */; };
+		FAC487A21E08CAE6001F55A1 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC487A11E08CAE6001F55A1 /* UIImage+WebP.m */; };
+		FAC488431E08CB06001F55A1 /* alpha.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487A91E08CB06001F55A1 /* alpha.c */; };
+		FAC488441E08CB06001F55A1 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487AB1E08CB06001F55A1 /* buffer.c */; };
+		FAC488451E08CB06001F55A1 /* frame.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487AE1E08CB06001F55A1 /* frame.c */; };
+		FAC488461E08CB06001F55A1 /* idec.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487AF1E08CB06001F55A1 /* idec.c */; };
+		FAC488471E08CB06001F55A1 /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487B01E08CB06001F55A1 /* io.c */; };
+		FAC488481E08CB06001F55A1 /* quant.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487B11E08CB06001F55A1 /* quant.c */; };
+		FAC488491E08CB06001F55A1 /* tree.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487B21E08CB06001F55A1 /* tree.c */; };
+		FAC4884A1E08CB06001F55A1 /* vp8.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487B31E08CB06001F55A1 /* vp8.c */; };
+		FAC4884B1E08CB06001F55A1 /* vp8l.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487B51E08CB06001F55A1 /* vp8l.c */; };
+		FAC4884C1E08CB06001F55A1 /* webp.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487B71E08CB06001F55A1 /* webp.c */; };
+		FAC4884D1E08CB06001F55A1 /* anim_decode.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487BA1E08CB06001F55A1 /* anim_decode.c */; };
+		FAC4884E1E08CB06001F55A1 /* demux.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487BB1E08CB06001F55A1 /* demux.c */; };
+		FAC4884F1E08CB06001F55A1 /* alpha_processing.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487BD1E08CB06001F55A1 /* alpha_processing.c */; };
+		FAC488501E08CB06001F55A1 /* alpha_processing_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487BE1E08CB06001F55A1 /* alpha_processing_mips_dsp_r2.c */; };
+		FAC488511E08CB06001F55A1 /* alpha_processing_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487BF1E08CB06001F55A1 /* alpha_processing_sse2.c */; };
+		FAC488521E08CB06001F55A1 /* alpha_processing_sse41.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487C01E08CB06001F55A1 /* alpha_processing_sse41.c */; };
+		FAC488531E08CB06001F55A1 /* argb.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487C11E08CB06001F55A1 /* argb.c */; };
+		FAC488541E08CB06001F55A1 /* argb_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487C21E08CB06001F55A1 /* argb_mips_dsp_r2.c */; };
+		FAC488551E08CB06001F55A1 /* argb_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487C31E08CB06001F55A1 /* argb_sse2.c */; };
+		FAC488561E08CB06001F55A1 /* cost.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487C51E08CB06001F55A1 /* cost.c */; };
+		FAC488571E08CB06001F55A1 /* cost_mips32.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487C61E08CB06001F55A1 /* cost_mips32.c */; };
+		FAC488581E08CB06001F55A1 /* cost_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487C71E08CB06001F55A1 /* cost_mips_dsp_r2.c */; };
+		FAC488591E08CB06001F55A1 /* cost_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487C81E08CB06001F55A1 /* cost_sse2.c */; };
+		FAC4885A1E08CB06001F55A1 /* cpu.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487C91E08CB06001F55A1 /* cpu.c */; };
+		FAC4885B1E08CB06001F55A1 /* dec.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487CA1E08CB06001F55A1 /* dec.c */; };
+		FAC4885C1E08CB06001F55A1 /* dec_clip_tables.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487CB1E08CB06001F55A1 /* dec_clip_tables.c */; };
+		FAC4885D1E08CB06001F55A1 /* dec_mips32.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487CC1E08CB06001F55A1 /* dec_mips32.c */; };
+		FAC4885E1E08CB06001F55A1 /* dec_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487CD1E08CB06001F55A1 /* dec_mips_dsp_r2.c */; };
+		FAC4885F1E08CB06001F55A1 /* dec_msa.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487CE1E08CB06001F55A1 /* dec_msa.c */; };
+		FAC488601E08CB06001F55A1 /* dec_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487CF1E08CB06001F55A1 /* dec_neon.c */; };
+		FAC488611E08CB06001F55A1 /* dec_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487D01E08CB06001F55A1 /* dec_sse2.c */; };
+		FAC488621E08CB06001F55A1 /* dec_sse41.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487D11E08CB06001F55A1 /* dec_sse41.c */; };
+		FAC488631E08CB06001F55A1 /* enc.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487D31E08CB06001F55A1 /* enc.c */; };
+		FAC488641E08CB06001F55A1 /* enc_avx2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487D41E08CB06001F55A1 /* enc_avx2.c */; };
+		FAC488651E08CB06001F55A1 /* enc_mips32.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487D51E08CB06001F55A1 /* enc_mips32.c */; };
+		FAC488661E08CB06001F55A1 /* enc_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487D61E08CB06001F55A1 /* enc_mips_dsp_r2.c */; };
+		FAC488671E08CB06001F55A1 /* enc_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487D71E08CB06001F55A1 /* enc_neon.c */; };
+		FAC488681E08CB06001F55A1 /* enc_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487D81E08CB06001F55A1 /* enc_sse2.c */; };
+		FAC488691E08CB06001F55A1 /* enc_sse41.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487D91E08CB06001F55A1 /* enc_sse41.c */; };
+		FAC4886A1E08CB06001F55A1 /* filters.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487DA1E08CB06001F55A1 /* filters.c */; };
+		FAC4886B1E08CB06001F55A1 /* filters_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487DB1E08CB06001F55A1 /* filters_mips_dsp_r2.c */; };
+		FAC4886C1E08CB06001F55A1 /* filters_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487DC1E08CB06001F55A1 /* filters_sse2.c */; };
+		FAC4886D1E08CB06001F55A1 /* lossless.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487DD1E08CB06001F55A1 /* lossless.c */; };
+		FAC4886E1E08CB06001F55A1 /* lossless_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487DF1E08CB06001F55A1 /* lossless_enc.c */; };
+		FAC4886F1E08CB06001F55A1 /* lossless_enc_mips32.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487E01E08CB06001F55A1 /* lossless_enc_mips32.c */; };
+		FAC488701E08CB06001F55A1 /* lossless_enc_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487E11E08CB06001F55A1 /* lossless_enc_mips_dsp_r2.c */; };
+		FAC488711E08CB06001F55A1 /* lossless_enc_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487E21E08CB06001F55A1 /* lossless_enc_neon.c */; };
+		FAC488721E08CB06001F55A1 /* lossless_enc_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487E31E08CB06001F55A1 /* lossless_enc_sse2.c */; };
+		FAC488731E08CB06001F55A1 /* lossless_enc_sse41.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487E41E08CB06001F55A1 /* lossless_enc_sse41.c */; };
+		FAC488741E08CB06001F55A1 /* lossless_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487E51E08CB06001F55A1 /* lossless_mips_dsp_r2.c */; };
+		FAC488751E08CB06001F55A1 /* lossless_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487E61E08CB06001F55A1 /* lossless_neon.c */; };
+		FAC488761E08CB06001F55A1 /* lossless_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487E71E08CB06001F55A1 /* lossless_sse2.c */; };
+		FAC488771E08CB06001F55A1 /* rescaler.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487EB1E08CB06001F55A1 /* rescaler.c */; };
+		FAC488781E08CB06001F55A1 /* rescaler_mips32.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487EC1E08CB06001F55A1 /* rescaler_mips32.c */; };
+		FAC488791E08CB06001F55A1 /* rescaler_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487ED1E08CB06001F55A1 /* rescaler_mips_dsp_r2.c */; };
+		FAC4887A1E08CB06001F55A1 /* rescaler_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487EE1E08CB06001F55A1 /* rescaler_neon.c */; };
+		FAC4887B1E08CB06001F55A1 /* rescaler_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487EF1E08CB06001F55A1 /* rescaler_sse2.c */; };
+		FAC4887C1E08CB06001F55A1 /* upsampling.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487F01E08CB06001F55A1 /* upsampling.c */; };
+		FAC4887D1E08CB06001F55A1 /* upsampling_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487F11E08CB06001F55A1 /* upsampling_mips_dsp_r2.c */; };
+		FAC4887E1E08CB06001F55A1 /* upsampling_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487F21E08CB06001F55A1 /* upsampling_neon.c */; };
+		FAC4887F1E08CB06001F55A1 /* upsampling_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487F31E08CB06001F55A1 /* upsampling_sse2.c */; };
+		FAC488801E08CB06001F55A1 /* yuv.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487F41E08CB06001F55A1 /* yuv.c */; };
+		FAC488811E08CB06001F55A1 /* yuv_mips32.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487F61E08CB06001F55A1 /* yuv_mips32.c */; };
+		FAC488821E08CB06001F55A1 /* yuv_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487F71E08CB06001F55A1 /* yuv_mips_dsp_r2.c */; };
+		FAC488831E08CB06001F55A1 /* yuv_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487F81E08CB06001F55A1 /* yuv_sse2.c */; };
+		FAC488841E08CB06001F55A1 /* alpha.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487FA1E08CB06001F55A1 /* alpha.c */; };
+		FAC488851E08CB06001F55A1 /* analysis.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487FB1E08CB06001F55A1 /* analysis.c */; };
+		FAC488861E08CB06001F55A1 /* backward_references.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487FC1E08CB06001F55A1 /* backward_references.c */; };
+		FAC488871E08CB06001F55A1 /* config.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487FE1E08CB06001F55A1 /* config.c */; };
+		FAC488881E08CB06001F55A1 /* cost.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC487FF1E08CB06001F55A1 /* cost.c */; };
+		FAC488891E08CB06001F55A1 /* delta_palettization.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488011E08CB06001F55A1 /* delta_palettization.c */; };
+		FAC4888A1E08CB06001F55A1 /* filter.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488031E08CB06001F55A1 /* filter.c */; };
+		FAC4888B1E08CB06001F55A1 /* frame.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488041E08CB06001F55A1 /* frame.c */; };
+		FAC4888C1E08CB06001F55A1 /* histogram.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488051E08CB06001F55A1 /* histogram.c */; };
+		FAC4888D1E08CB06001F55A1 /* iterator.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488071E08CB06001F55A1 /* iterator.c */; };
+		FAC4888E1E08CB06001F55A1 /* near_lossless.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488081E08CB06001F55A1 /* near_lossless.c */; };
+		FAC4888F1E08CB06001F55A1 /* picture.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488091E08CB06001F55A1 /* picture.c */; };
+		FAC488901E08CB06001F55A1 /* picture_csp.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC4880A1E08CB06001F55A1 /* picture_csp.c */; };
+		FAC488911E08CB06001F55A1 /* picture_psnr.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC4880B1E08CB06001F55A1 /* picture_psnr.c */; };
+		FAC488921E08CB06001F55A1 /* picture_rescale.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC4880C1E08CB06001F55A1 /* picture_rescale.c */; };
+		FAC488931E08CB06001F55A1 /* picture_tools.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC4880D1E08CB06001F55A1 /* picture_tools.c */; };
+		FAC488941E08CB06001F55A1 /* quant.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC4880E1E08CB06001F55A1 /* quant.c */; };
+		FAC488951E08CB06001F55A1 /* syntax.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC4880F1E08CB06001F55A1 /* syntax.c */; };
+		FAC488961E08CB06001F55A1 /* token.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488101E08CB06001F55A1 /* token.c */; };
+		FAC488971E08CB06001F55A1 /* tree.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488111E08CB06001F55A1 /* tree.c */; };
+		FAC488981E08CB06001F55A1 /* vp8l.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488131E08CB06001F55A1 /* vp8l.c */; };
+		FAC488991E08CB06001F55A1 /* webpenc.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488151E08CB06001F55A1 /* webpenc.c */; };
+		FAC4889A1E08CB06001F55A1 /* anim_encode.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488171E08CB06001F55A1 /* anim_encode.c */; };
+		FAC4889B1E08CB06001F55A1 /* muxedit.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488181E08CB06001F55A1 /* muxedit.c */; };
+		FAC4889C1E08CB06001F55A1 /* muxinternal.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC4881A1E08CB06001F55A1 /* muxinternal.c */; };
+		FAC4889D1E08CB06001F55A1 /* muxread.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC4881B1E08CB06001F55A1 /* muxread.c */; };
+		FAC4889E1E08CB06001F55A1 /* bit_reader.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC4881D1E08CB06001F55A1 /* bit_reader.c */; };
+		FAC4889F1E08CB06001F55A1 /* bit_writer.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488201E08CB06001F55A1 /* bit_writer.c */; };
+		FAC488A01E08CB06001F55A1 /* color_cache.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488221E08CB06001F55A1 /* color_cache.c */; };
+		FAC488A11E08CB06001F55A1 /* filters.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488251E08CB06001F55A1 /* filters.c */; };
+		FAC488A21E08CB06001F55A1 /* huffman.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488271E08CB06001F55A1 /* huffman.c */; };
+		FAC488A31E08CB06001F55A1 /* huffman_encode.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488291E08CB06001F55A1 /* huffman_encode.c */; };
+		FAC488A41E08CB06001F55A1 /* quant_levels.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC4882B1E08CB06001F55A1 /* quant_levels.c */; };
+		FAC488A51E08CB06001F55A1 /* quant_levels_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC4882D1E08CB06001F55A1 /* quant_levels_dec.c */; };
+		FAC488A61E08CB06001F55A1 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC4882F1E08CB06001F55A1 /* random.c */; };
+		FAC488A71E08CB06001F55A1 /* rescaler.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488311E08CB06001F55A1 /* rescaler.c */; };
+		FAC488A81E08CB06001F55A1 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488331E08CB06001F55A1 /* thread.c */; };
+		FAC488A91E08CB06001F55A1 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488351E08CB06001F55A1 /* utils.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +133,153 @@
 		FAC487951E08CA43001F55A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAC487981E08CA43001F55A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAC4879A1E08CA43001F55A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAC487A01E08CAE6001F55A1 /* UIImage+WebP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WebP.h"; sourceTree = "<group>"; };
+		FAC487A11E08CAE6001F55A1 /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
+		FAC487A91E08CB06001F55A1 /* alpha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha.c; sourceTree = "<group>"; };
+		FAC487AA1E08CB06001F55A1 /* alphai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alphai.h; sourceTree = "<group>"; };
+		FAC487AB1E08CB06001F55A1 /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
+		FAC487AC1E08CB06001F55A1 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		FAC487AD1E08CB06001F55A1 /* decode_vp8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decode_vp8.h; sourceTree = "<group>"; };
+		FAC487AE1E08CB06001F55A1 /* frame.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = frame.c; sourceTree = "<group>"; };
+		FAC487AF1E08CB06001F55A1 /* idec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = idec.c; sourceTree = "<group>"; };
+		FAC487B01E08CB06001F55A1 /* io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = io.c; sourceTree = "<group>"; };
+		FAC487B11E08CB06001F55A1 /* quant.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quant.c; sourceTree = "<group>"; };
+		FAC487B21E08CB06001F55A1 /* tree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tree.c; sourceTree = "<group>"; };
+		FAC487B31E08CB06001F55A1 /* vp8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vp8.c; sourceTree = "<group>"; };
+		FAC487B41E08CB06001F55A1 /* vp8i.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8i.h; sourceTree = "<group>"; };
+		FAC487B51E08CB06001F55A1 /* vp8l.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vp8l.c; sourceTree = "<group>"; };
+		FAC487B61E08CB06001F55A1 /* vp8li.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8li.h; sourceTree = "<group>"; };
+		FAC487B71E08CB06001F55A1 /* webp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = webp.c; sourceTree = "<group>"; };
+		FAC487B81E08CB06001F55A1 /* webpi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webpi.h; sourceTree = "<group>"; };
+		FAC487BA1E08CB06001F55A1 /* anim_decode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = anim_decode.c; sourceTree = "<group>"; };
+		FAC487BB1E08CB06001F55A1 /* demux.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = demux.c; sourceTree = "<group>"; };
+		FAC487BD1E08CB06001F55A1 /* alpha_processing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_processing.c; sourceTree = "<group>"; };
+		FAC487BE1E08CB06001F55A1 /* alpha_processing_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_processing_mips_dsp_r2.c; sourceTree = "<group>"; };
+		FAC487BF1E08CB06001F55A1 /* alpha_processing_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_processing_sse2.c; sourceTree = "<group>"; };
+		FAC487C01E08CB06001F55A1 /* alpha_processing_sse41.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_processing_sse41.c; sourceTree = "<group>"; };
+		FAC487C11E08CB06001F55A1 /* argb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = argb.c; sourceTree = "<group>"; };
+		FAC487C21E08CB06001F55A1 /* argb_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = argb_mips_dsp_r2.c; sourceTree = "<group>"; };
+		FAC487C31E08CB06001F55A1 /* argb_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = argb_sse2.c; sourceTree = "<group>"; };
+		FAC487C41E08CB06001F55A1 /* common_sse2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common_sse2.h; sourceTree = "<group>"; };
+		FAC487C51E08CB06001F55A1 /* cost.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cost.c; sourceTree = "<group>"; };
+		FAC487C61E08CB06001F55A1 /* cost_mips32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cost_mips32.c; sourceTree = "<group>"; };
+		FAC487C71E08CB06001F55A1 /* cost_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cost_mips_dsp_r2.c; sourceTree = "<group>"; };
+		FAC487C81E08CB06001F55A1 /* cost_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cost_sse2.c; sourceTree = "<group>"; };
+		FAC487C91E08CB06001F55A1 /* cpu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cpu.c; sourceTree = "<group>"; };
+		FAC487CA1E08CB06001F55A1 /* dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec.c; sourceTree = "<group>"; };
+		FAC487CB1E08CB06001F55A1 /* dec_clip_tables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_clip_tables.c; sourceTree = "<group>"; };
+		FAC487CC1E08CB06001F55A1 /* dec_mips32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_mips32.c; sourceTree = "<group>"; };
+		FAC487CD1E08CB06001F55A1 /* dec_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_mips_dsp_r2.c; sourceTree = "<group>"; };
+		FAC487CE1E08CB06001F55A1 /* dec_msa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_msa.c; sourceTree = "<group>"; };
+		FAC487CF1E08CB06001F55A1 /* dec_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_neon.c; sourceTree = "<group>"; };
+		FAC487D01E08CB06001F55A1 /* dec_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_sse2.c; sourceTree = "<group>"; };
+		FAC487D11E08CB06001F55A1 /* dec_sse41.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_sse41.c; sourceTree = "<group>"; };
+		FAC487D21E08CB06001F55A1 /* dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsp.h; sourceTree = "<group>"; };
+		FAC487D31E08CB06001F55A1 /* enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc.c; sourceTree = "<group>"; };
+		FAC487D41E08CB06001F55A1 /* enc_avx2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_avx2.c; sourceTree = "<group>"; };
+		FAC487D51E08CB06001F55A1 /* enc_mips32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_mips32.c; sourceTree = "<group>"; };
+		FAC487D61E08CB06001F55A1 /* enc_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_mips_dsp_r2.c; sourceTree = "<group>"; };
+		FAC487D71E08CB06001F55A1 /* enc_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_neon.c; sourceTree = "<group>"; };
+		FAC487D81E08CB06001F55A1 /* enc_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_sse2.c; sourceTree = "<group>"; };
+		FAC487D91E08CB06001F55A1 /* enc_sse41.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_sse41.c; sourceTree = "<group>"; };
+		FAC487DA1E08CB06001F55A1 /* filters.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filters.c; sourceTree = "<group>"; };
+		FAC487DB1E08CB06001F55A1 /* filters_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filters_mips_dsp_r2.c; sourceTree = "<group>"; };
+		FAC487DC1E08CB06001F55A1 /* filters_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filters_sse2.c; sourceTree = "<group>"; };
+		FAC487DD1E08CB06001F55A1 /* lossless.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless.c; sourceTree = "<group>"; };
+		FAC487DE1E08CB06001F55A1 /* lossless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lossless.h; sourceTree = "<group>"; };
+		FAC487DF1E08CB06001F55A1 /* lossless_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc.c; sourceTree = "<group>"; };
+		FAC487E01E08CB06001F55A1 /* lossless_enc_mips32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc_mips32.c; sourceTree = "<group>"; };
+		FAC487E11E08CB06001F55A1 /* lossless_enc_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc_mips_dsp_r2.c; sourceTree = "<group>"; };
+		FAC487E21E08CB06001F55A1 /* lossless_enc_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc_neon.c; sourceTree = "<group>"; };
+		FAC487E31E08CB06001F55A1 /* lossless_enc_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc_sse2.c; sourceTree = "<group>"; };
+		FAC487E41E08CB06001F55A1 /* lossless_enc_sse41.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc_sse41.c; sourceTree = "<group>"; };
+		FAC487E51E08CB06001F55A1 /* lossless_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_mips_dsp_r2.c; sourceTree = "<group>"; };
+		FAC487E61E08CB06001F55A1 /* lossless_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_neon.c; sourceTree = "<group>"; };
+		FAC487E71E08CB06001F55A1 /* lossless_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_sse2.c; sourceTree = "<group>"; };
+		FAC487E81E08CB06001F55A1 /* mips_macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mips_macro.h; sourceTree = "<group>"; };
+		FAC487E91E08CB06001F55A1 /* msa_macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = msa_macro.h; sourceTree = "<group>"; };
+		FAC487EA1E08CB06001F55A1 /* neon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neon.h; sourceTree = "<group>"; };
+		FAC487EB1E08CB06001F55A1 /* rescaler.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler.c; sourceTree = "<group>"; };
+		FAC487EC1E08CB06001F55A1 /* rescaler_mips32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler_mips32.c; sourceTree = "<group>"; };
+		FAC487ED1E08CB06001F55A1 /* rescaler_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler_mips_dsp_r2.c; sourceTree = "<group>"; };
+		FAC487EE1E08CB06001F55A1 /* rescaler_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler_neon.c; sourceTree = "<group>"; };
+		FAC487EF1E08CB06001F55A1 /* rescaler_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler_sse2.c; sourceTree = "<group>"; };
+		FAC487F01E08CB06001F55A1 /* upsampling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = upsampling.c; sourceTree = "<group>"; };
+		FAC487F11E08CB06001F55A1 /* upsampling_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = upsampling_mips_dsp_r2.c; sourceTree = "<group>"; };
+		FAC487F21E08CB06001F55A1 /* upsampling_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = upsampling_neon.c; sourceTree = "<group>"; };
+		FAC487F31E08CB06001F55A1 /* upsampling_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = upsampling_sse2.c; sourceTree = "<group>"; };
+		FAC487F41E08CB06001F55A1 /* yuv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yuv.c; sourceTree = "<group>"; };
+		FAC487F51E08CB06001F55A1 /* yuv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yuv.h; sourceTree = "<group>"; };
+		FAC487F61E08CB06001F55A1 /* yuv_mips32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yuv_mips32.c; sourceTree = "<group>"; };
+		FAC487F71E08CB06001F55A1 /* yuv_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yuv_mips_dsp_r2.c; sourceTree = "<group>"; };
+		FAC487F81E08CB06001F55A1 /* yuv_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yuv_sse2.c; sourceTree = "<group>"; };
+		FAC487FA1E08CB06001F55A1 /* alpha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha.c; sourceTree = "<group>"; };
+		FAC487FB1E08CB06001F55A1 /* analysis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = analysis.c; sourceTree = "<group>"; };
+		FAC487FC1E08CB06001F55A1 /* backward_references.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = backward_references.c; sourceTree = "<group>"; };
+		FAC487FD1E08CB06001F55A1 /* backward_references.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backward_references.h; sourceTree = "<group>"; };
+		FAC487FE1E08CB06001F55A1 /* config.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = config.c; sourceTree = "<group>"; };
+		FAC487FF1E08CB06001F55A1 /* cost.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cost.c; sourceTree = "<group>"; };
+		FAC488001E08CB06001F55A1 /* cost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cost.h; sourceTree = "<group>"; };
+		FAC488011E08CB06001F55A1 /* delta_palettization.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = delta_palettization.c; sourceTree = "<group>"; };
+		FAC488021E08CB06001F55A1 /* delta_palettization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = delta_palettization.h; sourceTree = "<group>"; };
+		FAC488031E08CB06001F55A1 /* filter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filter.c; sourceTree = "<group>"; };
+		FAC488041E08CB06001F55A1 /* frame.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = frame.c; sourceTree = "<group>"; };
+		FAC488051E08CB06001F55A1 /* histogram.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = histogram.c; sourceTree = "<group>"; };
+		FAC488061E08CB06001F55A1 /* histogram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = histogram.h; sourceTree = "<group>"; };
+		FAC488071E08CB06001F55A1 /* iterator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iterator.c; sourceTree = "<group>"; };
+		FAC488081E08CB06001F55A1 /* near_lossless.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = near_lossless.c; sourceTree = "<group>"; };
+		FAC488091E08CB06001F55A1 /* picture.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = picture.c; sourceTree = "<group>"; };
+		FAC4880A1E08CB06001F55A1 /* picture_csp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = picture_csp.c; sourceTree = "<group>"; };
+		FAC4880B1E08CB06001F55A1 /* picture_psnr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = picture_psnr.c; sourceTree = "<group>"; };
+		FAC4880C1E08CB06001F55A1 /* picture_rescale.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = picture_rescale.c; sourceTree = "<group>"; };
+		FAC4880D1E08CB06001F55A1 /* picture_tools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = picture_tools.c; sourceTree = "<group>"; };
+		FAC4880E1E08CB06001F55A1 /* quant.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quant.c; sourceTree = "<group>"; };
+		FAC4880F1E08CB06001F55A1 /* syntax.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = syntax.c; sourceTree = "<group>"; };
+		FAC488101E08CB06001F55A1 /* token.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = token.c; sourceTree = "<group>"; };
+		FAC488111E08CB06001F55A1 /* tree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tree.c; sourceTree = "<group>"; };
+		FAC488121E08CB06001F55A1 /* vp8enci.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8enci.h; sourceTree = "<group>"; };
+		FAC488131E08CB06001F55A1 /* vp8l.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vp8l.c; sourceTree = "<group>"; };
+		FAC488141E08CB06001F55A1 /* vp8li.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8li.h; sourceTree = "<group>"; };
+		FAC488151E08CB06001F55A1 /* webpenc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = webpenc.c; sourceTree = "<group>"; };
+		FAC488171E08CB06001F55A1 /* anim_encode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = anim_encode.c; sourceTree = "<group>"; };
+		FAC488181E08CB06001F55A1 /* muxedit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = muxedit.c; sourceTree = "<group>"; };
+		FAC488191E08CB06001F55A1 /* muxi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = muxi.h; sourceTree = "<group>"; };
+		FAC4881A1E08CB06001F55A1 /* muxinternal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = muxinternal.c; sourceTree = "<group>"; };
+		FAC4881B1E08CB06001F55A1 /* muxread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = muxread.c; sourceTree = "<group>"; };
+		FAC4881D1E08CB06001F55A1 /* bit_reader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bit_reader.c; sourceTree = "<group>"; };
+		FAC4881E1E08CB06001F55A1 /* bit_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_reader.h; sourceTree = "<group>"; };
+		FAC4881F1E08CB06001F55A1 /* bit_reader_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_reader_inl.h; sourceTree = "<group>"; };
+		FAC488201E08CB06001F55A1 /* bit_writer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bit_writer.c; sourceTree = "<group>"; };
+		FAC488211E08CB06001F55A1 /* bit_writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_writer.h; sourceTree = "<group>"; };
+		FAC488221E08CB06001F55A1 /* color_cache.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = color_cache.c; sourceTree = "<group>"; };
+		FAC488231E08CB06001F55A1 /* color_cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color_cache.h; sourceTree = "<group>"; };
+		FAC488241E08CB06001F55A1 /* endian_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = endian_inl.h; sourceTree = "<group>"; };
+		FAC488251E08CB06001F55A1 /* filters.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filters.c; sourceTree = "<group>"; };
+		FAC488261E08CB06001F55A1 /* filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filters.h; sourceTree = "<group>"; };
+		FAC488271E08CB06001F55A1 /* huffman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = huffman.c; sourceTree = "<group>"; };
+		FAC488281E08CB06001F55A1 /* huffman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = huffman.h; sourceTree = "<group>"; };
+		FAC488291E08CB06001F55A1 /* huffman_encode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = huffman_encode.c; sourceTree = "<group>"; };
+		FAC4882A1E08CB06001F55A1 /* huffman_encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = huffman_encode.h; sourceTree = "<group>"; };
+		FAC4882B1E08CB06001F55A1 /* quant_levels.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quant_levels.c; sourceTree = "<group>"; };
+		FAC4882C1E08CB06001F55A1 /* quant_levels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quant_levels.h; sourceTree = "<group>"; };
+		FAC4882D1E08CB06001F55A1 /* quant_levels_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quant_levels_dec.c; sourceTree = "<group>"; };
+		FAC4882E1E08CB06001F55A1 /* quant_levels_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quant_levels_dec.h; sourceTree = "<group>"; };
+		FAC4882F1E08CB06001F55A1 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = random.c; sourceTree = "<group>"; };
+		FAC488301E08CB06001F55A1 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
+		FAC488311E08CB06001F55A1 /* rescaler.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler.c; sourceTree = "<group>"; };
+		FAC488321E08CB06001F55A1 /* rescaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rescaler.h; sourceTree = "<group>"; };
+		FAC488331E08CB06001F55A1 /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread.c; sourceTree = "<group>"; };
+		FAC488341E08CB06001F55A1 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
+		FAC488351E08CB06001F55A1 /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
+		FAC488361E08CB06001F55A1 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		FAC488381E08CB06001F55A1 /* decode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decode.h; sourceTree = "<group>"; };
+		FAC488391E08CB06001F55A1 /* demux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demux.h; sourceTree = "<group>"; };
+		FAC4883A1E08CB06001F55A1 /* encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encode.h; sourceTree = "<group>"; };
+		FAC4883B1E08CB06001F55A1 /* extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extras.h; sourceTree = "<group>"; };
+		FAC4883C1E08CB06001F55A1 /* format_constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = format_constants.h; sourceTree = "<group>"; };
+		FAC4883D1E08CB06001F55A1 /* mux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mux.h; sourceTree = "<group>"; };
+		FAC4883E1E08CB06001F55A1 /* mux_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mux_types.h; sourceTree = "<group>"; };
+		FAC4883F1E08CB06001F55A1 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +312,9 @@
 		FAC487851E08CA43001F55A1 /* webp */ = {
 			isa = PBXGroup;
 			children = (
+				FAC487A31E08CB06001F55A1 /* libwebp */,
+				FAC487A01E08CAE6001F55A1 /* UIImage+WebP.h */,
+				FAC487A11E08CAE6001F55A1 /* UIImage+WebP.m */,
 				FAC487891E08CA43001F55A1 /* AppDelegate.h */,
 				FAC4878A1E08CA43001F55A1 /* AppDelegate.m */,
 				FAC4878C1E08CA43001F55A1 /* FirstViewController.h */,
@@ -82,6 +336,222 @@
 				FAC487871E08CA43001F55A1 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAC487A31E08CB06001F55A1 /* libwebp */ = {
+			isa = PBXGroup;
+			children = (
+				FAC487A71E08CB06001F55A1 /* src */,
+			);
+			path = libwebp;
+			sourceTree = "<group>";
+		};
+		FAC487A71E08CB06001F55A1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FAC487A81E08CB06001F55A1 /* dec */,
+				FAC487B91E08CB06001F55A1 /* demux */,
+				FAC487BC1E08CB06001F55A1 /* dsp */,
+				FAC487F91E08CB06001F55A1 /* enc */,
+				FAC488161E08CB06001F55A1 /* mux */,
+				FAC4881C1E08CB06001F55A1 /* utils */,
+				FAC488371E08CB06001F55A1 /* webp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		FAC487A81E08CB06001F55A1 /* dec */ = {
+			isa = PBXGroup;
+			children = (
+				FAC487A91E08CB06001F55A1 /* alpha.c */,
+				FAC487AA1E08CB06001F55A1 /* alphai.h */,
+				FAC487AB1E08CB06001F55A1 /* buffer.c */,
+				FAC487AC1E08CB06001F55A1 /* common.h */,
+				FAC487AD1E08CB06001F55A1 /* decode_vp8.h */,
+				FAC487AE1E08CB06001F55A1 /* frame.c */,
+				FAC487AF1E08CB06001F55A1 /* idec.c */,
+				FAC487B01E08CB06001F55A1 /* io.c */,
+				FAC487B11E08CB06001F55A1 /* quant.c */,
+				FAC487B21E08CB06001F55A1 /* tree.c */,
+				FAC487B31E08CB06001F55A1 /* vp8.c */,
+				FAC487B41E08CB06001F55A1 /* vp8i.h */,
+				FAC487B51E08CB06001F55A1 /* vp8l.c */,
+				FAC487B61E08CB06001F55A1 /* vp8li.h */,
+				FAC487B71E08CB06001F55A1 /* webp.c */,
+				FAC487B81E08CB06001F55A1 /* webpi.h */,
+			);
+			path = dec;
+			sourceTree = "<group>";
+		};
+		FAC487B91E08CB06001F55A1 /* demux */ = {
+			isa = PBXGroup;
+			children = (
+				FAC487BA1E08CB06001F55A1 /* anim_decode.c */,
+				FAC487BB1E08CB06001F55A1 /* demux.c */,
+			);
+			path = demux;
+			sourceTree = "<group>";
+		};
+		FAC487BC1E08CB06001F55A1 /* dsp */ = {
+			isa = PBXGroup;
+			children = (
+				FAC487BD1E08CB06001F55A1 /* alpha_processing.c */,
+				FAC487BE1E08CB06001F55A1 /* alpha_processing_mips_dsp_r2.c */,
+				FAC487BF1E08CB06001F55A1 /* alpha_processing_sse2.c */,
+				FAC487C01E08CB06001F55A1 /* alpha_processing_sse41.c */,
+				FAC487C11E08CB06001F55A1 /* argb.c */,
+				FAC487C21E08CB06001F55A1 /* argb_mips_dsp_r2.c */,
+				FAC487C31E08CB06001F55A1 /* argb_sse2.c */,
+				FAC487C41E08CB06001F55A1 /* common_sse2.h */,
+				FAC487C51E08CB06001F55A1 /* cost.c */,
+				FAC487C61E08CB06001F55A1 /* cost_mips32.c */,
+				FAC487C71E08CB06001F55A1 /* cost_mips_dsp_r2.c */,
+				FAC487C81E08CB06001F55A1 /* cost_sse2.c */,
+				FAC487C91E08CB06001F55A1 /* cpu.c */,
+				FAC487CA1E08CB06001F55A1 /* dec.c */,
+				FAC487CB1E08CB06001F55A1 /* dec_clip_tables.c */,
+				FAC487CC1E08CB06001F55A1 /* dec_mips32.c */,
+				FAC487CD1E08CB06001F55A1 /* dec_mips_dsp_r2.c */,
+				FAC487CE1E08CB06001F55A1 /* dec_msa.c */,
+				FAC487CF1E08CB06001F55A1 /* dec_neon.c */,
+				FAC487D01E08CB06001F55A1 /* dec_sse2.c */,
+				FAC487D11E08CB06001F55A1 /* dec_sse41.c */,
+				FAC487D21E08CB06001F55A1 /* dsp.h */,
+				FAC487D31E08CB06001F55A1 /* enc.c */,
+				FAC487D41E08CB06001F55A1 /* enc_avx2.c */,
+				FAC487D51E08CB06001F55A1 /* enc_mips32.c */,
+				FAC487D61E08CB06001F55A1 /* enc_mips_dsp_r2.c */,
+				FAC487D71E08CB06001F55A1 /* enc_neon.c */,
+				FAC487D81E08CB06001F55A1 /* enc_sse2.c */,
+				FAC487D91E08CB06001F55A1 /* enc_sse41.c */,
+				FAC487DA1E08CB06001F55A1 /* filters.c */,
+				FAC487DB1E08CB06001F55A1 /* filters_mips_dsp_r2.c */,
+				FAC487DC1E08CB06001F55A1 /* filters_sse2.c */,
+				FAC487DD1E08CB06001F55A1 /* lossless.c */,
+				FAC487DE1E08CB06001F55A1 /* lossless.h */,
+				FAC487DF1E08CB06001F55A1 /* lossless_enc.c */,
+				FAC487E01E08CB06001F55A1 /* lossless_enc_mips32.c */,
+				FAC487E11E08CB06001F55A1 /* lossless_enc_mips_dsp_r2.c */,
+				FAC487E21E08CB06001F55A1 /* lossless_enc_neon.c */,
+				FAC487E31E08CB06001F55A1 /* lossless_enc_sse2.c */,
+				FAC487E41E08CB06001F55A1 /* lossless_enc_sse41.c */,
+				FAC487E51E08CB06001F55A1 /* lossless_mips_dsp_r2.c */,
+				FAC487E61E08CB06001F55A1 /* lossless_neon.c */,
+				FAC487E71E08CB06001F55A1 /* lossless_sse2.c */,
+				FAC487E81E08CB06001F55A1 /* mips_macro.h */,
+				FAC487E91E08CB06001F55A1 /* msa_macro.h */,
+				FAC487EA1E08CB06001F55A1 /* neon.h */,
+				FAC487EB1E08CB06001F55A1 /* rescaler.c */,
+				FAC487EC1E08CB06001F55A1 /* rescaler_mips32.c */,
+				FAC487ED1E08CB06001F55A1 /* rescaler_mips_dsp_r2.c */,
+				FAC487EE1E08CB06001F55A1 /* rescaler_neon.c */,
+				FAC487EF1E08CB06001F55A1 /* rescaler_sse2.c */,
+				FAC487F01E08CB06001F55A1 /* upsampling.c */,
+				FAC487F11E08CB06001F55A1 /* upsampling_mips_dsp_r2.c */,
+				FAC487F21E08CB06001F55A1 /* upsampling_neon.c */,
+				FAC487F31E08CB06001F55A1 /* upsampling_sse2.c */,
+				FAC487F41E08CB06001F55A1 /* yuv.c */,
+				FAC487F51E08CB06001F55A1 /* yuv.h */,
+				FAC487F61E08CB06001F55A1 /* yuv_mips32.c */,
+				FAC487F71E08CB06001F55A1 /* yuv_mips_dsp_r2.c */,
+				FAC487F81E08CB06001F55A1 /* yuv_sse2.c */,
+			);
+			path = dsp;
+			sourceTree = "<group>";
+		};
+		FAC487F91E08CB06001F55A1 /* enc */ = {
+			isa = PBXGroup;
+			children = (
+				FAC487FA1E08CB06001F55A1 /* alpha.c */,
+				FAC487FB1E08CB06001F55A1 /* analysis.c */,
+				FAC487FC1E08CB06001F55A1 /* backward_references.c */,
+				FAC487FD1E08CB06001F55A1 /* backward_references.h */,
+				FAC487FE1E08CB06001F55A1 /* config.c */,
+				FAC487FF1E08CB06001F55A1 /* cost.c */,
+				FAC488001E08CB06001F55A1 /* cost.h */,
+				FAC488011E08CB06001F55A1 /* delta_palettization.c */,
+				FAC488021E08CB06001F55A1 /* delta_palettization.h */,
+				FAC488031E08CB06001F55A1 /* filter.c */,
+				FAC488041E08CB06001F55A1 /* frame.c */,
+				FAC488051E08CB06001F55A1 /* histogram.c */,
+				FAC488061E08CB06001F55A1 /* histogram.h */,
+				FAC488071E08CB06001F55A1 /* iterator.c */,
+				FAC488081E08CB06001F55A1 /* near_lossless.c */,
+				FAC488091E08CB06001F55A1 /* picture.c */,
+				FAC4880A1E08CB06001F55A1 /* picture_csp.c */,
+				FAC4880B1E08CB06001F55A1 /* picture_psnr.c */,
+				FAC4880C1E08CB06001F55A1 /* picture_rescale.c */,
+				FAC4880D1E08CB06001F55A1 /* picture_tools.c */,
+				FAC4880E1E08CB06001F55A1 /* quant.c */,
+				FAC4880F1E08CB06001F55A1 /* syntax.c */,
+				FAC488101E08CB06001F55A1 /* token.c */,
+				FAC488111E08CB06001F55A1 /* tree.c */,
+				FAC488121E08CB06001F55A1 /* vp8enci.h */,
+				FAC488131E08CB06001F55A1 /* vp8l.c */,
+				FAC488141E08CB06001F55A1 /* vp8li.h */,
+				FAC488151E08CB06001F55A1 /* webpenc.c */,
+			);
+			path = enc;
+			sourceTree = "<group>";
+		};
+		FAC488161E08CB06001F55A1 /* mux */ = {
+			isa = PBXGroup;
+			children = (
+				FAC488171E08CB06001F55A1 /* anim_encode.c */,
+				FAC488181E08CB06001F55A1 /* muxedit.c */,
+				FAC488191E08CB06001F55A1 /* muxi.h */,
+				FAC4881A1E08CB06001F55A1 /* muxinternal.c */,
+				FAC4881B1E08CB06001F55A1 /* muxread.c */,
+			);
+			path = mux;
+			sourceTree = "<group>";
+		};
+		FAC4881C1E08CB06001F55A1 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				FAC4881D1E08CB06001F55A1 /* bit_reader.c */,
+				FAC4881E1E08CB06001F55A1 /* bit_reader.h */,
+				FAC4881F1E08CB06001F55A1 /* bit_reader_inl.h */,
+				FAC488201E08CB06001F55A1 /* bit_writer.c */,
+				FAC488211E08CB06001F55A1 /* bit_writer.h */,
+				FAC488221E08CB06001F55A1 /* color_cache.c */,
+				FAC488231E08CB06001F55A1 /* color_cache.h */,
+				FAC488241E08CB06001F55A1 /* endian_inl.h */,
+				FAC488251E08CB06001F55A1 /* filters.c */,
+				FAC488261E08CB06001F55A1 /* filters.h */,
+				FAC488271E08CB06001F55A1 /* huffman.c */,
+				FAC488281E08CB06001F55A1 /* huffman.h */,
+				FAC488291E08CB06001F55A1 /* huffman_encode.c */,
+				FAC4882A1E08CB06001F55A1 /* huffman_encode.h */,
+				FAC4882B1E08CB06001F55A1 /* quant_levels.c */,
+				FAC4882C1E08CB06001F55A1 /* quant_levels.h */,
+				FAC4882D1E08CB06001F55A1 /* quant_levels_dec.c */,
+				FAC4882E1E08CB06001F55A1 /* quant_levels_dec.h */,
+				FAC4882F1E08CB06001F55A1 /* random.c */,
+				FAC488301E08CB06001F55A1 /* random.h */,
+				FAC488311E08CB06001F55A1 /* rescaler.c */,
+				FAC488321E08CB06001F55A1 /* rescaler.h */,
+				FAC488331E08CB06001F55A1 /* thread.c */,
+				FAC488341E08CB06001F55A1 /* thread.h */,
+				FAC488351E08CB06001F55A1 /* utils.c */,
+				FAC488361E08CB06001F55A1 /* utils.h */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		FAC488371E08CB06001F55A1 /* webp */ = {
+			isa = PBXGroup;
+			children = (
+				FAC488381E08CB06001F55A1 /* decode.h */,
+				FAC488391E08CB06001F55A1 /* demux.h */,
+				FAC4883A1E08CB06001F55A1 /* encode.h */,
+				FAC4883B1E08CB06001F55A1 /* extras.h */,
+				FAC4883C1E08CB06001F55A1 /* format_constants.h */,
+				FAC4883D1E08CB06001F55A1 /* mux.h */,
+				FAC4883E1E08CB06001F55A1 /* mux_types.h */,
+				FAC4883F1E08CB06001F55A1 /* types.h */,
+			);
+			path = webp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,10 +626,114 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAC488951E08CB06001F55A1 /* syntax.c in Sources */,
+				FAC488651E08CB06001F55A1 /* enc_mips32.c in Sources */,
+				FAC488A01E08CB06001F55A1 /* color_cache.c in Sources */,
+				FAC4889B1E08CB06001F55A1 /* muxedit.c in Sources */,
+				FAC4885B1E08CB06001F55A1 /* dec.c in Sources */,
+				FAC4887E1E08CB06001F55A1 /* upsampling_neon.c in Sources */,
+				FAC488441E08CB06001F55A1 /* buffer.c in Sources */,
+				FAC488431E08CB06001F55A1 /* alpha.c in Sources */,
+				FAC488831E08CB06001F55A1 /* yuv_sse2.c in Sources */,
+				FAC488A81E08CB06001F55A1 /* thread.c in Sources */,
+				FAC488711E08CB06001F55A1 /* lossless_enc_neon.c in Sources */,
+				FAC488891E08CB06001F55A1 /* delta_palettization.c in Sources */,
+				FAC488A11E08CB06001F55A1 /* filters.c in Sources */,
+				FAC488621E08CB06001F55A1 /* dec_sse41.c in Sources */,
+				FAC488691E08CB06001F55A1 /* enc_sse41.c in Sources */,
+				FAC4884A1E08CB06001F55A1 /* vp8.c in Sources */,
+				FAC488641E08CB06001F55A1 /* enc_avx2.c in Sources */,
+				FAC488981E08CB06001F55A1 /* vp8l.c in Sources */,
+				FAC488531E08CB06001F55A1 /* argb.c in Sources */,
+				FAC488671E08CB06001F55A1 /* enc_neon.c in Sources */,
+				FAC488971E08CB06001F55A1 /* tree.c in Sources */,
+				FAC488571E08CB06001F55A1 /* cost_mips32.c in Sources */,
+				FAC4887C1E08CB06001F55A1 /* upsampling.c in Sources */,
+				FAC4885D1E08CB06001F55A1 /* dec_mips32.c in Sources */,
+				FAC488551E08CB06001F55A1 /* argb_sse2.c in Sources */,
+				FAC488721E08CB06001F55A1 /* lossless_enc_sse2.c in Sources */,
+				FAC488781E08CB06001F55A1 /* rescaler_mips32.c in Sources */,
+				FAC488541E08CB06001F55A1 /* argb_mips_dsp_r2.c in Sources */,
+				FAC488771E08CB06001F55A1 /* rescaler.c in Sources */,
+				FAC4886E1E08CB06001F55A1 /* lossless_enc.c in Sources */,
+				FAC4884E1E08CB06001F55A1 /* demux.c in Sources */,
+				FAC4885E1E08CB06001F55A1 /* dec_mips_dsp_r2.c in Sources */,
+				FAC488801E08CB06001F55A1 /* yuv.c in Sources */,
+				FAC4887B1E08CB06001F55A1 /* rescaler_sse2.c in Sources */,
+				FAC488461E08CB06001F55A1 /* idec.c in Sources */,
+				FAC4885F1E08CB06001F55A1 /* dec_msa.c in Sources */,
+				FAC488491E08CB06001F55A1 /* tree.c in Sources */,
+				FAC488871E08CB06001F55A1 /* config.c in Sources */,
+				FAC4884C1E08CB06001F55A1 /* webp.c in Sources */,
+				FAC488791E08CB06001F55A1 /* rescaler_mips_dsp_r2.c in Sources */,
+				FAC488701E08CB06001F55A1 /* lossless_enc_mips_dsp_r2.c in Sources */,
+				FAC488611E08CB06001F55A1 /* dec_sse2.c in Sources */,
+				FAC4886F1E08CB06001F55A1 /* lossless_enc_mips32.c in Sources */,
+				FAC4886A1E08CB06001F55A1 /* filters.c in Sources */,
+				FAC4888D1E08CB06001F55A1 /* iterator.c in Sources */,
+				FAC4886C1E08CB06001F55A1 /* filters_sse2.c in Sources */,
+				FAC4889A1E08CB06001F55A1 /* anim_encode.c in Sources */,
+				FAC488561E08CB06001F55A1 /* cost.c in Sources */,
+				FAC488931E08CB06001F55A1 /* picture_tools.c in Sources */,
+				FAC4884F1E08CB06001F55A1 /* alpha_processing.c in Sources */,
+				FAC488961E08CB06001F55A1 /* token.c in Sources */,
+				FAC488761E08CB06001F55A1 /* lossless_sse2.c in Sources */,
+				FAC488851E08CB06001F55A1 /* analysis.c in Sources */,
+				FAC488811E08CB06001F55A1 /* yuv_mips32.c in Sources */,
+				FAC488941E08CB06001F55A1 /* quant.c in Sources */,
+				FAC488A71E08CB06001F55A1 /* rescaler.c in Sources */,
+				FAC4885A1E08CB06001F55A1 /* cpu.c in Sources */,
+				FAC488A91E08CB06001F55A1 /* utils.c in Sources */,
+				FAC488A21E08CB06001F55A1 /* huffman.c in Sources */,
+				FAC488601E08CB06001F55A1 /* dec_neon.c in Sources */,
+				FAC4884D1E08CB06001F55A1 /* anim_decode.c in Sources */,
+				FAC488501E08CB06001F55A1 /* alpha_processing_mips_dsp_r2.c in Sources */,
+				FAC4888C1E08CB06001F55A1 /* histogram.c in Sources */,
+				FAC488481E08CB06001F55A1 /* quant.c in Sources */,
+				FAC4889C1E08CB06001F55A1 /* muxinternal.c in Sources */,
 				FAC487911E08CA43001F55A1 /* SecondViewController.m in Sources */,
+				FAC4887D1E08CB06001F55A1 /* upsampling_mips_dsp_r2.c in Sources */,
+				FAC488991E08CB06001F55A1 /* webpenc.c in Sources */,
+				FAC4889F1E08CB06001F55A1 /* bit_writer.c in Sources */,
+				FAC488921E08CB06001F55A1 /* picture_rescale.c in Sources */,
+				FAC488581E08CB06001F55A1 /* cost_mips_dsp_r2.c in Sources */,
+				FAC488911E08CB06001F55A1 /* picture_psnr.c in Sources */,
+				FAC4888B1E08CB06001F55A1 /* frame.c in Sources */,
+				FAC4885C1E08CB06001F55A1 /* dec_clip_tables.c in Sources */,
+				FAC4888A1E08CB06001F55A1 /* filter.c in Sources */,
+				FAC488451E08CB06001F55A1 /* frame.c in Sources */,
+				FAC488A61E08CB06001F55A1 /* random.c in Sources */,
+				FAC488A51E08CB06001F55A1 /* quant_levels_dec.c in Sources */,
+				FAC488471E08CB06001F55A1 /* io.c in Sources */,
+				FAC4886D1E08CB06001F55A1 /* lossless.c in Sources */,
+				FAC488841E08CB06001F55A1 /* alpha.c in Sources */,
 				FAC4878B1E08CA43001F55A1 /* AppDelegate.m in Sources */,
+				FAC488901E08CB06001F55A1 /* picture_csp.c in Sources */,
+				FAC488681E08CB06001F55A1 /* enc_sse2.c in Sources */,
+				FAC487A21E08CAE6001F55A1 /* UIImage+WebP.m in Sources */,
+				FAC488741E08CB06001F55A1 /* lossless_mips_dsp_r2.c in Sources */,
+				FAC488521E08CB06001F55A1 /* alpha_processing_sse41.c in Sources */,
+				FAC488881E08CB06001F55A1 /* cost.c in Sources */,
 				FAC4878E1E08CA43001F55A1 /* FirstViewController.m in Sources */,
+				FAC4889D1E08CB06001F55A1 /* muxread.c in Sources */,
 				FAC487881E08CA43001F55A1 /* main.m in Sources */,
+				FAC488631E08CB06001F55A1 /* enc.c in Sources */,
+				FAC4888E1E08CB06001F55A1 /* near_lossless.c in Sources */,
+				FAC4887A1E08CB06001F55A1 /* rescaler_neon.c in Sources */,
+				FAC488661E08CB06001F55A1 /* enc_mips_dsp_r2.c in Sources */,
+				FAC488731E08CB06001F55A1 /* lossless_enc_sse41.c in Sources */,
+				FAC488861E08CB06001F55A1 /* backward_references.c in Sources */,
+				FAC4889E1E08CB06001F55A1 /* bit_reader.c in Sources */,
+				FAC488591E08CB06001F55A1 /* cost_sse2.c in Sources */,
+				FAC488511E08CB06001F55A1 /* alpha_processing_sse2.c in Sources */,
+				FAC4886B1E08CB06001F55A1 /* filters_mips_dsp_r2.c in Sources */,
+				FAC4884B1E08CB06001F55A1 /* vp8l.c in Sources */,
+				FAC488A41E08CB06001F55A1 /* quant_levels.c in Sources */,
+				FAC4887F1E08CB06001F55A1 /* upsampling_sse2.c in Sources */,
+				FAC488751E08CB06001F55A1 /* lossless_neon.c in Sources */,
+				FAC4888F1E08CB06001F55A1 /* picture.c in Sources */,
+				FAC488821E08CB06001F55A1 /* yuv_mips_dsp_r2.c in Sources */,
+				FAC488A31E08CB06001F55A1 /* huffman_encode.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
