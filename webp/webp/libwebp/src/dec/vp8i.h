@@ -255,7 +255,7 @@ struct VP8Decoder {
   VP8FInfo fstrengths_[NUM_MB_SEGMENTS][2];  // precalculated per-segment/type
 
   // Alpha
-  struct ALPHDecoder* alph_dec_;  // alpha-plane decoder object
+  struct MV_ALPHDecoder* alph_dec_;  // alpha-plane decoder object
   const uint8_t* alpha_data_;     // compressed alpha data (if present)
   size_t alpha_data_size_;
   int is_alpha_decoded_;      // true if alpha_data_ is decoded in alpha_plane_

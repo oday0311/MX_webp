@@ -42,14 +42,14 @@ void VP8InitResidual(int first, int coeff_type,
 int VP8RecordCoeffs(int ctx, const VP8Residual* const res);
 
 // Cost of coding one event with probability 'proba'.
-static WEBP_INLINE int VP8BitCost(int bit, uint8_t proba) {
+static MV_WEBP_INLINE int VP8BitCost(int bit, uint8_t proba) {
   return !bit ? VP8EntropyCost[proba] : VP8EntropyCost[255 - proba];
 }
 
 // Level cost calculations
 extern const uint16_t VP8LevelCodes[MAX_VARIABLE_LEVEL][2];
 void VP8CalculateLevelCosts(VP8EncProba* const proba);
-static WEBP_INLINE int VP8LevelCost(const uint16_t* const table, int level) {
+static MV_WEBP_INLINE int VP8LevelCost(const uint16_t* const table, int level) {
   return VP8LevelFixedCosts[level]
        + table[(level > MAX_VARIABLE_LEVEL) ? MAX_VARIABLE_LEVEL : level];
 }

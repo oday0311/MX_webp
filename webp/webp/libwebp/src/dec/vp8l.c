@@ -146,7 +146,7 @@ int VP8LGetInfo(const uint8_t* data, size_t data_size,
 
 //------------------------------------------------------------------------------
 
-static WEBP_INLINE int GetCopyDistance(int distance_symbol,
+static MV_WEBP_INLINE int GetCopyDistance(int distance_symbol,
                                        VP8LBitReader* const br) {
   int extra_bits, offset;
   if (distance_symbol < 4) {
@@ -157,13 +157,13 @@ static WEBP_INLINE int GetCopyDistance(int distance_symbol,
   return offset + VP8LReadBits(br, extra_bits) + 1;
 }
 
-static WEBP_INLINE int GetCopyLength(int length_symbol,
+static MV_WEBP_INLINE int GetCopyLength(int length_symbol,
                                      VP8LBitReader* const br) {
   // Length and distance prefixes are encoded the same way.
   return GetCopyDistance(length_symbol, br);
 }
 
-static WEBP_INLINE int PlaneCodeToDistance(int xsize, int plane_code) {
+static MV_WEBP_INLINE int PlaneCodeToDistance(int xsize, int plane_code) {
   if (plane_code > CODE_TO_PLANE_CODES) {
     return plane_code - CODE_TO_PLANE_CODES;
   } else {
@@ -179,7 +179,7 @@ static WEBP_INLINE int PlaneCodeToDistance(int xsize, int plane_code) {
 // Decodes the next Huffman code from bit-stream.
 // FillBitWindow(br) needs to be called at minimum every second call
 // to ReadSymbol, in order to pre-fetch enough bits.
-static WEBP_INLINE int ReadSymbol(const HuffmanCode* table,
+static MV_WEBP_INLINE int ReadSymbol(const HuffmanCode* table,
                                   VP8LBitReader* const br) {
   int nbits;
   uint32_t val = VP8LPrefetchBits(br);
@@ -198,7 +198,7 @@ static WEBP_INLINE int ReadSymbol(const HuffmanCode* table,
 // Reads packed symbol depending on GREEN channel
 #define BITS_SPECIAL_MARKER 0x100  // something large enough (and a bit-mask)
 #define PACKED_NON_LITERAL_CODE 0  // must be < NUM_LITERAL_CODES
-static WEBP_INLINE int ReadPackedSymbols(const HTreeGroup* group,
+static MV_WEBP_INLINE int ReadPackedSymbols(const HTreeGroup* group,
                                          VP8LBitReader* const br,
                                          uint32_t* const dst) {
   const uint32_t val = VP8LPrefetchBits(br) & (HUFFMAN_PACKED_TABLE_SIZE - 1);
@@ -520,7 +520,7 @@ static int AllocateAndInitRescaler(VP8LDecoder* const dec, VP8Io* const io) {
 // Export to ARGB
 
 // We have special "export" function since we need to convert from BGRA
-static int Export(WebPRescaler* const rescaler, WEBP_CSP_MODE colorspace,
+static int Export(WebPRescaler* const rescaler, MV_WEBP_CSP_MODE colorspace,
                   int rgba_stride, uint8_t* const rgba) {
   uint32_t* const src = (uint32_t*)rescaler->dst;
   const int dst_width = rescaler->dst_width;
@@ -539,7 +539,7 @@ static int Export(WebPRescaler* const rescaler, WEBP_CSP_MODE colorspace,
 static int EmitRescaledRowsRGBA(const VP8LDecoder* const dec,
                                 uint8_t* in, int in_stride, int mb_h,
                                 uint8_t* const out, int out_stride) {
-  const WEBP_CSP_MODE colorspace = dec->output_->colorspace;
+  const MV_WEBP_CSP_MODE colorspace = dec->output_->colorspace;
   int num_lines_in = 0;
   int num_lines_out = 0;
   while (num_lines_in < mb_h) {
@@ -558,7 +558,7 @@ static int EmitRescaledRowsRGBA(const VP8LDecoder* const dec,
 }
 
 // Emit rows without any scaling.
-static int EmitRows(WEBP_CSP_MODE colorspace,
+static int EmitRows(MV_WEBP_CSP_MODE colorspace,
                     const uint8_t* row_in, int in_stride,
                     int mb_w, int mb_h,
                     uint8_t* const out, int out_stride) {
@@ -676,13 +676,13 @@ static int SetCropWindow(VP8Io* const io, int y_start, int y_end,
 
 //------------------------------------------------------------------------------
 
-static WEBP_INLINE int GetMetaIndex(
+static MV_WEBP_INLINE int GetMetaIndex(
     const uint32_t* const image, int xsize, int bits, int x, int y) {
   if (bits == 0) return 0;
   return image[xsize * (y >> bits) + (x >> bits)];
 }
 
-static WEBP_INLINE HTreeGroup* GetHtreeGroupForPos(VP8LMetadata* const hdr,
+static MV_WEBP_INLINE HTreeGroup* GetHtreeGroupForPos(VP8LMetadata* const hdr,
                                                    int x, int y) {
   const int meta_index = GetMetaIndex(hdr->huffman_image_, hdr->huffman_xsize_,
                                       hdr->huffman_subsample_bits_, x, y);
@@ -774,7 +774,7 @@ static int Is8bOptimizable(const VP8LMetadata* const hdr) {
   return 1;
 }
 
-static void AlphaApplyFilter(ALPHDecoder* const alph_dec,
+static void AlphaApplyFilter(MV_ALPHDecoder* const alph_dec,
                              int first_row, int last_row,
                              uint8_t* out, int stride) {
   if (alph_dec->filter_ != WEBP_FILTER_NONE) {
@@ -793,7 +793,7 @@ static void AlphaApplyFilter(ALPHDecoder* const alph_dec,
 static void ExtractPalettedAlphaRows(VP8LDecoder* const dec, int last_row) {
   // For vertical and gradient filtering, we need to decode the part above the
   // crop_top row, in order to have the correct spatial predictors.
-  ALPHDecoder* const alph_dec = (ALPHDecoder*)dec->io_->opaque;
+  MV_ALPHDecoder* const alph_dec = (MV_ALPHDecoder*)dec->io_->opaque;
   const int top_row =
       (alph_dec->filter_ == WEBP_FILTER_NONE ||
        alph_dec->filter_ == WEBP_FILTER_HORIZONTAL) ? dec->io_->crop_top
@@ -820,7 +820,7 @@ static void ExtractPalettedAlphaRows(VP8LDecoder* const dec, int last_row) {
 // Helper functions for fast pattern copy (8b and 32b)
 
 // cyclic rotation of pattern word
-static WEBP_INLINE uint32_t Rotate8b(uint32_t V) {
+static MV_WEBP_INLINE uint32_t Rotate8b(uint32_t V) {
 #if defined(WORDS_BIGENDIAN)
   return ((V & 0xff000000u) >> 24) | (V << 8);
 #else
@@ -829,7 +829,7 @@ static WEBP_INLINE uint32_t Rotate8b(uint32_t V) {
 }
 
 // copy 1, 2 or 4-bytes pattern
-static WEBP_INLINE void CopySmallPattern8b(const uint8_t* src, uint8_t* dst,
+static MV_WEBP_INLINE void CopySmallPattern8b(const uint8_t* src, uint8_t* dst,
                                            int length, uint32_t pattern) {
   int i;
   // align 'dst' to 4-bytes boundary. Adjust the pattern along the way.
@@ -849,7 +849,7 @@ static WEBP_INLINE void CopySmallPattern8b(const uint8_t* src, uint8_t* dst,
   }
 }
 
-static WEBP_INLINE void CopyBlock8b(uint8_t* const dst, int dist, int length) {
+static MV_WEBP_INLINE void CopyBlock8b(uint8_t* const dst, int dist, int length) {
   const uint8_t* src = dst - dist;
   if (length >= 8) {
     uint32_t pattern = 0;
@@ -895,7 +895,7 @@ static WEBP_INLINE void CopyBlock8b(uint8_t* const dst, int dist, int length) {
 }
 
 // copy pattern of 1 or 2 uint32_t's
-static WEBP_INLINE void CopySmallPattern32b(const uint32_t* src,
+static MV_WEBP_INLINE void CopySmallPattern32b(const uint32_t* src,
                                             uint32_t* dst,
                                             int length, uint64_t pattern) {
   int i;
@@ -913,7 +913,7 @@ static WEBP_INLINE void CopySmallPattern32b(const uint32_t* src,
   }
 }
 
-static WEBP_INLINE void CopyBlock32b(uint32_t* const dst,
+static MV_WEBP_INLINE void CopyBlock32b(uint32_t* const dst,
                                      int dist, int length) {
   const uint32_t* const src = dst - dist;
   if (dist <= 2 && length >= 4 && ((uintptr_t)dst & 3) == 0) {
@@ -1476,7 +1476,7 @@ static void ExtractAlphaRows(VP8LDecoder* const dec, int last_row) {
     const int num_rows_to_process =
         (num_rows > NUM_ARGB_CACHE_ROWS) ? NUM_ARGB_CACHE_ROWS : num_rows;
     // Extract alpha (which is stored in the green plane).
-    ALPHDecoder* const alph_dec = (ALPHDecoder*)dec->io_->opaque;
+    MV_ALPHDecoder* const alph_dec = (MV_ALPHDecoder*)dec->io_->opaque;
     uint8_t* const output = alph_dec->output_;
     const int width = dec->io_->width;      // the final width (!= dec->width_)
     const int cache_pixs = width * num_rows_to_process;
@@ -1495,7 +1495,7 @@ static void ExtractAlphaRows(VP8LDecoder* const dec, int last_row) {
   dec->last_row_ = dec->last_out_row_ = last_row;
 }
 
-int VP8LDecodeAlphaHeader(ALPHDecoder* const alph_dec,
+int VP8LDecodeAlphaHeader(MV_ALPHDecoder* const alph_dec,
                           const uint8_t* const data, size_t data_size) {
   int ok = 0;
   VP8LDecoder* dec = VP8LNew();
@@ -1543,7 +1543,7 @@ int VP8LDecodeAlphaHeader(ALPHDecoder* const alph_dec,
   return 0;
 }
 
-int VP8LDecodeAlphaImageStream(ALPHDecoder* const alph_dec, int last_row) {
+int VP8LDecodeAlphaImageStream(MV_ALPHDecoder* const alph_dec, int last_row) {
   VP8LDecoder* const dec = alph_dec->vp8l_dec_;
   assert(dec != NULL);
   assert(last_row <= dec->height_);

@@ -90,7 +90,7 @@ MAP_COLOR_FUNCS(MapAlpha, uint8_t, VP8GetAlphaIndex, VP8GetAlphaValue)
 
 #undef MAP_COLOR_FUNCS
 
-static WEBP_INLINE uint32_t ClampedAddSubtractFull(uint32_t c0, uint32_t c1,
+static MV_WEBP_INLINE uint32_t ClampedAddSubtractFull(uint32_t c0, uint32_t c1,
                                                    uint32_t c2) {
   int temp0, temp1, temp2, temp3, temp4, temp5;
   __asm__ volatile (
@@ -115,7 +115,7 @@ static WEBP_INLINE uint32_t ClampedAddSubtractFull(uint32_t c0, uint32_t c1,
   return temp2;
 }
 
-static WEBP_INLINE uint32_t ClampedAddSubtractHalf(uint32_t c0, uint32_t c1,
+static MV_WEBP_INLINE uint32_t ClampedAddSubtractHalf(uint32_t c0, uint32_t c1,
                                                    uint32_t c2) {
   int temp0, temp1, temp2, temp3, temp4, temp5;
   __asm__ volatile (
@@ -145,7 +145,7 @@ static WEBP_INLINE uint32_t ClampedAddSubtractHalf(uint32_t c0, uint32_t c1,
   return temp1;
 }
 
-static WEBP_INLINE uint32_t Select(uint32_t a, uint32_t b, uint32_t c) {
+static MV_WEBP_INLINE uint32_t Select(uint32_t a, uint32_t b, uint32_t c) {
   int temp0, temp1, temp2, temp3, temp4, temp5;
   __asm__ volatile (
     "cmpgdu.lt.qb %[temp1], %[c],     %[b]             \n\t"
@@ -169,7 +169,7 @@ static WEBP_INLINE uint32_t Select(uint32_t a, uint32_t b, uint32_t c) {
   return a;
 }
 
-static WEBP_INLINE uint32_t Average2(uint32_t a0, uint32_t a1) {
+static MV_WEBP_INLINE uint32_t Average2(uint32_t a0, uint32_t a1) {
   __asm__ volatile (
     "adduh.qb    %[a0], %[a0], %[a1]       \n\t"
     : [a0]"+r"(a0)
@@ -178,11 +178,11 @@ static WEBP_INLINE uint32_t Average2(uint32_t a0, uint32_t a1) {
   return a0;
 }
 
-static WEBP_INLINE uint32_t Average3(uint32_t a0, uint32_t a1, uint32_t a2) {
+static MV_WEBP_INLINE uint32_t Average3(uint32_t a0, uint32_t a1, uint32_t a2) {
   return Average2(Average2(a0, a2), a1);
 }
 
-static WEBP_INLINE uint32_t Average4(uint32_t a0, uint32_t a1,
+static MV_WEBP_INLINE uint32_t Average4(uint32_t a0, uint32_t a1,
                                      uint32_t a2, uint32_t a3) {
   return Average2(Average2(a0, a1), Average2(a2, a3));
 }

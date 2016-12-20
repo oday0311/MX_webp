@@ -27,24 +27,24 @@
 // Image transforms.
 
 // In-place sum of each component with mod 256.
-static WEBP_INLINE void AddPixelsEq(uint32_t* a, uint32_t b) {
+static MV_WEBP_INLINE void AddPixelsEq(uint32_t* a, uint32_t b) {
   *a = VP8LAddPixels(*a, b);
 }
 
-static WEBP_INLINE uint32_t Average2(uint32_t a0, uint32_t a1) {
+static MV_WEBP_INLINE uint32_t Average2(uint32_t a0, uint32_t a1) {
   return (((a0 ^ a1) & 0xfefefefeu) >> 1) + (a0 & a1);
 }
 
-static WEBP_INLINE uint32_t Average3(uint32_t a0, uint32_t a1, uint32_t a2) {
+static MV_WEBP_INLINE uint32_t Average3(uint32_t a0, uint32_t a1, uint32_t a2) {
   return Average2(Average2(a0, a2), a1);
 }
 
-static WEBP_INLINE uint32_t Average4(uint32_t a0, uint32_t a1,
+static MV_WEBP_INLINE uint32_t Average4(uint32_t a0, uint32_t a1,
                                      uint32_t a2, uint32_t a3) {
   return Average2(Average2(a0, a1), Average2(a2, a3));
 }
 
-static WEBP_INLINE uint32_t Clip255(uint32_t a) {
+static MV_WEBP_INLINE uint32_t Clip255(uint32_t a) {
   if (a < 256) {
     return a;
   }
@@ -53,11 +53,11 @@ static WEBP_INLINE uint32_t Clip255(uint32_t a) {
   return ~a >> 24;
 }
 
-static WEBP_INLINE int AddSubtractComponentFull(int a, int b, int c) {
+static MV_WEBP_INLINE int AddSubtractComponentFull(int a, int b, int c) {
   return Clip255(a + b - c);
 }
 
-static WEBP_INLINE uint32_t ClampedAddSubtractFull(uint32_t c0, uint32_t c1,
+static MV_WEBP_INLINE uint32_t ClampedAddSubtractFull(uint32_t c0, uint32_t c1,
                                                    uint32_t c2) {
   const int a = AddSubtractComponentFull(c0 >> 24, c1 >> 24, c2 >> 24);
   const int r = AddSubtractComponentFull((c0 >> 16) & 0xff,
@@ -70,11 +70,11 @@ static WEBP_INLINE uint32_t ClampedAddSubtractFull(uint32_t c0, uint32_t c1,
   return ((uint32_t)a << 24) | (r << 16) | (g << 8) | b;
 }
 
-static WEBP_INLINE int AddSubtractComponentHalf(int a, int b) {
+static MV_WEBP_INLINE int AddSubtractComponentHalf(int a, int b) {
   return Clip255(a + (a - b) / 2);
 }
 
-static WEBP_INLINE uint32_t ClampedAddSubtractHalf(uint32_t c0, uint32_t c1,
+static MV_WEBP_INLINE uint32_t ClampedAddSubtractHalf(uint32_t c0, uint32_t c1,
                                                    uint32_t c2) {
   const uint32_t ave = Average2(c0, c1);
   const int a = AddSubtractComponentHalf(ave >> 24, c2 >> 24);
@@ -88,7 +88,7 @@ static WEBP_INLINE uint32_t ClampedAddSubtractHalf(uint32_t c0, uint32_t c1,
 #if defined(__arm__) && LOCAL_GCC_VERSION == 0x409
 # define LOCAL_INLINE __attribute__ ((noinline))
 #else
-# define LOCAL_INLINE WEBP_INLINE
+# define LOCAL_INLINE MV_WEBP_INLINE
 #endif
 
 static LOCAL_INLINE int Sub3(int a, int b, int c) {
@@ -99,7 +99,7 @@ static LOCAL_INLINE int Sub3(int a, int b, int c) {
 
 #undef LOCAL_INLINE
 
-static WEBP_INLINE uint32_t Select(uint32_t a, uint32_t b, uint32_t c) {
+static MV_WEBP_INLINE uint32_t Select(uint32_t a, uint32_t b, uint32_t c) {
   const int pa_minus_pb =
       Sub3((a >> 24)       , (b >> 24)       , (c >> 24)       ) +
       Sub3((a >> 16) & 0xff, (b >> 16) & 0xff, (c >> 16) & 0xff) +
@@ -245,12 +245,12 @@ void VP8LAddGreenToBlueAndRed_C(uint32_t* data, int num_pixels) {
   }
 }
 
-static WEBP_INLINE uint32_t ColorTransformDelta(int8_t color_pred,
+static MV_WEBP_INLINE uint32_t ColorTransformDelta(int8_t color_pred,
                                                 int8_t color) {
   return (uint32_t)((int)(color_pred) * color) >> 5;
 }
 
-static WEBP_INLINE void ColorCodeToMultipliers(uint32_t color_code,
+static MV_WEBP_INLINE void ColorCodeToMultipliers(uint32_t color_code,
                                                VP8LMultipliers* const m) {
   m->green_to_red_  = (color_code >>  0) & 0xff;
   m->green_to_blue_ = (color_code >>  8) & 0xff;
@@ -509,7 +509,7 @@ static void CopyOrSwap(const uint32_t* src, int num_pixels, uint8_t* dst,
 }
 
 void VP8LConvertFromBGRA(const uint32_t* const in_data, int num_pixels,
-                         WEBP_CSP_MODE out_colorspace, uint8_t* const rgba) {
+                         MV_WEBP_CSP_MODE out_colorspace, uint8_t* const rgba) {
   switch (out_colorspace) {
     case MODE_RGB:
       VP8LConvertBGRAToRGB(in_data, num_pixels, rgba);

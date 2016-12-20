@@ -17,11 +17,11 @@
 #include "./dsp.h"
 #include "../enc/vp8enci.h"
 
-static WEBP_INLINE uint8_t clip_8b(int v) {
+static MV_WEBP_INLINE uint8_t clip_8b(int v) {
   return (!(v & ~0xff)) ? v : (v < 0) ? 0 : 255;
 }
 
-static WEBP_INLINE int clip_max(int v, int max) {
+static MV_WEBP_INLINE int clip_max(int v, int max) {
   return (v > max) ? max : v;
 }
 
@@ -107,7 +107,7 @@ static const int kC1 = 20091 + (1 << 16);
 static const int kC2 = 35468;
 #define MUL(a, b) (((a) * (b)) >> 16)
 
-static WEBP_INLINE void ITransformOne(const uint8_t* ref, const int16_t* in,
+static MV_WEBP_INLINE void ITransformOne(const uint8_t* ref, const int16_t* in,
                                       uint8_t* dst) {
   int C[4 * 4], *tmp;
   int i;
@@ -218,14 +218,14 @@ static void FTransformWHT(const int16_t* in, int16_t* out) {
 //------------------------------------------------------------------------------
 // Intra predictions
 
-static WEBP_INLINE void Fill(uint8_t* dst, int value, int size) {
+static MV_WEBP_INLINE void Fill(uint8_t* dst, int value, int size) {
   int j;
   for (j = 0; j < size; ++j) {
     memset(dst + j * BPS, value, size);
   }
 }
 
-static WEBP_INLINE void VerticalPred(uint8_t* dst,
+static MV_WEBP_INLINE void VerticalPred(uint8_t* dst,
                                      const uint8_t* top, int size) {
   int j;
   if (top != NULL) {
@@ -235,7 +235,7 @@ static WEBP_INLINE void VerticalPred(uint8_t* dst,
   }
 }
 
-static WEBP_INLINE void HorizontalPred(uint8_t* dst,
+static MV_WEBP_INLINE void HorizontalPred(uint8_t* dst,
                                        const uint8_t* left, int size) {
   if (left != NULL) {
     int j;
@@ -247,7 +247,7 @@ static WEBP_INLINE void HorizontalPred(uint8_t* dst,
   }
 }
 
-static WEBP_INLINE void TrueMotion(uint8_t* dst, const uint8_t* left,
+static MV_WEBP_INLINE void TrueMotion(uint8_t* dst, const uint8_t* left,
                                    const uint8_t* top, int size) {
   int y;
   if (left != NULL) {
@@ -277,7 +277,7 @@ static WEBP_INLINE void TrueMotion(uint8_t* dst, const uint8_t* left,
   }
 }
 
-static WEBP_INLINE void DCMode(uint8_t* dst, const uint8_t* left,
+static MV_WEBP_INLINE void DCMode(uint8_t* dst, const uint8_t* left,
                                const uint8_t* top,
                                int size, int round, int shift) {
   int DC = 0;
@@ -523,7 +523,7 @@ static void Intra4Preds(uint8_t* dst, const uint8_t* top) {
 //------------------------------------------------------------------------------
 // Metric
 
-static WEBP_INLINE int GetSSE(const uint8_t* a, const uint8_t* b,
+static MV_WEBP_INLINE int GetSSE(const uint8_t* a, const uint8_t* b,
                               int w, int h) {
   int count = 0;
   int y, x;
@@ -685,7 +685,7 @@ static int QuantizeBlockWHT(int16_t in[16], int16_t out[16],
 //------------------------------------------------------------------------------
 // Block copy
 
-static WEBP_INLINE void Copy(const uint8_t* src, uint8_t* dst, int w, int h) {
+static MV_WEBP_INLINE void Copy(const uint8_t* src, uint8_t* dst, int w, int h) {
   int y;
   for (y = 0; y < h; ++y) {
     memcpy(dst, src, w);

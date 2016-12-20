@@ -93,7 +93,7 @@ void VP8RemapBitReader(VP8BitReader* const br, ptrdiff_t offset);
 
 // return the next value made of 'num_bits' bits
 uint32_t VP8GetValue(VP8BitReader* const br, int num_bits);
-static WEBP_INLINE uint32_t VP8Get(VP8BitReader* const br) {
+static MV_WEBP_INLINE uint32_t VP8Get(VP8BitReader* const br) {
   return VP8GetValue(br, 1);
 }
 
@@ -101,8 +101,8 @@ static WEBP_INLINE uint32_t VP8Get(VP8BitReader* const br) {
 int32_t VP8GetSignedValue(VP8BitReader* const br, int num_bits);
 
 // bit_reader_inl.h will implement the following methods:
-//   static WEBP_INLINE int VP8GetBit(VP8BitReader* const br, int prob)
-//   static WEBP_INLINE int VP8GetSigned(VP8BitReader* const br, int v)
+//   static MV_WEBP_INLINE int VP8GetBit(VP8BitReader* const br, int prob)
+//   static MV_WEBP_INLINE int VP8GetSigned(VP8BitReader* const br, int v)
 // and should be included by the .c files that actually need them.
 // This is to avoid recompiling the whole library whenever this file is touched,
 // and also allowing platform-specific ad-hoc hacks.
@@ -142,20 +142,20 @@ void VP8LBitReaderSetBuffer(VP8LBitReader* const br,
 uint32_t VP8LReadBits(VP8LBitReader* const br, int n_bits);
 
 // Return the prefetched bits, so they can be looked up.
-static WEBP_INLINE uint32_t VP8LPrefetchBits(VP8LBitReader* const br) {
+static MV_WEBP_INLINE uint32_t VP8LPrefetchBits(VP8LBitReader* const br) {
   return (uint32_t)(br->val_ >> (br->bit_pos_ & (VP8L_LBITS - 1)));
 }
 
 // Returns true if there was an attempt at reading bit past the end of
 // the buffer. Doesn't set br->eos_ flag.
-static WEBP_INLINE int VP8LIsEndOfStream(const VP8LBitReader* const br) {
+static MV_WEBP_INLINE int VP8LIsEndOfStream(const VP8LBitReader* const br) {
   assert(br->pos_ <= br->len_);
   return br->eos_ || ((br->pos_ == br->len_) && (br->bit_pos_ > VP8L_LBITS));
 }
 
 // For jumping over a number of bits in the bit stream when accessed with
 // VP8LPrefetchBits and VP8LFillBitWindow.
-static WEBP_INLINE void VP8LSetBitPos(VP8LBitReader* const br, int val) {
+static MV_WEBP_INLINE void VP8LSetBitPos(VP8LBitReader* const br, int val) {
   br->bit_pos_ = val;
   br->eos_ = VP8LIsEndOfStream(br);
 }
@@ -163,7 +163,7 @@ static WEBP_INLINE void VP8LSetBitPos(VP8LBitReader* const br, int val) {
 // Advances the read buffer by 4 bytes to make room for reading next 32 bits.
 // Speed critical, but infrequent part of the code can be non-inlined.
 extern void VP8LDoFillBitWindow(VP8LBitReader* const br);
-static WEBP_INLINE void VP8LFillBitWindow(VP8LBitReader* const br) {
+static MV_WEBP_INLINE void VP8LFillBitWindow(VP8LBitReader* const br) {
   if (br->bit_pos_ >= VP8L_WBITS) VP8LDoFillBitWindow(br);
 }
 

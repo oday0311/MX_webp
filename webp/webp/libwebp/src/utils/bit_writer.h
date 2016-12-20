@@ -53,16 +53,16 @@ int VP8BitWriterAppend(VP8BitWriter* const bw,
                        const uint8_t* data, size_t size);
 
 // return approximate write position (in bits)
-static WEBP_INLINE uint64_t VP8BitWriterPos(const VP8BitWriter* const bw) {
+static MV_WEBP_INLINE uint64_t VP8BitWriterPos(const VP8BitWriter* const bw) {
   return (uint64_t)(bw->pos_ + bw->run_) * 8 + 8 + bw->nb_bits_;
 }
 
 // Returns a pointer to the internal buffer.
-static WEBP_INLINE uint8_t* VP8BitWriterBuf(const VP8BitWriter* const bw) {
+static MV_WEBP_INLINE uint8_t* VP8BitWriterBuf(const VP8BitWriter* const bw) {
   return bw->buf_;
 }
 // Returns the size of the internal buffer.
-static WEBP_INLINE size_t VP8BitWriterSize(const VP8BitWriter* const bw) {
+static MV_WEBP_INLINE size_t VP8BitWriterSize(const VP8BitWriter* const bw) {
   return bw->pos_;
 }
 
@@ -99,7 +99,7 @@ typedef struct {
   int error_;
 } VP8LBitWriter;
 
-static WEBP_INLINE size_t VP8LBitWriterNumBytes(VP8LBitWriter* const bw) {
+static MV_WEBP_INLINE size_t VP8LBitWriterNumBytes(VP8LBitWriter* const bw) {
   return (bw->cur_ - bw->buf_) + ((bw->used_ + 7) >> 3);
 }
 
@@ -121,7 +121,7 @@ void VP8LPutBitsInternal(VP8LBitWriter* const bw, uint32_t bits, int n_bits);
 // This function can write up to 32 bits in one go, but VP8LBitReader can only
 // read 24 bits max (VP8L_MAX_NUM_BIT_READ).
 // VP8LBitWriter's error_ flag is set in case of  memory allocation error.
-static WEBP_INLINE void VP8LPutBits(VP8LBitWriter* const bw,
+static MV_WEBP_INLINE void VP8LPutBits(VP8LBitWriter* const bw,
                                     uint32_t bits, int n_bits) {
   if (sizeof(vp8l_wtype_t) == 4) {
     if (n_bits > 0) {

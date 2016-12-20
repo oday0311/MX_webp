@@ -71,7 +71,7 @@ static void PredictLineLeft(const uint8_t* src, uint8_t* dst, int length) {
 //------------------------------------------------------------------------------
 // Horizontal filter.
 
-static WEBP_INLINE void DoHorizontalFilter(const uint8_t* in,
+static MV_WEBP_INLINE void DoHorizontalFilter(const uint8_t* in,
                                            int width, int height, int stride,
                                            int row, int num_rows,
                                            uint8_t* out) {
@@ -104,7 +104,7 @@ static WEBP_INLINE void DoHorizontalFilter(const uint8_t* in,
 //------------------------------------------------------------------------------
 // Vertical filter.
 
-static WEBP_INLINE void DoVerticalFilter(const uint8_t* in,
+static MV_WEBP_INLINE void DoVerticalFilter(const uint8_t* in,
                                          int width, int height, int stride,
                                          int row, int num_rows, uint8_t* out) {
   const size_t start_offset = row * stride;
@@ -135,7 +135,7 @@ static WEBP_INLINE void DoVerticalFilter(const uint8_t* in,
 //------------------------------------------------------------------------------
 // Gradient filter.
 
-static WEBP_INLINE int GradientPredictorC(uint8_t a, uint8_t b, uint8_t c) {
+static MV_WEBP_INLINE int GradientPredictorC(uint8_t a, uint8_t b, uint8_t c) {
   const int g = a + b - c;
   return ((g & ~0xff) == 0) ? g : (g < 0) ? 0 : 255;  // clip to 8bit
 }
@@ -165,7 +165,7 @@ static void GradientPredictDirect(const uint8_t* const row,
   }
 }
 
-static WEBP_INLINE void DoGradientFilter(const uint8_t* in,
+static MV_WEBP_INLINE void DoGradientFilter(const uint8_t* in,
                                          int width, int height, int stride,
                                          int row, int num_rows,
                                          uint8_t* out) {

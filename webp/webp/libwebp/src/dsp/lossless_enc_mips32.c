@@ -213,7 +213,7 @@ static double ExtraCostCombined(const uint32_t* const X,
   );
 
 // Returns the various RLE counts
-static WEBP_INLINE void GetEntropyUnrefinedHelper(
+static MV_WEBP_INLINE void GetEntropyUnrefinedHelper(
     uint32_t val, int i, uint32_t* const val_prev, int* const i_prev,
     VP8LBitEntropy* const bit_entropy, VP8LStreaks* const stats) {
   int* const pstreaks = &stats->streaks[0][0];

@@ -13,7 +13,7 @@
 
 #include "./vp8i.h"
 
-static WEBP_INLINE int clip(int v, int M) {
+static MV_WEBP_INLINE int clip(int v, int M) {
   return v < 0 ? 0 : v > M ? M : v;
 }
 

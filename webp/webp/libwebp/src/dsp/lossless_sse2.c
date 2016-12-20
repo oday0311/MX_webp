@@ -21,7 +21,7 @@
 //------------------------------------------------------------------------------
 // Predictor Transform
 
-static WEBP_INLINE uint32_t ClampedAddSubtractFull(uint32_t c0, uint32_t c1,
+static MV_WEBP_INLINE uint32_t ClampedAddSubtractFull(uint32_t c0, uint32_t c1,
                                                    uint32_t c2) {
   const __m128i zero = _mm_setzero_si128();
   const __m128i C0 = _mm_unpacklo_epi8(_mm_cvtsi32_si128(c0), zero);
@@ -34,7 +34,7 @@ static WEBP_INLINE uint32_t ClampedAddSubtractFull(uint32_t c0, uint32_t c1,
   return output;
 }
 
-static WEBP_INLINE uint32_t ClampedAddSubtractHalf(uint32_t c0, uint32_t c1,
+static MV_WEBP_INLINE uint32_t ClampedAddSubtractHalf(uint32_t c0, uint32_t c1,
                                                    uint32_t c2) {
   const __m128i zero = _mm_setzero_si128();
   const __m128i C0 = _mm_unpacklo_epi8(_mm_cvtsi32_si128(c0), zero);
@@ -52,7 +52,7 @@ static WEBP_INLINE uint32_t ClampedAddSubtractHalf(uint32_t c0, uint32_t c1,
   return output;
 }
 
-static WEBP_INLINE uint32_t Select(uint32_t a, uint32_t b, uint32_t c) {
+static MV_WEBP_INLINE uint32_t Select(uint32_t a, uint32_t b, uint32_t c) {
   int pa_minus_pb;
   const __m128i zero = _mm_setzero_si128();
   const __m128i A0 = _mm_cvtsi32_si128(a);
@@ -75,7 +75,7 @@ static WEBP_INLINE uint32_t Select(uint32_t a, uint32_t b, uint32_t c) {
   return (pa_minus_pb <= 0) ? a : b;
 }
 
-static WEBP_INLINE __m128i Average2_128i(uint32_t a0, uint32_t a1) {
+static MV_WEBP_INLINE __m128i Average2_128i(uint32_t a0, uint32_t a1) {
   const __m128i zero = _mm_setzero_si128();
   const __m128i A0 = _mm_unpacklo_epi8(_mm_cvtsi32_si128(a0), zero);
   const __m128i A1 = _mm_unpacklo_epi8(_mm_cvtsi32_si128(a1), zero);
@@ -84,14 +84,14 @@ static WEBP_INLINE __m128i Average2_128i(uint32_t a0, uint32_t a1) {
   return avg;
 }
 
-static WEBP_INLINE uint32_t Average2(uint32_t a0, uint32_t a1) {
+static MV_WEBP_INLINE uint32_t Average2(uint32_t a0, uint32_t a1) {
   const __m128i avg = Average2_128i(a0, a1);
   const __m128i A2 = _mm_packus_epi16(avg, avg);
   const uint32_t output = _mm_cvtsi128_si32(A2);
   return output;
 }
 
-static WEBP_INLINE uint32_t Average3(uint32_t a0, uint32_t a1, uint32_t a2) {
+static MV_WEBP_INLINE uint32_t Average3(uint32_t a0, uint32_t a1, uint32_t a2) {
   const __m128i zero = _mm_setzero_si128();
   const __m128i avg1 = Average2_128i(a0, a2);
   const __m128i A1 = _mm_unpacklo_epi8(_mm_cvtsi32_si128(a1), zero);
@@ -102,7 +102,7 @@ static WEBP_INLINE uint32_t Average3(uint32_t a0, uint32_t a1, uint32_t a2) {
   return output;
 }
 
-static WEBP_INLINE uint32_t Average4(uint32_t a0, uint32_t a1,
+static MV_WEBP_INLINE uint32_t Average4(uint32_t a0, uint32_t a1,
                                      uint32_t a2, uint32_t a3) {
   const __m128i avg1 = Average2_128i(a0, a1);
   const __m128i avg2 = Average2_128i(a2, a3);

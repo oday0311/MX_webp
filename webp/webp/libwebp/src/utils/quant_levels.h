@@ -11,8 +11,8 @@
 //
 // Author:  Vikas Arora (vikasa@google.com)
 
-#ifndef WEBP_UTILS_QUANT_LEVELS_H_
-#define WEBP_UTILS_QUANT_LEVELS_H_
+#ifndef MV_WEBP_UTILS_QUANT_LEVELS_H_
+#define MV_WEBP_UTILS_QUANT_LEVELS_H_
 
 #include <stdlib.h>
 
@@ -26,7 +26,7 @@ extern "C" {
 // quantized values. If not NULL, 'sse' will contain the sum of squared error.
 // Valid range for 'num_levels' is [2, 256].
 // Returns false in case of error (data is NULL, or parameters are invalid).
-int QuantizeLevels(uint8_t* const data, int width, int height, int num_levels,
+int MV_QuantizeLevels(uint8_t* const data, int width, int height, int num_levels,
                    uint64_t* const sse);
 
 #ifdef __cplusplus

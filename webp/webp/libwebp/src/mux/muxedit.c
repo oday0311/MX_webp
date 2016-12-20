@@ -27,7 +27,7 @@ static void MuxInit(WebPMux* const mux) {
 }
 
 WebPMux* WebPNewInternal(int version) {
-  if (WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_MUX_ABI_VERSION)) {
+  if (MV_WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_MUX_ABI_VERSION)) {
     return NULL;
   } else {
     WebPMux* const mux = (WebPMux*)WebPSafeMalloc(1ULL, sizeof(WebPMux));

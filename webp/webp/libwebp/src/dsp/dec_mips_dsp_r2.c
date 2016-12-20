@@ -157,7 +157,7 @@ static void TransformTwo(const int16_t* in, uint8_t* dst, int do_two) {
   }
 }
 
-static WEBP_INLINE void FilterLoop26(uint8_t* p,
+static MV_WEBP_INLINE void FilterLoop26(uint8_t* p,
                                      int hstride, int vstride, int size,
                                      int thresh, int ithresh, int hev_thresh) {
   const int thresh2 = 2 * thresh + 1;
@@ -295,7 +295,7 @@ static WEBP_INLINE void FilterLoop26(uint8_t* p,
   );
 }
 
-static WEBP_INLINE void FilterLoop24(uint8_t* p,
+static MV_WEBP_INLINE void FilterLoop24(uint8_t* p,
                                      int hstride, int vstride, int size,
                                      int thresh, int ithresh, int hev_thresh) {
   int p0, q0, p1, q1, p2, q2, p3, q3;

@@ -64,13 +64,13 @@ static void ConvertYUV444ToRGB(const __m128i* const Y0,
 }
 
 // Load the bytes into the *upper* part of 16b words. That's "<< 8", basically.
-static WEBP_INLINE __m128i Load_HI_16(const uint8_t* src) {
+static MV_WEBP_INLINE __m128i Load_HI_16(const uint8_t* src) {
   const __m128i zero = _mm_setzero_si128();
   return _mm_unpacklo_epi8(zero, _mm_loadl_epi64((const __m128i*)src));
 }
 
 // Load and replicate the U/V samples
-static WEBP_INLINE __m128i Load_UV_HI_8(const uint8_t* src) {
+static MV_WEBP_INLINE __m128i Load_UV_HI_8(const uint8_t* src) {
   const __m128i zero = _mm_setzero_si128();
   const __m128i tmp0 = _mm_cvtsi32_si128(*(const uint32_t*)src);
   const __m128i tmp1 = _mm_unpacklo_epi8(zero, tmp0);
@@ -96,7 +96,7 @@ static void YUV420ToRGB(const uint8_t* const y,
 }
 
 // Pack R/G/B/A results into 32b output.
-static WEBP_INLINE void PackAndStore4(const __m128i* const R,
+static MV_WEBP_INLINE void PackAndStore4(const __m128i* const R,
                                       const __m128i* const G,
                                       const __m128i* const B,
                                       const __m128i* const A,
@@ -112,7 +112,7 @@ static WEBP_INLINE void PackAndStore4(const __m128i* const R,
 }
 
 // Pack R/G/B/A results into 16b output.
-static WEBP_INLINE void PackAndStore4444(const __m128i* const R,
+static MV_WEBP_INLINE void PackAndStore4444(const __m128i* const R,
                                          const __m128i* const G,
                                          const __m128i* const B,
                                          const __m128i* const A,
@@ -134,7 +134,7 @@ static WEBP_INLINE void PackAndStore4444(const __m128i* const R,
 }
 
 // Pack R/G/B results into 16b output.
-static WEBP_INLINE void PackAndStore565(const __m128i* const R,
+static MV_WEBP_INLINE void PackAndStore565(const __m128i* const R,
                                         const __m128i* const G,
                                         const __m128i* const B,
                                         uint8_t* const dst) {
@@ -158,7 +158,7 @@ static WEBP_INLINE void PackAndStore565(const __m128i* const R,
 // Function used several times in PlanarTo24b.
 // It samples the in buffer as follows: one every two unsigned char is stored
 // at the beginning of the buffer, while the other half is stored at the end.
-static WEBP_INLINE void PlanarTo24bHelper(const __m128i* const in /*in[6]*/,
+static MV_WEBP_INLINE void PlanarTo24bHelper(const __m128i* const in /*in[6]*/,
                                           __m128i* const out /*out[6]*/) {
   const __m128i v_mask = _mm_set1_epi16(0x00ff);
 
@@ -178,7 +178,7 @@ static WEBP_INLINE void PlanarTo24bHelper(const __m128i* const in /*in[6]*/,
 // Pack the planar buffers
 // rrrr... rrrr... gggg... gggg... bbbb... bbbb....
 // triplet by triplet in the output buffer rgb as rgbrgbrgbrgb ...
-static WEBP_INLINE void PlanarTo24b(__m128i* const in /*in[6]*/, uint8_t* rgb) {
+static MV_WEBP_INLINE void PlanarTo24b(__m128i* const in /*in[6]*/, uint8_t* rgb) {
   // The input is 6 registers of sixteen 8b but for the sake of explanation,
   // let's take 6 registers of four 8b values.
   // To pack, we will keep taking one every two 8b integer and move it
@@ -467,7 +467,7 @@ WEBP_TSAN_IGNORE_FUNCTION void WebPInitSamplersSSE2(void) {
 
 // Function that inserts a value of the second half of the in buffer in between
 // every two char of the first half.
-static WEBP_INLINE void RGB24PackedToPlanarHelper(
+static MV_WEBP_INLINE void RGB24PackedToPlanarHelper(
     const __m128i* const in /*in[6]*/, __m128i* const out /*out[6]*/) {
   out[0] = _mm_unpacklo_epi8(in[0], in[3]);
   out[1] = _mm_unpackhi_epi8(in[0], in[3]);
@@ -480,7 +480,7 @@ static WEBP_INLINE void RGB24PackedToPlanarHelper(
 // Unpack the 8b input rgbrgbrgbrgb ... as contiguous registers:
 // rrrr... rrrr... gggg... gggg... bbbb... bbbb....
 // Similar to PlanarTo24bHelper(), but in reverse order.
-static WEBP_INLINE void RGB24PackedToPlanar(const uint8_t* const rgb,
+static MV_WEBP_INLINE void RGB24PackedToPlanar(const uint8_t* const rgb,
                                             __m128i* const out /*out[6]*/) {
   __m128i tmp[6];
   tmp[0] = _mm_loadu_si128((const __m128i*)(rgb +  0));
@@ -498,7 +498,7 @@ static WEBP_INLINE void RGB24PackedToPlanar(const uint8_t* const rgb,
 }
 
 // Convert 8 packed ARGB to r[], g[], b[]
-static WEBP_INLINE void RGB32PackedToPlanar(const uint32_t* const argb,
+static MV_WEBP_INLINE void RGB32PackedToPlanar(const uint32_t* const argb,
                                             __m128i* const r,
                                             __m128i* const g,
                                             __m128i* const b) {
@@ -539,7 +539,7 @@ static WEBP_INLINE void RGB32PackedToPlanar(const uint32_t* const argb,
 } while (0)
 
 #define MK_CST_16(A, B) _mm_set_epi16((B), (A), (B), (A), (B), (A), (B), (A))
-static WEBP_INLINE void ConvertRGBToY(const __m128i* const R,
+static MV_WEBP_INLINE void ConvertRGBToY(const __m128i* const R,
                                       const __m128i* const G,
                                       const __m128i* const B,
                                       __m128i* const Y) {
@@ -554,7 +554,7 @@ static WEBP_INLINE void ConvertRGBToY(const __m128i* const R,
   TRANSFORM(RG_lo, RG_hi, GB_lo, GB_hi, kRG_y, kGB_y, kHALF_Y, YUV_FIX, *Y);
 }
 
-static WEBP_INLINE void ConvertRGBToUV(const __m128i* const R,
+static MV_WEBP_INLINE void ConvertRGBToUV(const __m128i* const R,
                                        const __m128i* const G,
                                        const __m128i* const B,
                                        __m128i* const U, __m128i* const V) {
@@ -710,7 +710,7 @@ static void ConvertARGBToUV(const uint32_t* argb, uint8_t* u, uint8_t* v,
 }
 
 // Convert 16 packed ARGB 16b-values to r[], g[], b[]
-static WEBP_INLINE void RGBA32PackedToPlanar_16b(const uint16_t* const rgbx,
+static MV_WEBP_INLINE void RGBA32PackedToPlanar_16b(const uint16_t* const rgbx,
                                                  __m128i* const r,
                                                  __m128i* const g,
                                                  __m128i* const b) {

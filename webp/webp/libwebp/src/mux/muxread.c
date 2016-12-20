@@ -180,7 +180,7 @@ WebPMux* WebPMuxCreateInternal(const WebPData* bitstream, int copy_data,
   ChunkInit(&chunk);
 
   // Sanity checks.
-  if (WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_MUX_ABI_VERSION)) {
+  if (MV_WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_MUX_ABI_VERSION)) {
     return NULL;  // version mismatch
   }
   if (bitstream == NULL) return NULL;

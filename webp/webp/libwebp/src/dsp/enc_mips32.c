@@ -113,7 +113,7 @@ static const int kC2 = 35468;
   "sb      %[" #TEMP12 "],   3+" XSTR(BPS) "*" #A "(%[temp16]) \n\t"
 
 // Does one or two inverse transforms.
-static WEBP_INLINE void ITransformOne(const uint8_t* ref, const int16_t* in,
+static MV_WEBP_INLINE void ITransformOne(const uint8_t* ref, const int16_t* in,
                                       uint8_t* dst) {
   int temp0, temp1, temp2, temp3, temp4, temp5, temp6;
   int temp7, temp8, temp9, temp10, temp11, temp12, temp13;

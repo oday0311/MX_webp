@@ -159,7 +159,7 @@ void VP8LHistogramAddSinglePixOrCopy(VP8LHistogram* const histo,
 // -----------------------------------------------------------------------------
 // Entropy-related functions.
 
-static WEBP_INLINE double BitsEntropyRefine(const VP8LBitEntropy* entropy) {
+static MV_WEBP_INLINE double BitsEntropyRefine(const VP8LBitEntropy* entropy) {
   double mix;
   if (entropy->nonzeros < 5) {
     if (entropy->nonzeros <= 1) {
@@ -236,7 +236,7 @@ static double PopulationCost(const uint32_t* const population, int length,
   return BitsEntropyRefine(&bit_entropy) + FinalHuffmanCost(&stats);
 }
 
-static WEBP_INLINE double GetCombinedEntropy(const uint32_t* const X,
+static MV_WEBP_INLINE double GetCombinedEntropy(const uint32_t* const X,
                                              const uint32_t* const Y,
                                              int length) {
   VP8LBitEntropy bit_entropy;

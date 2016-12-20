@@ -70,7 +70,7 @@ static int DistanceToPlaneCode(int xsize, int dist) {
 // inferior to best_len_match. The current behavior is to return 0 if this index
 // is best_len_match, and the index itself otherwise.
 // If no two elements are the same, it returns max_limit.
-static WEBP_INLINE int FindMatchLength(const uint32_t* const array1,
+static MV_WEBP_INLINE int FindMatchLength(const uint32_t* const array1,
                                        const uint32_t* const array2,
                                        int best_len_match, int max_limit) {
   // Before 'expensive' linear match, check if the two arrays match at the
@@ -161,7 +161,7 @@ static PixOrCopyBlock* BackwardRefsNewBlock(VP8LBackwardRefs* const refs) {
   return b;
 }
 
-static WEBP_INLINE void BackwardRefsCursorAdd(VP8LBackwardRefs* const refs,
+static MV_WEBP_INLINE void BackwardRefsCursorAdd(VP8LBackwardRefs* const refs,
                                               const PixOrCopy v) {
   PixOrCopyBlock* b = refs->last_block_;
   if (b == NULL || b->size_ == refs->block_size_) {
@@ -214,7 +214,7 @@ void VP8LHashChainClear(VP8LHashChain* const p) {
 #define HASH_MULTIPLIER_HI (0xc6a4a793U)
 #define HASH_MULTIPLIER_LO (0x5bd1e996U)
 
-static WEBP_INLINE uint32_t GetPixPairHash64(const uint32_t* const argb) {
+static MV_WEBP_INLINE uint32_t GetPixPairHash64(const uint32_t* const argb) {
   uint32_t key;
   key  = argb[1] * HASH_MULTIPLIER_HI;
   key += argb[0] * HASH_MULTIPLIER_LO;
@@ -237,7 +237,7 @@ static int GetWindowSizeForHashChain(int quality, int xsize) {
   return (max_window_size > WINDOW_SIZE) ? WINDOW_SIZE : max_window_size;
 }
 
-static WEBP_INLINE int MaxFindCopyLength(int len) {
+static MV_WEBP_INLINE int MaxFindCopyLength(int len) {
   return (len < MAX_LENGTH) ? len : MAX_LENGTH;
 }
 
@@ -339,17 +339,17 @@ int VP8LHashChainFill(VP8LHashChain* const p, int quality,
   return 1;
 }
 
-static WEBP_INLINE int HashChainFindOffset(const VP8LHashChain* const p,
+static MV_WEBP_INLINE int HashChainFindOffset(const VP8LHashChain* const p,
                                            const int base_position) {
   return p->offset_length_[base_position] >> MAX_LENGTH_BITS;
 }
 
-static WEBP_INLINE int HashChainFindLength(const VP8LHashChain* const p,
+static MV_WEBP_INLINE int HashChainFindLength(const VP8LHashChain* const p,
                                            const int base_position) {
   return p->offset_length_[base_position] & ((1U << MAX_LENGTH_BITS) - 1);
 }
 
-static WEBP_INLINE void HashChainFindCopy(const VP8LHashChain* const p,
+static MV_WEBP_INLINE void HashChainFindCopy(const VP8LHashChain* const p,
                                           int base_position,
                                           int* const offset_ptr,
                                           int* const length_ptr) {
@@ -357,7 +357,7 @@ static WEBP_INLINE void HashChainFindCopy(const VP8LHashChain* const p,
   *length_ptr = HashChainFindLength(p, base_position);
 }
 
-static WEBP_INLINE void AddSingleLiteral(uint32_t pixel, int use_color_cache,
+static MV_WEBP_INLINE void AddSingleLiteral(uint32_t pixel, int use_color_cache,
                                          VP8LColorCache* const hashers,
                                          VP8LBackwardRefs* const refs) {
   PixOrCopy v;
@@ -547,26 +547,26 @@ static int CostModelBuild(CostModel* const m, int cache_bits,
   return ok;
 }
 
-static WEBP_INLINE double GetLiteralCost(const CostModel* const m, uint32_t v) {
+static MV_WEBP_INLINE double GetLiteralCost(const CostModel* const m, uint32_t v) {
   return m->alpha_[v >> 24] +
          m->red_[(v >> 16) & 0xff] +
          m->literal_[(v >> 8) & 0xff] +
          m->blue_[v & 0xff];
 }
 
-static WEBP_INLINE double GetCacheCost(const CostModel* const m, uint32_t idx) {
+static MV_WEBP_INLINE double GetCacheCost(const CostModel* const m, uint32_t idx) {
   const int literal_idx = VALUES_IN_BYTE + NUM_LENGTH_CODES + idx;
   return m->literal_[literal_idx];
 }
 
-static WEBP_INLINE double GetLengthCost(const CostModel* const m,
+static MV_WEBP_INLINE double GetLengthCost(const CostModel* const m,
                                         uint32_t length) {
   int code, extra_bits;
   VP8LPrefixEncodeBits(length, &code, &extra_bits);
   return m->literal_[VALUES_IN_BYTE + code] + extra_bits;
 }
 
-static WEBP_INLINE double GetDistanceCost(const CostModel* const m,
+static MV_WEBP_INLINE double GetDistanceCost(const CostModel* const m,
                                           uint32_t distance) {
   int code, extra_bits;
   VP8LPrefixEncodeBits(distance, &code, &extra_bits);
@@ -892,7 +892,7 @@ static int CostManagerInit(CostManager* const manager,
 
 // Given the distance_cost for pixel 'index', update the cost at pixel 'i' if it
 // is smaller than the previously computed value.
-static WEBP_INLINE void UpdateCost(CostManager* const manager, int i, int index,
+static MV_WEBP_INLINE void UpdateCost(CostManager* const manager, int i, int index,
                                    double distance_cost) {
   int k = i - index;
   double cost_tmp;
@@ -907,7 +907,7 @@ static WEBP_INLINE void UpdateCost(CostManager* const manager, int i, int index,
 
 // Given the distance_cost for pixel 'index', update the cost for all the pixels
 // between 'start' and 'end' excluded.
-static WEBP_INLINE void UpdateCostPerInterval(CostManager* const manager,
+static MV_WEBP_INLINE void UpdateCostPerInterval(CostManager* const manager,
                                               int start, int end, int index,
                                               double distance_cost) {
   int i;
@@ -915,7 +915,7 @@ static WEBP_INLINE void UpdateCostPerInterval(CostManager* const manager,
 }
 
 // Given two intervals, make 'prev' be the previous one of 'next' in 'manager'.
-static WEBP_INLINE void ConnectIntervals(CostManager* const manager,
+static MV_WEBP_INLINE void ConnectIntervals(CostManager* const manager,
                                          CostInterval* const prev,
                                          CostInterval* const next) {
   if (prev != NULL) {
@@ -928,7 +928,7 @@ static WEBP_INLINE void ConnectIntervals(CostManager* const manager,
 }
 
 // Pop an interval in the manager.
-static WEBP_INLINE void PopInterval(CostManager* const manager,
+static MV_WEBP_INLINE void PopInterval(CostManager* const manager,
                                     CostInterval* const interval) {
   CostInterval* const next = interval->next_;
 
@@ -947,7 +947,7 @@ static WEBP_INLINE void PopInterval(CostManager* const manager,
 
 // Update the cost at index i by going over all the stored intervals that
 // overlap with i.
-static WEBP_INLINE void UpdateCostPerIndex(CostManager* const manager, int i) {
+static MV_WEBP_INLINE void UpdateCostPerIndex(CostManager* const manager, int i) {
   CostInterval* current = manager->head_;
 
   while (current != NULL && current->start_ <= i) {
@@ -966,7 +966,7 @@ static WEBP_INLINE void UpdateCostPerIndex(CostManager* const manager, int i) {
 // Given a current orphan interval and its previous interval, before
 // it was orphaned (which can be NULL), set it at the right place in the list
 // of intervals using the start_ ordering and the previous interval as a hint.
-static WEBP_INLINE void PositionOrphanInterval(CostManager* const manager,
+static MV_WEBP_INLINE void PositionOrphanInterval(CostManager* const manager,
                                                CostInterval* const current,
                                                CostInterval* previous) {
   assert(current != NULL);
@@ -990,7 +990,7 @@ static WEBP_INLINE void PositionOrphanInterval(CostManager* const manager,
 
 // Insert an interval in the list contained in the manager by starting at
 // interval_in as a hint. The intervals are sorted by start_ value.
-static WEBP_INLINE void InsertInterval(CostManager* const manager,
+static MV_WEBP_INLINE void InsertInterval(CostManager* const manager,
                                        CostInterval* const interval_in,
                                        double distance_cost, double lower,
                                        double upper, int index, int start,
@@ -1031,7 +1031,7 @@ static WEBP_INLINE void InsertInterval(CostManager* const manager,
 
 // When an interval has its start_ or end_ modified, it needs to be
 // repositioned in the linked list.
-static WEBP_INLINE void RepositionInterval(CostManager* const manager,
+static MV_WEBP_INLINE void RepositionInterval(CostManager* const manager,
                                            CostInterval* const interval) {
   if (IsCostCacheIntervalWritable(interval->start_, interval->end_)) {
     // Maybe interval has been resized and is small enough to be removed.
@@ -1057,7 +1057,7 @@ static WEBP_INLINE void RepositionInterval(CostManager* const manager,
 // distance_cost, add its contributions to the previous intervals and costs.
 // If handling the interval or one of its subintervals becomes to heavy, its
 // contribution is added to the costs right away.
-static WEBP_INLINE void PushInterval(CostManager* const manager,
+static MV_WEBP_INLINE void PushInterval(CostManager* const manager,
                                      double distance_cost, int index,
                                      int last) {
   size_t i;

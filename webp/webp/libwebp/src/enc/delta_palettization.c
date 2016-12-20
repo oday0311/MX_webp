@@ -262,13 +262,13 @@ static const uint32_t kDeltaPalette[DELTA_PALETTE_SIZE] = {
 // here instead.
 
 // In-place sum of each component with mod 256.
-static WEBP_INLINE void AddPixelsEq(uint32_t* a, uint32_t b) {
+static MV_WEBP_INLINE void AddPixelsEq(uint32_t* a, uint32_t b) {
   const uint32_t alpha_and_green = (*a & 0xff00ff00u) + (b & 0xff00ff00u);
   const uint32_t red_and_blue = (*a & 0x00ff00ffu) + (b & 0x00ff00ffu);
   *a = (alpha_and_green & 0xff00ff00u) | (red_and_blue & 0x00ff00ffu);
 }
 
-static WEBP_INLINE uint32_t Clip255(uint32_t a) {
+static MV_WEBP_INLINE uint32_t Clip255(uint32_t a) {
   if (a < 256) {
     return a;
   }
@@ -278,11 +278,11 @@ static WEBP_INLINE uint32_t Clip255(uint32_t a) {
 }
 
 // Delta palettization functions.
-static WEBP_INLINE int Square(int x) {
+static MV_WEBP_INLINE int Square(int x) {
   return x * x;
 }
 
-static WEBP_INLINE uint32_t Intensity(uint32_t a) {
+static MV_WEBP_INLINE uint32_t Intensity(uint32_t a) {
   return
       30 * ((a >> 16) & 0xff) +
       59 * ((a >>  8) & 0xff) +
@@ -322,12 +322,12 @@ static uint32_t Predict(int x, int y, uint32_t* image) {
   return p;
 }
 
-static WEBP_INLINE int AddSubtractComponentFullWithCoefficient(
+static MV_WEBP_INLINE int AddSubtractComponentFullWithCoefficient(
     int a, int b, int c) {
   return Clip255(a + ((b - c) >> 2));
 }
 
-static WEBP_INLINE uint32_t ClampedAddSubtractFullWithCoefficient(
+static MV_WEBP_INLINE uint32_t ClampedAddSubtractFullWithCoefficient(
     uint32_t c0, uint32_t c1, uint32_t c2) {
   const int a = AddSubtractComponentFullWithCoefficient(
       c0 >> 24, c1 >> 24, c2 >> 24);

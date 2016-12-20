@@ -122,13 +122,13 @@ static const uint32_t kMultTables[2][256] = {
     0x00fcfcfc, 0x00fdfdfd, 0x00fefefe, 0x00ffffff }
 };
 
-static WEBP_INLINE uint32_t GetScale(uint32_t a, int inverse) {
+static MV_WEBP_INLINE uint32_t GetScale(uint32_t a, int inverse) {
   return kMultTables[!inverse][a];
 }
 
 #else
 
-static WEBP_INLINE uint32_t GetScale(uint32_t a, int inverse) {
+static MV_WEBP_INLINE uint32_t GetScale(uint32_t a, int inverse) {
   return inverse ? (255u << MFIX) / a : a * KINV_255;
 }
 
@@ -242,19 +242,19 @@ static void ApplyAlphaMultiply(uint8_t* rgba, int alpha_first,
 
 #define MULTIPLIER(a)  ((a) * 0x1111)    // 0x1111 ~= (1 << 16) / 15
 
-static WEBP_INLINE uint8_t dither_hi(uint8_t x) {
+static MV_WEBP_INLINE uint8_t dither_hi(uint8_t x) {
   return (x & 0xf0) | (x >> 4);
 }
 
-static WEBP_INLINE uint8_t dither_lo(uint8_t x) {
+static MV_WEBP_INLINE uint8_t dither_lo(uint8_t x) {
   return (x & 0x0f) | (x << 4);
 }
 
-static WEBP_INLINE uint8_t multiply(uint8_t x, uint32_t m) {
+static MV_WEBP_INLINE uint8_t multiply(uint8_t x, uint32_t m) {
   return (x * m) >> 16;
 }
 
-static WEBP_INLINE void ApplyAlphaMultiply4444(uint8_t* rgba4444,
+static MV_WEBP_INLINE void ApplyAlphaMultiply4444(uint8_t* rgba4444,
                                                int w, int h, int stride,
                                                int rg_byte_pos /* 0 or 1 */) {
   while (h-- > 0) {

@@ -524,7 +524,7 @@ static VP8StatusCode DecodeInto(const uint8_t* const data, size_t data_size,
 }
 
 // Helpers
-static uint8_t* DecodeIntoRGBABuffer(WEBP_CSP_MODE colorspace,
+static uint8_t* DecodeIntoRGBABuffer(MV_WEBP_CSP_MODE colorspace,
                                      const uint8_t* const data,
                                      size_t data_size,
                                      uint8_t* const rgba,
@@ -602,7 +602,7 @@ uint8_t* WebPDecodeYUVInto(const uint8_t* data, size_t data_size,
 
 //------------------------------------------------------------------------------
 
-static uint8_t* Decode(WEBP_CSP_MODE mode, const uint8_t* const data,
+static uint8_t* Decode(MV_WEBP_CSP_MODE mode, const uint8_t* const data,
                        size_t data_size, int* const width, int* const height,
                        WebPDecBuffer* const keep_info) {
   WebPDecParams params;
@@ -719,7 +719,7 @@ int WebPGetInfo(const uint8_t* data, size_t data_size,
 
 int WebPInitDecoderConfigInternal(WebPDecoderConfig* config,
                                   int version) {
-  if (WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_DECODER_ABI_VERSION)) {
+  if (MV_WEBP_ABI_IS_INCOMPATIBLE(version, MV_WEBP_DECODER_ABI_VERSION)) {
     return 0;   // version mismatch
   }
   if (config == NULL) {
@@ -734,7 +734,7 @@ int WebPInitDecoderConfigInternal(WebPDecoderConfig* config,
 VP8StatusCode WebPGetFeaturesInternal(const uint8_t* data, size_t data_size,
                                       WebPBitstreamFeatures* features,
                                       int version) {
-  if (WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_DECODER_ABI_VERSION)) {
+  if (MV_WEBP_ABI_IS_INCOMPATIBLE(version, MV_WEBP_DECODER_ABI_VERSION)) {
     return VP8_STATUS_INVALID_PARAM;   // version mismatch
   }
   if (features == NULL) {
@@ -787,7 +787,7 @@ VP8StatusCode WebPDecode(const uint8_t* data, size_t data_size,
 // Cropping and rescaling.
 
 int WebPIoInitFromOptions(const WebPDecoderOptions* const options,
-                          VP8Io* const io, WEBP_CSP_MODE src_colorspace) {
+                          VP8Io* const io, MV_WEBP_CSP_MODE src_colorspace) {
   const int W = io->width;
   const int H = io->height;
   int x = 0, y = 0, w = W, h = H;

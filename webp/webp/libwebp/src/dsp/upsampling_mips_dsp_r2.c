@@ -48,21 +48,21 @@
     );                                                                         \
   } while (0)
 
-static WEBP_INLINE void YuvToRgb(int y, int u, int v, uint8_t* const rgb) {
+static MV_WEBP_INLINE void YuvToRgb(int y, int u, int v, uint8_t* const rgb) {
   int r, g, b;
   YUV_TO_RGB(y, u, v, r, g, b);
   rgb[0] = r;
   rgb[1] = g;
   rgb[2] = b;
 }
-static WEBP_INLINE void YuvToBgr(int y, int u, int v, uint8_t* const bgr) {
+static MV_WEBP_INLINE void YuvToBgr(int y, int u, int v, uint8_t* const bgr) {
   int r, g, b;
   YUV_TO_RGB(y, u, v, r, g, b);
   bgr[0] = b;
   bgr[1] = g;
   bgr[2] = r;
 }
-static WEBP_INLINE void YuvToRgb565(int y, int u, int v, uint8_t* const rgb) {
+static MV_WEBP_INLINE void YuvToRgb565(int y, int u, int v, uint8_t* const rgb) {
   int r, g, b;
   YUV_TO_RGB(y, u, v, r, g, b);
   {
@@ -77,7 +77,7 @@ static WEBP_INLINE void YuvToRgb565(int y, int u, int v, uint8_t* const rgb) {
 #endif
   }
 }
-static WEBP_INLINE void YuvToRgba4444(int y, int u, int v,
+static MV_WEBP_INLINE void YuvToRgba4444(int y, int u, int v,
                                       uint8_t* const argb) {
   int r, g, b;
   YUV_TO_RGB(y, u, v, r, g, b);
@@ -98,7 +98,7 @@ static WEBP_INLINE void YuvToRgba4444(int y, int u, int v,
 //-----------------------------------------------------------------------------
 // Alpha handling variants
 
-static WEBP_INLINE void YuvToArgb(uint8_t y, uint8_t u, uint8_t v,
+static MV_WEBP_INLINE void YuvToArgb(uint8_t y, uint8_t u, uint8_t v,
                                   uint8_t* const argb) {
   int r, g, b;
   YUV_TO_RGB(y, u, v, r, g, b);
@@ -107,7 +107,7 @@ static WEBP_INLINE void YuvToArgb(uint8_t y, uint8_t u, uint8_t v,
   argb[2] = g;
   argb[3] = b;
 }
-static WEBP_INLINE void YuvToBgra(uint8_t y, uint8_t u, uint8_t v,
+static MV_WEBP_INLINE void YuvToBgra(uint8_t y, uint8_t u, uint8_t v,
                                   uint8_t* const bgra) {
   int r, g, b;
   YUV_TO_RGB(y, u, v, r, g, b);
@@ -116,7 +116,7 @@ static WEBP_INLINE void YuvToBgra(uint8_t y, uint8_t u, uint8_t v,
   bgra[2] = r;
   bgra[3] = 0xff;
 }
-static WEBP_INLINE void YuvToRgba(uint8_t y, uint8_t u, uint8_t v,
+static MV_WEBP_INLINE void YuvToRgba(uint8_t y, uint8_t u, uint8_t v,
                                   uint8_t* const rgba) {
   int r, g, b;
   YUV_TO_RGB(y, u, v, r, g, b);

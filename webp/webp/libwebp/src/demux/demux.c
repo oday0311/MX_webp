@@ -122,49 +122,49 @@ static int InitMemBuffer(MemBuffer* const mem,
 }
 
 // Return the remaining data size available in 'mem'.
-static WEBP_INLINE size_t MemDataSize(const MemBuffer* const mem) {
+static MV_WEBP_INLINE size_t MemDataSize(const MemBuffer* const mem) {
   return (mem->end_ - mem->start_);
 }
 
 // Return true if 'size' exceeds the end of the RIFF chunk.
-static WEBP_INLINE int SizeIsInvalid(const MemBuffer* const mem, size_t size) {
+static MV_WEBP_INLINE int SizeIsInvalid(const MemBuffer* const mem, size_t size) {
   return (size > mem->riff_end_ - mem->start_);
 }
 
-static WEBP_INLINE void Skip(MemBuffer* const mem, size_t size) {
+static MV_WEBP_INLINE void Skip(MemBuffer* const mem, size_t size) {
   mem->start_ += size;
 }
 
-static WEBP_INLINE void Rewind(MemBuffer* const mem, size_t size) {
+static MV_WEBP_INLINE void Rewind(MemBuffer* const mem, size_t size) {
   mem->start_ -= size;
 }
 
-static WEBP_INLINE const uint8_t* GetBuffer(MemBuffer* const mem) {
+static MV_WEBP_INLINE const uint8_t* GetBuffer(MemBuffer* const mem) {
   return mem->buf_ + mem->start_;
 }
 
 // Read from 'mem' and skip the read bytes.
-static WEBP_INLINE uint8_t ReadByte(MemBuffer* const mem) {
+static MV_WEBP_INLINE uint8_t ReadByte(MemBuffer* const mem) {
   const uint8_t byte = mem->buf_[mem->start_];
   Skip(mem, 1);
   return byte;
 }
 
-static WEBP_INLINE int ReadLE16s(MemBuffer* const mem) {
+static MV_WEBP_INLINE int ReadLE16s(MemBuffer* const mem) {
   const uint8_t* const data = mem->buf_ + mem->start_;
   const int val = GetLE16(data);
   Skip(mem, 2);
   return val;
 }
 
-static WEBP_INLINE int ReadLE24s(MemBuffer* const mem) {
+static MV_WEBP_INLINE int ReadLE24s(MemBuffer* const mem) {
   const uint8_t* const data = mem->buf_ + mem->start_;
   const int val = GetLE24(data);
   Skip(mem, 3);
   return val;
 }
 
-static WEBP_INLINE uint32_t ReadLE32(MemBuffer* const mem) {
+static MV_WEBP_INLINE uint32_t ReadLE32(MemBuffer* const mem) {
   const uint8_t* const data = mem->buf_ + mem->start_;
   const uint32_t val = GetLE32(data);
   Skip(mem, 4);
@@ -703,7 +703,7 @@ WebPDemuxer* WebPDemuxInternal(const WebPData* data, int allow_partial,
 
   if (state != NULL) *state = WEBP_DEMUX_PARSE_ERROR;
 
-  if (WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_DEMUX_ABI_VERSION)) return NULL;
+  if (MV_WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_DEMUX_ABI_VERSION)) return NULL;
   if (data == NULL || data->bytes == NULL || data->size == 0) return NULL;
 
   if (!InitMemBuffer(&mem, data->bytes, data->size)) return NULL;

@@ -248,7 +248,7 @@ static void TransformAC3(const int16_t* in, uint8_t* dst) {
     _mm_subs_epu8((p), (q)))
 
 // Shift each byte of "x" by 3 bits while preserving by the sign bit.
-static WEBP_INLINE void SignedShift8b(__m128i* const x) {
+static MV_WEBP_INLINE void SignedShift8b(__m128i* const x) {
   const __m128i zero = _mm_setzero_si128();
   const __m128i lo_0 = _mm_unpacklo_epi8(zero, *x);
   const __m128i hi_0 = _mm_unpackhi_epi8(zero, *x);
@@ -268,7 +268,7 @@ static WEBP_INLINE void SignedShift8b(__m128i* const x) {
 }
 
 // input/output is uint8_t
-static WEBP_INLINE void GetNotHEV(const __m128i* const p1,
+static MV_WEBP_INLINE void GetNotHEV(const __m128i* const p1,
                                   const __m128i* const p0,
                                   const __m128i* const q0,
                                   const __m128i* const q1,
@@ -285,7 +285,7 @@ static WEBP_INLINE void GetNotHEV(const __m128i* const p1,
 }
 
 // input pixels are int8_t
-static WEBP_INLINE void GetBaseDelta(const __m128i* const p1,
+static MV_WEBP_INLINE void GetBaseDelta(const __m128i* const p1,
                                      const __m128i* const p0,
                                      const __m128i* const q0,
                                      const __m128i* const q1,
@@ -300,7 +300,7 @@ static WEBP_INLINE void GetBaseDelta(const __m128i* const p1,
 }
 
 // input and output are int8_t
-static WEBP_INLINE void DoSimpleFilter(__m128i* const p0, __m128i* const q0,
+static MV_WEBP_INLINE void DoSimpleFilter(__m128i* const p0, __m128i* const q0,
                                        const __m128i* const fl) {
   const __m128i k3 = _mm_set1_epi8(3);
   const __m128i k4 = _mm_set1_epi8(4);
@@ -317,7 +317,7 @@ static WEBP_INLINE void DoSimpleFilter(__m128i* const p0, __m128i* const q0,
 // Update operations:
 // q = q - delta and p = p + delta; where delta = [(a_hi >> 7), (a_lo >> 7)]
 // Pixels 'pi' and 'qi' are int8_t on input, uint8_t on output (sign flip).
-static WEBP_INLINE void Update2Pixels(__m128i* const pi, __m128i* const qi,
+static MV_WEBP_INLINE void Update2Pixels(__m128i* const pi, __m128i* const qi,
                                       const __m128i* const a0_lo,
                                       const __m128i* const a0_hi) {
   const __m128i a1_lo = _mm_srai_epi16(*a0_lo, 7);
@@ -330,7 +330,7 @@ static WEBP_INLINE void Update2Pixels(__m128i* const pi, __m128i* const qi,
 }
 
 // input pixels are uint8_t
-static WEBP_INLINE void NeedsFilter(const __m128i* const p1,
+static MV_WEBP_INLINE void NeedsFilter(const __m128i* const p1,
                                     const __m128i* const p0,
                                     const __m128i* const q0,
                                     const __m128i* const q1,
@@ -353,7 +353,7 @@ static WEBP_INLINE void NeedsFilter(const __m128i* const p1,
 // Edge filtering functions
 
 // Applies filter on 2 pixels (p0 and q0)
-static WEBP_INLINE void DoFilter2(__m128i* const p1, __m128i* const p0,
+static MV_WEBP_INLINE void DoFilter2(__m128i* const p1, __m128i* const p0,
                                   __m128i* const q0, __m128i* const q1,
                                   int thresh) {
   __m128i a, mask;
@@ -372,7 +372,7 @@ static WEBP_INLINE void DoFilter2(__m128i* const p1, __m128i* const p0,
 }
 
 // Applies filter on 4 pixels (p1, p0, q0 and q1)
-static WEBP_INLINE void DoFilter4(__m128i* const p1, __m128i* const p0,
+static MV_WEBP_INLINE void DoFilter4(__m128i* const p1, __m128i* const p0,
                                   __m128i* const q0, __m128i* const q1,
                                   const __m128i* const mask, int hev_thresh) {
   const __m128i zero = _mm_setzero_si128();
@@ -417,7 +417,7 @@ static WEBP_INLINE void DoFilter4(__m128i* const p1, __m128i* const p0,
 }
 
 // Applies filter on 6 pixels (p2, p1, p0, q0, q1 and q2)
-static WEBP_INLINE void DoFilter6(__m128i* const p2, __m128i* const p1,
+static MV_WEBP_INLINE void DoFilter6(__m128i* const p2, __m128i* const p1,
                                   __m128i* const p0, __m128i* const q0,
                                   __m128i* const q1, __m128i* const q2,
                                   const __m128i* const mask, int hev_thresh) {
@@ -467,7 +467,7 @@ static WEBP_INLINE void DoFilter6(__m128i* const p2, __m128i* const p1,
 }
 
 // reads 8 rows across a vertical edge.
-static WEBP_INLINE void Load8x4(const uint8_t* const b, int stride,
+static MV_WEBP_INLINE void Load8x4(const uint8_t* const b, int stride,
                                 __m128i* const p, __m128i* const q) {
   // A0 = 63 62 61 60 23 22 21 20 43 42 41 40 03 02 01 00
   // A1 = 73 72 71 70 33 32 31 30 53 52 51 50 13 12 11 10
@@ -494,7 +494,7 @@ static WEBP_INLINE void Load8x4(const uint8_t* const b, int stride,
   *q = _mm_unpackhi_epi32(C0, C1);
 }
 
-static WEBP_INLINE void Load16x4(const uint8_t* const r0,
+static MV_WEBP_INLINE void Load16x4(const uint8_t* const r0,
                                  const uint8_t* const r8,
                                  int stride,
                                  __m128i* const p1, __m128i* const p0,
@@ -531,7 +531,7 @@ static WEBP_INLINE void Load16x4(const uint8_t* const r0,
   }
 }
 
-static WEBP_INLINE void Store4x4(__m128i* const x, uint8_t* dst, int stride) {
+static MV_WEBP_INLINE void Store4x4(__m128i* const x, uint8_t* dst, int stride) {
   int i;
   for (i = 0; i < 4; ++i, dst += stride) {
     WebPUint32ToMem(dst, _mm_cvtsi128_si32(*x));
@@ -540,7 +540,7 @@ static WEBP_INLINE void Store4x4(__m128i* const x, uint8_t* dst, int stride) {
 }
 
 // Transpose back and store
-static WEBP_INLINE void Store16x4(const __m128i* const p1,
+static MV_WEBP_INLINE void Store16x4(const __m128i* const p1,
                                   const __m128i* const p0,
                                   const __m128i* const q0,
                                   const __m128i* const q1,
@@ -665,7 +665,7 @@ static void SimpleHFilter16i(uint8_t* p, int stride, int thresh) {
   _mm_storel_epi64((__m128i*)&v[(stride)], p);                                 \
 }
 
-static WEBP_INLINE void ComplexMask(const __m128i* const p1,
+static MV_WEBP_INLINE void ComplexMask(const __m128i* const p1,
                                     const __m128i* const p0,
                                     const __m128i* const q0,
                                     const __m128i* const q1,
@@ -1004,7 +1004,7 @@ static void RD4(uint8_t* dst) {   // Down-right
 //------------------------------------------------------------------------------
 // Luma 16x16
 
-static WEBP_INLINE void TrueMotion(uint8_t* dst, int size) {
+static MV_WEBP_INLINE void TrueMotion(uint8_t* dst, int size) {
   const uint8_t* top = dst - BPS;
   const __m128i zero = _mm_setzero_si128();
   int y;
@@ -1062,7 +1062,7 @@ static void HE16(uint8_t* dst) {     // horizontal
   }
 }
 
-static WEBP_INLINE void Put16(uint8_t v, uint8_t* dst) {
+static MV_WEBP_INLINE void Put16(uint8_t v, uint8_t* dst) {
   int j;
   const __m128i values = _mm_set1_epi8(v);
   for (j = 0; j < 16; ++j) {
@@ -1131,7 +1131,7 @@ static void HE8uv(uint8_t* dst) {    // horizontal
 }
 
 // helper for chroma-DC predictions
-static WEBP_INLINE void Put8x8uv(uint8_t v, uint8_t* dst) {
+static MV_WEBP_INLINE void Put8x8uv(uint8_t v, uint8_t* dst) {
   int j;
   const __m128i values = _mm_set1_epi8(v);
   for (j = 0; j < 8; ++j) {

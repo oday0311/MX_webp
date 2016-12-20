@@ -37,13 +37,13 @@ static const int16_t kC2 = 17734;  // half of kC2, actually. See comment above.
 #if defined(WEBP_USE_INTRINSICS)
 
 // Treats 'v' as an uint8x8_t and zero extends to an int16x8_t.
-static WEBP_INLINE int16x8_t ConvertU8ToS16(uint32x2_t v) {
+static MV_WEBP_INLINE int16x8_t ConvertU8ToS16(uint32x2_t v) {
   return vreinterpretq_s16_u16(vmovl_u8(vreinterpret_u8_u32(v)));
 }
 
 // Performs unsigned 8b saturation on 'dst01' and 'dst23' storing the result
 // to the corresponding rows of 'dst'.
-static WEBP_INLINE void SaturateAndStore4x4(uint8_t* const dst,
+static MV_WEBP_INLINE void SaturateAndStore4x4(uint8_t* const dst,
                                             const int16x8_t dst01,
                                             const int16x8_t dst23) {
   // Unsigned saturate to 8b.
@@ -57,7 +57,7 @@ static WEBP_INLINE void SaturateAndStore4x4(uint8_t* const dst,
   vst1_lane_u32((uint32_t*)(dst + 3 * BPS), vreinterpret_u32_u8(dst23_u8), 1);
 }
 
-static WEBP_INLINE void Add4x4(const int16x8_t row01, const int16x8_t row23,
+static MV_WEBP_INLINE void Add4x4(const int16x8_t row01, const int16x8_t row23,
                                const uint8_t* const ref, uint8_t* const dst) {
   uint32x2_t dst01 = vdup_n_u32(0);
   uint32x2_t dst23 = vdup_n_u32(0);
@@ -81,7 +81,7 @@ static WEBP_INLINE void Add4x4(const int16x8_t row01, const int16x8_t row23,
   }
 }
 
-static WEBP_INLINE void Transpose8x2(const int16x8_t in0, const int16x8_t in1,
+static MV_WEBP_INLINE void Transpose8x2(const int16x8_t in0, const int16x8_t in1,
                                      int16x8x2_t* const out) {
   // a0 a1 a2 a3 | b0 b1 b2 b3   => a0 b0 c0 d0 | a1 b1 c1 d1
   // c0 c1 c2 c3 | d0 d1 d2 d3      a2 b2 c2 d2 | a3 b3 c3 d3
@@ -90,7 +90,7 @@ static WEBP_INLINE void Transpose8x2(const int16x8_t in0, const int16x8_t in1,
   *out = vzipq_s16(tmp0.val[0], tmp0.val[1]);
 }
 
-static WEBP_INLINE void TransformPass(int16x8x2_t* const rows) {
+static MV_WEBP_INLINE void TransformPass(int16x8x2_t* const rows) {
   // {rows} = in0 | in4
   //          in8 | in12
   // B1 = in4 | in12
@@ -265,7 +265,7 @@ static uint8x16_t Load4x4(const uint8_t* src) {
 
 #if defined(WEBP_USE_INTRINSICS)
 
-static WEBP_INLINE void Transpose4x4_S16(const int16x4_t A, const int16x4_t B,
+static MV_WEBP_INLINE void Transpose4x4_S16(const int16x4_t A, const int16x4_t B,
                                          const int16x4_t C, const int16x4_t D,
                                          int16x8_t* const out01,
                                          int16x8_t* const out32) {
@@ -283,7 +283,7 @@ static WEBP_INLINE void Transpose4x4_S16(const int16x4_t A, const int16x4_t B,
                    vreinterpret_s64_s32(tmp02.val[1])));
 }
 
-static WEBP_INLINE int16x8_t DiffU8ToS16(const uint8x8_t a,
+static MV_WEBP_INLINE int16x8_t DiffU8ToS16(const uint8x8_t a,
                                          const uint8x8_t b) {
   return vreinterpretq_s16_u16(vsubl_u8(a, b));
 }
@@ -560,7 +560,7 @@ static void FTransformWHT(const int16_t* src, int16_t* out) {
 // a 26ae, b 26ae
 // a 37bf, b 37bf
 //
-static WEBP_INLINE int16x8x4_t DistoTranspose4x4S16(int16x8x4_t q4_in) {
+static MV_WEBP_INLINE int16x8x4_t DistoTranspose4x4S16(int16x8x4_t q4_in) {
   const int16x8x2_t q2_tmp0 = vtrnq_s16(q4_in.val[0], q4_in.val[1]);
   const int16x8x2_t q2_tmp1 = vtrnq_s16(q4_in.val[2], q4_in.val[3]);
   const int32x4x2_t q2_tmp2 = vtrnq_s32(vreinterpretq_s32_s16(q2_tmp0.val[0]),
@@ -574,7 +574,7 @@ static WEBP_INLINE int16x8x4_t DistoTranspose4x4S16(int16x8x4_t q4_in) {
   return q4_in;
 }
 
-static WEBP_INLINE int16x8x4_t DistoHorizontalPass(const int16x8x4_t q4_in) {
+static MV_WEBP_INLINE int16x8x4_t DistoHorizontalPass(const int16x8x4_t q4_in) {
   // {a0, a1} = {in[0] + in[2], in[1] + in[3]}
   // {a3, a2} = {in[0] - in[2], in[1] - in[3]}
   const int16x8_t q_a0 = vaddq_s16(q4_in.val[0], q4_in.val[2]);
@@ -593,7 +593,7 @@ static WEBP_INLINE int16x8x4_t DistoHorizontalPass(const int16x8x4_t q4_in) {
   return q4_out;
 }
 
-static WEBP_INLINE int16x8x4_t DistoVerticalPass(const uint8x8x4_t q4_in) {
+static MV_WEBP_INLINE int16x8x4_t DistoVerticalPass(const uint8x8x4_t q4_in) {
   const int16x8_t q_a0 = vreinterpretq_s16_u16(vaddl_u8(q4_in.val[0],
                                                         q4_in.val[2]));
   const int16x8_t q_a1 = vreinterpretq_s16_u16(vaddl_u8(q4_in.val[1],
@@ -610,7 +610,7 @@ static WEBP_INLINE int16x8x4_t DistoVerticalPass(const uint8x8x4_t q4_in) {
   return q4_out;
 }
 
-static WEBP_INLINE int16x4x4_t DistoLoadW(const uint16_t* w) {
+static MV_WEBP_INLINE int16x4x4_t DistoLoadW(const uint16_t* w) {
   const uint16x8_t q_w07 = vld1q_u16(&w[0]);
   const uint16x8_t q_w8f = vld1q_u16(&w[8]);
   int16x4x4_t d4_w;
@@ -622,7 +622,7 @@ static WEBP_INLINE int16x4x4_t DistoLoadW(const uint16_t* w) {
   return d4_w;
 }
 
-static WEBP_INLINE int32x2_t DistoSum(const int16x8x4_t q4_in,
+static MV_WEBP_INLINE int32x2_t DistoSum(const int16x8x4_t q4_in,
                                       const int16x4x4_t d4_w) {
   int32x2_t d_sum;
   // sum += w[ 0] * abs(b0);
@@ -740,7 +740,7 @@ static void CollectHistogram(const uint8_t* ref, const uint8_t* pred,
 
 //------------------------------------------------------------------------------
 
-static WEBP_INLINE void AccumulateSSE16(const uint8_t* const a,
+static MV_WEBP_INLINE void AccumulateSSE16(const uint8_t* const a,
                                         const uint8_t* const b,
                                         uint32x4_t* const sum) {
   const uint8x16_t a0 = vld1q_u8(a);

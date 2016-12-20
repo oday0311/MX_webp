@@ -11,8 +11,8 @@
 //
 // Author: somnath@google.com (Somnath Banerjee)
 
-#ifndef WEBP_DEC_WEBPI_H_
-#define WEBP_DEC_WEBPI_H_
+#ifndef MV_WEBP_DEC_WEBPI_H_
+#define MV_WEBP_DEC_WEBPI_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -24,40 +24,40 @@ extern "C" {
 //------------------------------------------------------------------------------
 // WebPDecParams: Decoding output parameters. Transient internal object.
 
-typedef struct WebPDecParams WebPDecParams;
-typedef int (*OutputFunc)(const VP8Io* const io, WebPDecParams* const p);
-typedef int (*OutputAlphaFunc)(const VP8Io* const io, WebPDecParams* const p,
+typedef struct MV_WebPDecParams MV_WebPDecParams;
+typedef int (*MV_OutputFunc)(const MV_VP8Io* const io, MV_WebPDecParams* const p);
+typedef int (*MV_OutputAlphaFunc)(const MV_VP8Io* const io, MV_WebPDecParams* const p,
                                int expected_num_out_lines);
-typedef int (*OutputRowFunc)(WebPDecParams* const p, int y_pos,
+typedef int (*MV_OutputRowFunc)(MV_WebPDecParams* const p, int y_pos,
                              int max_out_lines);
 
-struct WebPDecParams {
-  WebPDecBuffer* output;             // output buffer.
+struct MV_WebPDecParams {
+  MV_WebPDecBuffer* output;             // output buffer.
   uint8_t* tmp_y, *tmp_u, *tmp_v;    // cache for the fancy upsampler
                                      // or used for tmp rescaling
 
   int last_y;                 // coordinate of the line that was last output
-  const WebPDecoderOptions* options;  // if not NULL, use alt decoding features
+  const MV_WebPDecoderOptions* options;  // if not NULL, use alt decoding features
   // rescalers
-  WebPRescaler scaler_y, scaler_u, scaler_v, scaler_a;
+  MV_WebPRescaler scaler_y, scaler_u, scaler_v, scaler_a;
   void* memory;                  // overall scratch memory for the output work.
 
-  OutputFunc emit;               // output RGB or YUV samples
-  OutputAlphaFunc emit_alpha;    // output alpha channel
-  OutputRowFunc emit_alpha_row;  // output one line of rescaled alpha values
+  MV_OutputFunc emit;               // output RGB or YUV samples
+  MV_OutputAlphaFunc emit_alpha;    // output alpha channel
+  MV_OutputRowFunc emit_alpha_row;  // output one line of rescaled alpha values
 
-  WebPDecBuffer* final_output;   // In case the user supplied a slow-memory
+  MV_WebPDecBuffer* final_output;   // In case the user supplied a slow-memory
                                  // output, we decode image in temporary buffer
                                  // (this::output) and copy it here.
-  WebPDecBuffer tmp_buffer;      // this::output will point to this one in case
+  MV_WebPDecBuffer tmp_buffer;      // this::output will point to this one in case
                                  // of slow memory.
 };
 
 // Should be called first, before any use of the WebPDecParams object.
-void WebPResetDecParams(WebPDecParams* const params);
+void MV_WebPResetDecParams(MV_WebPDecParams* const params);
 
 // Delete all memory (after an error occurred, for instance)
-void WebPFreeDecParams(WebPDecParams* const params);
+void MV_WebPFreeDecParams(WebPDecParams* const params);
 
 //------------------------------------------------------------------------------
 // Header parsing helpers
@@ -73,7 +73,7 @@ typedef struct {
   size_t compressed_size;      // VP8/VP8L compressed data size
   size_t riff_size;            // size of the riff payload (or 0 if absent)
   int is_lossless;             // true if a VP8L chunk is present
-} WebPHeaderStructure;
+} MV_WebPHeaderStructure;
 
 // Skips over all valid chunks prior to the first VP8/VP8L frame header.
 // Returns: VP8_STATUS_OK, VP8_STATUS_BITSTREAM_ERROR (invalid header/chunk),
@@ -81,22 +81,22 @@ typedef struct {
 // in the case of non-decodable features (animation for instance).
 // In 'headers', compressed_size, offset, alpha_data, alpha_size, and lossless
 // fields are updated appropriately upon success.
-VP8StatusCode WebPParseHeaders(WebPHeaderStructure* const headers);
+MV_VP8StatusCode MV_WebPParseHeaders(MV_WebPHeaderStructure* const headers);
 
 //------------------------------------------------------------------------------
 // Misc utils
 
-// Initializes VP8Io with custom setup, io and teardown functions. The default
+// Initializes MV_VP8Io with custom setup, io and teardown functions. The default
 // hooks will use the supplied 'params' as io->opaque handle.
-void WebPInitCustomIo(WebPDecParams* const params, VP8Io* const io);
+void MV_WebPInitCustomIo(MV_WebPDecParams* const params, MV_VP8Io* const io);
 
 // Setup crop_xxx fields, mb_w and mb_h in io. 'src_colorspace' refers
 // to the *compressed* format, not the output one.
-int WebPIoInitFromOptions(const WebPDecoderOptions* const options,
-                          VP8Io* const io, WEBP_CSP_MODE src_colorspace);
+int MV_WebPIoInitFromOptions(const MV_WebPDecoderOptions* const options,
+                          MV_VP8Io* const io, MV_WEBP_CSP_MODE src_colorspace);
 
 //------------------------------------------------------------------------------
-// Internal functions regarding WebPDecBuffer memory (in buffer.c).
+// Internal functions regarding MV_WebPDecBuffer memory (in buffer.c).
 // Don't really need to be externally visible for now.
 
 // Prepare 'buffer' with the requested initial dimensions width/height.
@@ -108,30 +108,30 @@ int WebPIoInitFromOptions(const WebPDecoderOptions* const options,
 // output buffer. This takes cropping / scaling / rotation into account.
 // Also incorporates the options->flip flag to flip the buffer parameters if
 // needed.
-VP8StatusCode WebPAllocateDecBuffer(int width, int height,
-                                    const WebPDecoderOptions* const options,
-                                    WebPDecBuffer* const buffer);
+MV_VP8StatusCode MV_WebPAllocateDecBuffer(int width, int height,
+                                    const MV_WebPDecoderOptions* const options,
+                                    MV_WebPDecBuffer* const buffer);
 
 // Flip buffer vertically by negating the various strides.
-VP8StatusCode WebPFlipBuffer(WebPDecBuffer* const buffer);
+MV_VP8StatusCode MV_WebPFlipBuffer(MV_WebPDecBuffer* const buffer);
 
 // Copy 'src' into 'dst' buffer, making sure 'dst' is not marked as owner of the
 // memory (still held by 'src'). No pixels are copied.
-void WebPCopyDecBuffer(const WebPDecBuffer* const src,
-                       WebPDecBuffer* const dst);
+void MV_WebPCopyDecBuffer(const MV_WebPDecBuffer* const src,
+                       MV_WebPDecBuffer* const dst);
 
 // Copy and transfer ownership from src to dst (beware of parameter order!)
-void WebPGrabDecBuffer(WebPDecBuffer* const src, WebPDecBuffer* const dst);
+void MV_WebPGrabDecBuffer(MV_WebPDecBuffer* const src, MV_WebPDecBuffer* const dst);
 
 // Copy pixels from 'src' into a *preallocated* 'dst' buffer. Returns
 // VP8_STATUS_INVALID_PARAM if the 'dst' is not set up correctly for the copy.
-VP8StatusCode WebPCopyDecBufferPixels(const WebPDecBuffer* const src,
-                                      WebPDecBuffer* const dst);
+MV_VP8StatusCode MV_WebPCopyDecBufferPixels(const MV_WebPDecBuffer* const src,
+                                      MV_WebPDecBuffer* const dst);
 
 // Returns true if decoding will be slow with the current configuration
 // and bitstream features.
-int WebPAvoidSlowMemory(const WebPDecBuffer* const output,
-                        const WebPBitstreamFeatures* const features);
+int MV_WebPAvoidSlowMemory(const MV_WebPDecBuffer* const output,
+                        const MV_WebPBitstreamFeatures* const features);
 
 //------------------------------------------------------------------------------
 

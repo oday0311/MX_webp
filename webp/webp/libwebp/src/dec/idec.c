@@ -88,7 +88,7 @@ typedef struct {
 //------------------------------------------------------------------------------
 // MemBuffer: incoming data handling
 
-static WEBP_INLINE size_t MemDataSize(const MemBuffer* mem) {
+static MV_WEBP_INLINE size_t MemDataSize(const MemBuffer* mem) {
   return (mem->end_ - mem->start_);
 }
 
@@ -138,7 +138,7 @@ static void DoRemap(WebPIDecoder* const idec, ptrdiff_t offset) {
                               mem->buf_ + mem->end_ - last_start);
       }
       if (NeedCompressedAlpha(idec)) {
-        ALPHDecoder* const alph_dec = dec->alph_dec_;
+        MV_ALPHDecoder* const alph_dec = dec->alph_dec_;
         dec->alpha_data_ += offset;
         if (alph_dec != NULL) {
           if (alph_dec->method_ == ALPHA_LOSSLESS_COMPRESSION) {
@@ -673,7 +673,7 @@ void WebPIDelete(WebPIDecoder* idec) {
 //------------------------------------------------------------------------------
 // Wrapper toward WebPINewDecoder
 
-WebPIDecoder* WebPINewRGB(WEBP_CSP_MODE mode, uint8_t* output_buffer,
+WebPIDecoder* WebPINewRGB(MV_WEBP_CSP_MODE mode, uint8_t* output_buffer,
                           size_t output_buffer_size, int output_stride) {
   const int is_external_memory = (output_buffer != NULL) ? 1 : 0;
   WebPIDecoder* idec;
@@ -703,7 +703,7 @@ WebPIDecoder* WebPINewYUVA(uint8_t* luma, size_t luma_size, int luma_stride,
                            uint8_t* a, size_t a_size, int a_stride) {
   const int is_external_memory = (luma != NULL) ? 1 : 0;
   WebPIDecoder* idec;
-  WEBP_CSP_MODE colorspace;
+  MV_WEBP_CSP_MODE colorspace;
 
   if (is_external_memory == 0) {    // Overwrite parameters to sane values.
     luma_size = u_size = v_size = a_size = 0;

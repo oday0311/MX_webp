@@ -55,7 +55,7 @@ void VP8LoadFinalBytes(VP8BitReader* const br);
 // Inlined critical functions
 
 // makes sure br->value_ has at least BITS bits worth of data
-static WEBP_UBSAN_IGNORE_UNDEF WEBP_INLINE
+static WEBP_UBSAN_IGNORE_UNDEF MV_WEBP_INLINE
 void VP8LoadNewBytes(VP8BitReader* const br) {
   assert(br != NULL && br->buf_ != NULL);
   // Read 'BITS' bits at a time if possible.
@@ -107,7 +107,7 @@ void VP8LoadNewBytes(VP8BitReader* const br) {
 }
 
 // Read a bit with proba 'prob'. Speed-critical function!
-static WEBP_INLINE int VP8GetBit(VP8BitReader* const br, int prob) {
+static MV_WEBP_INLINE int VP8GetBit(VP8BitReader* const br, int prob) {
   // Don't move this declaration! It makes a big speed difference to store
   // 'range' *before* calling VP8LoadNewBytes(), even if this function doesn't
   // alter br->range_ value.
@@ -149,7 +149,7 @@ static WEBP_INLINE int VP8GetBit(VP8BitReader* const br, int prob) {
 }
 
 // simplified version of VP8GetBit() for prob=0x80 (note shift is always 1 here)
-static WEBP_INLINE int VP8GetSigned(VP8BitReader* const br, int v) {
+static MV_WEBP_INLINE int VP8GetSigned(VP8BitReader* const br, int v) {
   if (br->bits_ < 0) {
     VP8LoadNewBytes(br);
   }

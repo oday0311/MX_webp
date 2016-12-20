@@ -170,7 +170,7 @@ static void FTransform(const uint8_t* src, const uint8_t* ref, int16_t* out) {
 #undef VERTICAL_PASS
 #undef HORIZONTAL_PASS
 
-static WEBP_INLINE void ITransformOne(const uint8_t* ref, const int16_t* in,
+static MV_WEBP_INLINE void ITransformOne(const uint8_t* ref, const int16_t* in,
                                       uint8_t* dst) {
   int temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9;
   int temp10, temp11, temp12, temp13, temp14, temp15, temp16, temp17, temp18;
@@ -365,7 +365,7 @@ static int Disto16x16(const uint8_t* const a, const uint8_t* const b,
 } while (0)
 
 #define VERTICAL_PRED(DST, TOP, SIZE)                                          \
-static WEBP_INLINE void VerticalPred##SIZE(uint8_t* (DST),                     \
+static MV_WEBP_INLINE void VerticalPred##SIZE(uint8_t* (DST),                     \
                                            const uint8_t* (TOP)) {             \
   int j;                                                                       \
   if ((TOP)) {                                                                 \
@@ -381,7 +381,7 @@ VERTICAL_PRED(dst, top, 16)
 #undef VERTICAL_PRED
 
 #define HORIZONTAL_PRED(DST, LEFT, SIZE)                                       \
-static WEBP_INLINE void HorizontalPred##SIZE(uint8_t* (DST),                   \
+static MV_WEBP_INLINE void HorizontalPred##SIZE(uint8_t* (DST),                   \
                                              const uint8_t* (LEFT)) {          \
   if (LEFT) {                                                                  \
     int j;                                                                     \
@@ -449,7 +449,7 @@ HORIZONTAL_PRED(dst, left, 16)
 } while (0)
 
 #define TRUE_MOTION(DST, LEFT, TOP, SIZE)                                      \
-static WEBP_INLINE void TrueMotion##SIZE(uint8_t* (DST), const uint8_t* (LEFT),\
+static MV_WEBP_INLINE void TrueMotion##SIZE(uint8_t* (DST), const uint8_t* (LEFT),\
                                          const uint8_t* (TOP)) {               \
   if ((LEFT) != NULL) {                                                        \
     if ((TOP) != NULL) {                                                       \
@@ -478,7 +478,7 @@ TRUE_MOTION(dst, left, top, 16)
 #undef CLIP_8B_TO_DST
 #undef CLIPPING
 
-static WEBP_INLINE void DCMode16(uint8_t* dst, const uint8_t* left,
+static MV_WEBP_INLINE void DCMode16(uint8_t* dst, const uint8_t* left,
                                  const uint8_t* top) {
   int DC, DC1;
   int temp0, temp1, temp2, temp3;
@@ -541,7 +541,7 @@ static WEBP_INLINE void DCMode16(uint8_t* dst, const uint8_t* left,
   FILL_8_OR_16(dst, DC, 16);
 }
 
-static WEBP_INLINE void DCMode8(uint8_t* dst, const uint8_t* left,
+static MV_WEBP_INLINE void DCMode8(uint8_t* dst, const uint8_t* left,
                                 const uint8_t* top) {
   int DC, DC1;
   int temp0, temp1, temp2, temp3;

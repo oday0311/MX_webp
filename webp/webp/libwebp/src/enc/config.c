@@ -19,7 +19,7 @@
 
 int WebPConfigInitInternal(WebPConfig* config,
                            WebPPreset preset, float quality, int version) {
-  if (WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_ENCODER_ABI_VERSION)) {
+  if (MV_WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_ENCODER_ABI_VERSION)) {
     return 0;   // caller/system version mismatch!
   }
   if (config == NULL) return 0;

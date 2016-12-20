@@ -21,13 +21,13 @@
 static const int kC1 = 20091 + (1 << 16);
 static const int kC2 = 35468;
 
-static WEBP_INLINE int abs_mips32(int x) {
+static MV_WEBP_INLINE int abs_mips32(int x) {
   const int sign = x >> 31;
   return (x ^ sign) - sign;
 }
 
 // 4 pixels in, 2 pixels out
-static WEBP_INLINE void do_filter2(uint8_t* p, int step) {
+static MV_WEBP_INLINE void do_filter2(uint8_t* p, int step) {
   const int p1 = p[-2 * step], p0 = p[-step], q0 = p[0], q1 = p[step];
   const int a = 3 * (q0 - p0) + VP8ksclip1[p1 - q1];
   const int a1 = VP8ksclip2[(a + 4) >> 3];
@@ -37,7 +37,7 @@ static WEBP_INLINE void do_filter2(uint8_t* p, int step) {
 }
 
 // 4 pixels in, 4 pixels out
-static WEBP_INLINE void do_filter4(uint8_t* p, int step) {
+static MV_WEBP_INLINE void do_filter4(uint8_t* p, int step) {
   const int p1 = p[-2 * step], p0 = p[-step], q0 = p[0], q1 = p[step];
   const int a = 3 * (q0 - p0);
   const int a1 = VP8ksclip2[(a + 4) >> 3];
@@ -50,7 +50,7 @@ static WEBP_INLINE void do_filter4(uint8_t* p, int step) {
 }
 
 // 6 pixels in, 6 pixels out
-static WEBP_INLINE void do_filter6(uint8_t* p, int step) {
+static MV_WEBP_INLINE void do_filter6(uint8_t* p, int step) {
   const int p2 = p[-3 * step], p1 = p[-2 * step], p0 = p[-step];
   const int q0 = p[0], q1 = p[step], q2 = p[2 * step];
   const int a = VP8ksclip1[3 * (q0 - p0) + VP8ksclip1[p1 - q1]];
@@ -66,17 +66,17 @@ static WEBP_INLINE void do_filter6(uint8_t* p, int step) {
   p[ 2 * step] = VP8kclip1[q2 - a3];
 }
 
-static WEBP_INLINE int hev(const uint8_t* p, int step, int thresh) {
+static MV_WEBP_INLINE int hev(const uint8_t* p, int step, int thresh) {
   const int p1 = p[-2 * step], p0 = p[-step], q0 = p[0], q1 = p[step];
   return (abs_mips32(p1 - p0) > thresh) || (abs_mips32(q1 - q0) > thresh);
 }
 
-static WEBP_INLINE int needs_filter(const uint8_t* p, int step, int t) {
+static MV_WEBP_INLINE int needs_filter(const uint8_t* p, int step, int t) {
   const int p1 = p[-2 * step], p0 = p[-step], q0 = p[0], q1 = p[step];
   return ((4 * abs_mips32(p0 - q0) + abs_mips32(p1 - q1)) <= t);
 }
 
-static WEBP_INLINE int needs_filter2(const uint8_t* p,
+static MV_WEBP_INLINE int needs_filter2(const uint8_t* p,
                                      int step, int t, int it) {
   const int p3 = p[-4 * step], p2 = p[-3 * step];
   const int p1 = p[-2 * step], p0 = p[-step];
@@ -89,7 +89,7 @@ static WEBP_INLINE int needs_filter2(const uint8_t* p,
          abs_mips32(q2 - q1) <= it && abs_mips32(q1 - q0) <= it;
 }
 
-static WEBP_INLINE void FilterLoop26(uint8_t* p,
+static MV_WEBP_INLINE void FilterLoop26(uint8_t* p,
                                      int hstride, int vstride, int size,
                                      int thresh, int ithresh, int hev_thresh) {
   const int thresh2 = 2 * thresh + 1;
@@ -105,7 +105,7 @@ static WEBP_INLINE void FilterLoop26(uint8_t* p,
   }
 }
 
-static WEBP_INLINE void FilterLoop24(uint8_t* p,
+static MV_WEBP_INLINE void FilterLoop24(uint8_t* p,
                                      int hstride, int vstride, int size,
                                      int thresh, int ithresh, int hev_thresh) {
   const int thresh2 = 2 * thresh + 1;

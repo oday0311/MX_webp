@@ -76,18 +76,18 @@ int WebPRescalerImport(WebPRescaler* const rescaler, int num_rows,
 int WebPRescalerExport(WebPRescaler* const rescaler);
 
 // Return true if input is finished
-static WEBP_INLINE
+static MV_WEBP_INLINE
 int WebPRescalerInputDone(const WebPRescaler* const rescaler) {
   return (rescaler->src_y >= rescaler->src_height);
 }
 // Return true if output is finished
-static WEBP_INLINE
+static MV_WEBP_INLINE
 int WebPRescalerOutputDone(const WebPRescaler* const rescaler) {
   return (rescaler->dst_y >= rescaler->dst_height);
 }
 
 // Return true if there are pending output rows ready.
-static WEBP_INLINE
+static MV_WEBP_INLINE
 int WebPRescalerHasPendingOutput(const WebPRescaler* const rescaler) {
   return !WebPRescalerOutputDone(rescaler) && (rescaler->y_accum <= 0);
 }

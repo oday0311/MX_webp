@@ -72,7 +72,7 @@ typedef struct {
 //------------------------------------------------------------------------------
 
 #define CLIP_MASK (int)(~0U << (8 + DFIX))
-static WEBP_INLINE uint8_t clip_8b(int v) {
+static MV_WEBP_INLINE uint8_t clip_8b(int v) {
   return (!(v & CLIP_MASK)) ? (uint8_t)(v >> DFIX) : (v < 0) ? 0u : 255u;
 }
 

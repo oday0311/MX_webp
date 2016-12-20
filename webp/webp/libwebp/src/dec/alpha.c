@@ -21,16 +21,16 @@
 #include "../webp/format_constants.h"
 
 //------------------------------------------------------------------------------
-// ALPHDecoder object.
+// MV_ALPHDecoder object.
 
 // Allocates a new alpha decoder instance.
-static ALPHDecoder* ALPHNew(void) {
-  ALPHDecoder* const dec = (ALPHDecoder*)WebPSafeCalloc(1ULL, sizeof(*dec));
+static MV_ALPHDecoder* MV_ALPHNew(void) {
+  MV_ALPHDecoder* const dec = (MV_ALPHDecoder*)WebPSafeCalloc(1ULL, sizeof(*dec));
   return dec;
 }
 
 // Clears and deallocates an alpha decoder instance.
-static void ALPHDelete(ALPHDecoder* const dec) {
+static void ALPHDelete(MV_ALPHDecoder* const dec) {
   if (dec != NULL) {
     VP8LDelete(dec->vp8l_dec_);
     dec->vp8l_dec_ = NULL;
@@ -45,7 +45,7 @@ static void ALPHDelete(ALPHDecoder* const dec) {
 // header for alpha data stored using lossless compression.
 // Returns false in case of error in alpha header (data too short, invalid
 // compression method or filter, error in lossless header data etc).
-static int ALPHInit(ALPHDecoder* const dec, const uint8_t* data,
+static int ALPHInit(MV_ALPHDecoder* const dec, const uint8_t* data,
                     size_t data_size, const VP8Io* const src_io,
                     uint8_t* output) {
   int ok = 0;
@@ -108,7 +108,7 @@ static int ALPHInit(ALPHDecoder* const dec, const uint8_t* data,
 // already been decoded.
 // Returns false in case of bitstream error.
 static int ALPHDecode(VP8Decoder* const dec, int row, int num_rows) {
-  ALPHDecoder* const alph_dec = dec->alph_dec_;
+  MV_ALPHDecoder* const alph_dec = dec->alph_dec_;
   const int width = alph_dec->width_;
   const int height = alph_dec->io_.crop_bottom;
   if (alph_dec->method_ == ALPHA_NO_COMPRESSION) {
@@ -188,7 +188,7 @@ const uint8_t* VP8DecompressAlphaRows(VP8Decoder* const dec,
 
   if (!dec->is_alpha_decoded_) {
     if (dec->alph_dec_ == NULL) {    // Initialize decoder.
-      dec->alph_dec_ = ALPHNew();
+      dec->alph_dec_ = MV_ALPHNew();
       if (dec->alph_dec_ == NULL) return NULL;
       if (!AllocateAlphaPlane(dec, io)) goto Error;
       if (!ALPHInit(dec->alph_dec_, dec->alpha_data_, dec->alpha_data_size_,

@@ -181,7 +181,7 @@ static int EmitAlphaRGB(const VP8Io* const io, WebPDecParams* const p,
   const uint8_t* alpha = io->a;
   if (alpha != NULL) {
     const int mb_w = io->mb_w;
-    const WEBP_CSP_MODE colorspace = p->output->colorspace;
+    const MV_WEBP_CSP_MODE colorspace = p->output->colorspace;
     const int alpha_first =
         (colorspace == MODE_ARGB || colorspace == MODE_Argb);
     const WebPRGBABuffer* const buf = &p->output->u.RGBA;
@@ -207,7 +207,7 @@ static int EmitAlphaRGBA4444(const VP8Io* const io, WebPDecParams* const p,
   const uint8_t* alpha = io->a;
   if (alpha != NULL) {
     const int mb_w = io->mb_w;
-    const WEBP_CSP_MODE colorspace = p->output->colorspace;
+    const MV_WEBP_CSP_MODE colorspace = p->output->colorspace;
     const WebPRGBABuffer* const buf = &p->output->u.RGBA;
     int num_rows;
     const int start_y = GetAlphaSourceRow(io, &alpha, &num_rows);
@@ -393,7 +393,7 @@ static int EmitRescaledRGB(const VP8Io* const io, WebPDecParams* const p) {
 static int ExportAlpha(WebPDecParams* const p, int y_pos, int max_lines_out) {
   const WebPRGBABuffer* const buf = &p->output->u.RGBA;
   uint8_t* const base_rgba = buf->rgba + y_pos * buf->stride;
-  const WEBP_CSP_MODE colorspace = p->output->colorspace;
+  const MV_WEBP_CSP_MODE colorspace = p->output->colorspace;
   const int alpha_first =
       (colorspace == MODE_ARGB || colorspace == MODE_Argb);
   uint8_t* dst = base_rgba + (alpha_first ? 0 : 3);
@@ -427,7 +427,7 @@ static int ExportAlphaRGBA4444(WebPDecParams* const p, int y_pos,
   uint8_t* alpha_dst = base_rgba + 1;
 #endif
   int num_lines_out = 0;
-  const WEBP_CSP_MODE colorspace = p->output->colorspace;
+  const MV_WEBP_CSP_MODE colorspace = p->output->colorspace;
   const int width = p->scaler_a.dst_width;
   const int is_premult_alpha = WebPIsPremultipliedMode(colorspace);
   uint32_t alpha_mask = 0x0f;
@@ -525,7 +525,7 @@ static int InitRGBRescaler(const VP8Io* const io, WebPDecParams* const p) {
 
 static int CustomSetup(VP8Io* io) {
   WebPDecParams* const p = (WebPDecParams*)io->opaque;
-  const WEBP_CSP_MODE colorspace = p->output->colorspace;
+  const MV_WEBP_CSP_MODE colorspace = p->output->colorspace;
   const int is_rgb = WebPIsRGBMode(colorspace);
   const int is_alpha = WebPIsAlphaMode(colorspace);
 

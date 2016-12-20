@@ -118,6 +118,7 @@
 		FAC488A71E08CB06001F55A1 /* rescaler.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488311E08CB06001F55A1 /* rescaler.c */; };
 		FAC488A81E08CB06001F55A1 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488331E08CB06001F55A1 /* thread.c */; };
 		FAC488A91E08CB06001F55A1 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = FAC488351E08CB06001F55A1 /* utils.c */; };
+		FAC488AC1E08E116001F55A1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FAC488AB1E08E116001F55A1 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,7 +151,7 @@
 		FAC487B51E08CB06001F55A1 /* vp8l.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vp8l.c; sourceTree = "<group>"; };
 		FAC487B61E08CB06001F55A1 /* vp8li.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8li.h; sourceTree = "<group>"; };
 		FAC487B71E08CB06001F55A1 /* webp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = webp.c; sourceTree = "<group>"; };
-		FAC487B81E08CB06001F55A1 /* webpi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webpi.h; sourceTree = "<group>"; };
+		FAC487B81E08CB06001F55A1 /* webpi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = webpi.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		FAC487BA1E08CB06001F55A1 /* anim_decode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = anim_decode.c; sourceTree = "<group>"; };
 		FAC487BB1E08CB06001F55A1 /* demux.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = demux.c; sourceTree = "<group>"; };
 		FAC487BD1E08CB06001F55A1 /* alpha_processing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_processing.c; sourceTree = "<group>"; };
@@ -280,6 +281,7 @@
 		FAC4883D1E08CB06001F55A1 /* mux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mux.h; sourceTree = "<group>"; };
 		FAC4883E1E08CB06001F55A1 /* mux_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mux_types.h; sourceTree = "<group>"; };
 		FAC4883F1E08CB06001F55A1 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		FAC488AB1E08E116001F55A1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +298,7 @@
 		FAC4877A1E08CA43001F55A1 = {
 			isa = PBXGroup;
 			children = (
+				FAC488AB1E08E116001F55A1 /* README.md */,
 				FAC487851E08CA43001F55A1 /* webp */,
 				FAC487841E08CA43001F55A1 /* Products */,
 			);
@@ -678,6 +681,7 @@
 				FAC4884F1E08CB06001F55A1 /* alpha_processing.c in Sources */,
 				FAC488961E08CB06001F55A1 /* token.c in Sources */,
 				FAC488761E08CB06001F55A1 /* lossless_sse2.c in Sources */,
+				FAC488AC1E08E116001F55A1 /* README.md in Sources */,
 				FAC488851E08CB06001F55A1 /* analysis.c in Sources */,
 				FAC488811E08CB06001F55A1 /* yuv_mips32.c in Sources */,
 				FAC488941E08CB06001F55A1 /* quant.c in Sources */,
@@ -890,6 +894,7 @@
 				FAC4879F1E08CA43001F55A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -42,7 +42,7 @@ typedef struct {
   uint32_t argb_or_distance;
 } PixOrCopy;
 
-static WEBP_INLINE PixOrCopy PixOrCopyCreateCopy(uint32_t distance,
+static MV_WEBP_INLINE PixOrCopy PixOrCopyCreateCopy(uint32_t distance,
                                                  uint16_t len) {
   PixOrCopy retval;
   retval.mode = kCopy;
@@ -51,7 +51,7 @@ static WEBP_INLINE PixOrCopy PixOrCopyCreateCopy(uint32_t distance,
   return retval;
 }
 
-static WEBP_INLINE PixOrCopy PixOrCopyCreateCacheIdx(int idx) {
+static MV_WEBP_INLINE PixOrCopy PixOrCopyCreateCacheIdx(int idx) {
   PixOrCopy retval;
   assert(idx >= 0);
   assert(idx < (1 << MAX_COLOR_CACHE_BITS));
@@ -61,7 +61,7 @@ static WEBP_INLINE PixOrCopy PixOrCopyCreateCacheIdx(int idx) {
   return retval;
 }
 
-static WEBP_INLINE PixOrCopy PixOrCopyCreateLiteral(uint32_t argb) {
+static MV_WEBP_INLINE PixOrCopy PixOrCopyCreateLiteral(uint32_t argb) {
   PixOrCopy retval;
   retval.mode = kLiteral;
   retval.argb_or_distance = argb;
@@ -69,40 +69,40 @@ static WEBP_INLINE PixOrCopy PixOrCopyCreateLiteral(uint32_t argb) {
   return retval;
 }
 
-static WEBP_INLINE int PixOrCopyIsLiteral(const PixOrCopy* const p) {
+static MV_WEBP_INLINE int PixOrCopyIsLiteral(const PixOrCopy* const p) {
   return (p->mode == kLiteral);
 }
 
-static WEBP_INLINE int PixOrCopyIsCacheIdx(const PixOrCopy* const p) {
+static MV_WEBP_INLINE int PixOrCopyIsCacheIdx(const PixOrCopy* const p) {
   return (p->mode == kCacheIdx);
 }
 
-static WEBP_INLINE int PixOrCopyIsCopy(const PixOrCopy* const p) {
+static MV_WEBP_INLINE int PixOrCopyIsCopy(const PixOrCopy* const p) {
   return (p->mode == kCopy);
 }
 
-static WEBP_INLINE uint32_t PixOrCopyLiteral(const PixOrCopy* const p,
+static MV_WEBP_INLINE uint32_t PixOrCopyLiteral(const PixOrCopy* const p,
                                              int component) {
   assert(p->mode == kLiteral);
   return (p->argb_or_distance >> (component * 8)) & 0xff;
 }
 
-static WEBP_INLINE uint32_t PixOrCopyLength(const PixOrCopy* const p) {
+static MV_WEBP_INLINE uint32_t PixOrCopyLength(const PixOrCopy* const p) {
   return p->len;
 }
 
-static WEBP_INLINE uint32_t PixOrCopyArgb(const PixOrCopy* const p) {
+static MV_WEBP_INLINE uint32_t PixOrCopyArgb(const PixOrCopy* const p) {
   assert(p->mode == kLiteral);
   return p->argb_or_distance;
 }
 
-static WEBP_INLINE uint32_t PixOrCopyCacheIdx(const PixOrCopy* const p) {
+static MV_WEBP_INLINE uint32_t PixOrCopyCacheIdx(const PixOrCopy* const p) {
   assert(p->mode == kCacheIdx);
   assert(p->argb_or_distance < (1U << MAX_COLOR_CACHE_BITS));
   return p->argb_or_distance;
 }
 
-static WEBP_INLINE uint32_t PixOrCopyDistance(const PixOrCopy* const p) {
+static MV_WEBP_INLINE uint32_t PixOrCopyDistance(const PixOrCopy* const p) {
   assert(p->mode == kCopy);
   return p->argb_or_distance;
 }
@@ -173,13 +173,13 @@ typedef struct {
 // Returns a cursor positioned at the beginning of the references list.
 VP8LRefsCursor VP8LRefsCursorInit(const VP8LBackwardRefs* const refs);
 // Returns true if cursor is pointing at a valid position.
-static WEBP_INLINE int VP8LRefsCursorOk(const VP8LRefsCursor* const c) {
+static MV_WEBP_INLINE int VP8LRefsCursorOk(const VP8LRefsCursor* const c) {
   return (c->cur_pos != NULL);
 }
 // Move to next block of references. Internal, not to be called directly.
 void VP8LRefsCursorNextBlock(VP8LRefsCursor* const c);
 // Move to next position, or NULL. Should not be called if !VP8LRefsCursorOk().
-static WEBP_INLINE void VP8LRefsCursorNext(VP8LRefsCursor* const c) {
+static MV_WEBP_INLINE void VP8LRefsCursorNext(VP8LRefsCursor* const c) {
   assert(c != NULL);
   assert(VP8LRefsCursorOk(c));
   if (++c->cur_pos == c->last_pos_) VP8LRefsCursorNextBlock(c);

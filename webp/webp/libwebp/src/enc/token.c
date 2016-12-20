@@ -87,7 +87,7 @@ static int TBufferNewPage(VP8TBuffer* const b) {
 #define TOKEN_ID(t, b, ctx) \
     (NUM_PROBAS * ((ctx) + NUM_CTX * ((b) + NUM_BANDS * (t))))
 
-static WEBP_INLINE uint32_t AddToken(VP8TBuffer* const b,
+static MV_WEBP_INLINE uint32_t AddToken(VP8TBuffer* const b,
                                      uint32_t bit, uint32_t proba_idx) {
   assert(proba_idx < FIXED_PROBA_BIT);
   assert(bit <= 1);
@@ -98,7 +98,7 @@ static WEBP_INLINE uint32_t AddToken(VP8TBuffer* const b,
   return bit;
 }
 
-static WEBP_INLINE void AddConstantToken(VP8TBuffer* const b,
+static MV_WEBP_INLINE void AddConstantToken(VP8TBuffer* const b,
                                          uint32_t bit, uint32_t proba) {
   assert(proba < 256);
   assert(bit <= 1);

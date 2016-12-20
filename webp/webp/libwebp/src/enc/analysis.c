@@ -69,7 +69,7 @@ static void SmoothSegmentMap(VP8Encoder* const enc) {
 //------------------------------------------------------------------------------
 // set segment susceptibility alpha_ / beta_
 
-static WEBP_INLINE int clip(int v, int m, int M) {
+static MV_WEBP_INLINE int clip(int v, int m, int M) {
   return (v < m) ? m : (v > M) ? M : v;
 }
 

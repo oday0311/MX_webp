@@ -20,9 +20,9 @@
 #include <inttypes.h>
 #if defined(__cplusplus) || !defined(__STRICT_ANSI__) || \
     (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
-#define WEBP_INLINE inline
+#define MV_WEBP_INLINE inline
 #else
-#define WEBP_INLINE
+#define MV_WEBP_INLINE
 #endif
 #else
 typedef signed   char int8_t;
@@ -33,20 +33,20 @@ typedef signed   int int32_t;
 typedef unsigned int uint32_t;
 typedef unsigned long long int uint64_t;
 typedef long long int int64_t;
-#define WEBP_INLINE __forceinline
+#define MV_WEBP_INLINE __forceinline
 #endif  /* _MSC_VER */
 
-#ifndef WEBP_EXTERN
+#ifndef MV_WEBP_EXTERN
 // This explicitly marks library functions and allows for changing the
 // signature for e.g., Windows DLL builds.
 # if defined(__GNUC__) && __GNUC__ >= 4
-#  define WEBP_EXTERN(type) extern __attribute__ ((visibility ("default"))) type
+#  define MV_WEBP_EXTERN(type) extern __attribute__ ((visibility ("default"))) type
 # else
-#  define WEBP_EXTERN(type) extern type
+#  define MV_WEBP_EXTERN(type) extern type
 # endif  /* __GNUC__ >= 4 */
-#endif  /* WEBP_EXTERN */
+#endif  /* MV_WEBP_EXTERN */
 
 // Macro to check ABI compatibility (same major revision number)
-#define WEBP_ABI_IS_INCOMPATIBLE(a, b) (((a) >> 8) != ((b) >> 8))
+#define MV_WEBP_ABI_IS_INCOMPATIBLE(a, b) (((a) >> 8) != ((b) >> 8))
 
 #endif  /* WEBP_WEBP_TYPES_H_ */

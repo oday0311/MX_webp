@@ -122,7 +122,7 @@ static void PrintBlockInfo(const VP8EncIterator* const it,
 
 //------------------------------------------------------------------------------
 
-static WEBP_INLINE int clip(int v, int m, int M) {
+static MV_WEBP_INLINE int clip(int v, int m, int M) {
   return v < m ? m : v > M ? M : v;
 }
 
@@ -575,11 +575,11 @@ typedef struct {
 #define NODE(n, l) (nodes[(n)][(l) + MIN_DELTA])
 #define SCORE_STATE(n, l) (score_states[n][(l) + MIN_DELTA])
 
-static WEBP_INLINE void SetRDScore(int lambda, VP8ModeScore* const rd) {
+static MV_WEBP_INLINE void SetRDScore(int lambda, VP8ModeScore* const rd) {
   rd->score = (rd->R + rd->H) * lambda + RD_DISTO_MULT * (rd->D + rd->SD);
 }
 
-static WEBP_INLINE score_t RDScoreTrellis(int lambda, score_t rate,
+static MV_WEBP_INLINE score_t RDScoreTrellis(int lambda, score_t rate,
                                           score_t distortion) {
   return rate * lambda + RD_DISTO_MULT * distortion;
 }

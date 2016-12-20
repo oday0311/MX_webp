@@ -26,11 +26,11 @@ static const int kModeBpp[MODE_LAST] = {
   4, 4, 4, 2,    // pre-multiplied modes
   1, 1 };
 
-// Check that webp_csp_mode is within the bounds of WEBP_CSP_MODE.
+// Check that MV_WEBP_CSP_MODE is within the bounds of MV_WEBP_CSP_MODE.
 // Convert to an integer to handle both the unsigned/signed enum cases
 // without the need for casting to remove type limit warnings.
-static int IsValidColorspace(int webp_csp_mode) {
-  return (webp_csp_mode >= MODE_RGB && webp_csp_mode < MODE_LAST);
+static int IsValidColorspace(int MV_WEBP_CSP_MODE) {
+  return (MV_WEBP_CSP_MODE >= MODE_RGB && MV_WEBP_CSP_MODE < MODE_LAST);
 }
 
 // strictly speaking, the very last (or first, if flipped) row
@@ -40,7 +40,7 @@ static int IsValidColorspace(int webp_csp_mode) {
 
 static VP8StatusCode CheckDecBuffer(const WebPDecBuffer* const buffer) {
   int ok = 1;
-  const WEBP_CSP_MODE mode = buffer->colorspace;
+  const MV_WEBP_CSP_MODE mode = buffer->colorspace;
   const int width = buffer->width;
   const int height = buffer->height;
   if (!IsValidColorspace(mode)) {
@@ -86,7 +86,7 @@ static VP8StatusCode CheckDecBuffer(const WebPDecBuffer* const buffer) {
 static VP8StatusCode AllocateBuffer(WebPDecBuffer* const buffer) {
   const int w = buffer->width;
   const int h = buffer->height;
-  const WEBP_CSP_MODE mode = buffer->colorspace;
+  const MV_WEBP_CSP_MODE mode = buffer->colorspace;
 
   if (w <= 0 || h <= 0 || !IsValidColorspace(mode)) {
     return VP8_STATUS_INVALID_PARAM;
@@ -217,7 +217,7 @@ VP8StatusCode WebPAllocateDecBuffer(int w, int h,
 // constructors / destructors
 
 int WebPInitDecBufferInternal(WebPDecBuffer* buffer, int version) {
-  if (WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_DECODER_ABI_VERSION)) {
+  if (MV_WEBP_ABI_IS_INCOMPATIBLE(version, MV_WEBP_DECODER_ABI_VERSION)) {
     return 0;  // version mismatch
   }
   if (buffer == NULL) return 0;

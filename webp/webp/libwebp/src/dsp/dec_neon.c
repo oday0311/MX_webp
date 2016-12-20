@@ -48,7 +48,7 @@
 // This intrinsics version makes gcc-4.6.3 crash during Load4x??() compilation
 // (register alloc, probably). The variants somewhat mitigate the problem, but
 // not quite. HFilter16i() remains problematic.
-static WEBP_INLINE uint8x8x4_t Load4x8(const uint8_t* const src, int stride) {
+static MV_WEBP_INLINE uint8x8x4_t Load4x8(const uint8_t* const src, int stride) {
   const uint8x8_t zero = vdup_n_u8(0);
   uint8x8x4_t out;
   INIT_VECTOR4(out, zero, zero, zero, zero);
@@ -63,7 +63,7 @@ static WEBP_INLINE uint8x8x4_t Load4x8(const uint8_t* const src, int stride) {
   return out;
 }
 
-static WEBP_INLINE void Load4x16(const uint8_t* const src, int stride,
+static MV_WEBP_INLINE void Load4x16(const uint8_t* const src, int stride,
                                  uint8x16_t* const p1, uint8x16_t* const p0,
                                  uint8x16_t* const q0, uint8x16_t* const q1) {
   // row0 = p1[0..7]|p0[0..7]|q0[0..7]|q1[0..7]
@@ -83,7 +83,7 @@ static WEBP_INLINE void Load4x16(const uint8_t* const src, int stride,
   src += stride;                                                     \
 } while (0)
 
-static WEBP_INLINE void Load4x16(const uint8_t* src, int stride,
+static MV_WEBP_INLINE void Load4x16(const uint8_t* src, int stride,
                                  uint8x16_t* const p1, uint8x16_t* const p0,
                                  uint8x16_t* const q0, uint8x16_t* const q1) {
   const uint32x4_t zero = vdupq_n_u32(0);
@@ -126,7 +126,7 @@ static WEBP_INLINE void Load4x16(const uint8_t* src, int stride,
 
 #endif  // !WORK_AROUND_GCC
 
-static WEBP_INLINE void Load8x16(const uint8_t* const src, int stride,
+static MV_WEBP_INLINE void Load8x16(const uint8_t* const src, int stride,
                                  uint8x16_t* const p3, uint8x16_t* const p2,
                                  uint8x16_t* const p1, uint8x16_t* const p0,
                                  uint8x16_t* const q0, uint8x16_t* const q1,
@@ -135,7 +135,7 @@ static WEBP_INLINE void Load8x16(const uint8_t* const src, int stride,
   Load4x16(src + 2, stride, q0, q1, q2, q3);
 }
 
-static WEBP_INLINE void Load16x4(const uint8_t* const src, int stride,
+static MV_WEBP_INLINE void Load16x4(const uint8_t* const src, int stride,
                                  uint8x16_t* const p1, uint8x16_t* const p0,
                                  uint8x16_t* const q0, uint8x16_t* const q1) {
   *p1 = vld1q_u8(src - 2 * stride);
@@ -144,7 +144,7 @@ static WEBP_INLINE void Load16x4(const uint8_t* const src, int stride,
   *q1 = vld1q_u8(src + 1 * stride);
 }
 
-static WEBP_INLINE void Load16x8(const uint8_t* const src, int stride,
+static MV_WEBP_INLINE void Load16x8(const uint8_t* const src, int stride,
                                  uint8x16_t* const p3, uint8x16_t* const p2,
                                  uint8x16_t* const p1, uint8x16_t* const p0,
                                  uint8x16_t* const q0, uint8x16_t* const q1,
@@ -153,7 +153,7 @@ static WEBP_INLINE void Load16x8(const uint8_t* const src, int stride,
   Load16x4(src + 2  * stride, stride, q0, q1, q2, q3);
 }
 
-static WEBP_INLINE void Load8x8x2(const uint8_t* const u,
+static MV_WEBP_INLINE void Load8x8x2(const uint8_t* const u,
                                   const uint8_t* const v,
                                   int stride,
                                   uint8x16_t* const p3, uint8x16_t* const p2,
@@ -177,7 +177,7 @@ static WEBP_INLINE void Load8x8x2(const uint8_t* const u,
 #define LOAD_UV_8(ROW) \
   vcombine_u8(vld1_u8(u - 4 + (ROW) * stride), vld1_u8(v - 4 + (ROW) * stride))
 
-static WEBP_INLINE void Load8x8x2T(const uint8_t* const u,
+static MV_WEBP_INLINE void Load8x8x2T(const uint8_t* const u,
                                    const uint8_t* const v,
                                    int stride,
                                    uint8x16_t* const p3, uint8x16_t* const p2,
@@ -238,7 +238,7 @@ static WEBP_INLINE void Load8x8x2T(const uint8_t* const u,
 
 #endif  // !WORK_AROUND_GCC
 
-static WEBP_INLINE void Store2x8(const uint8x8x2_t v,
+static MV_WEBP_INLINE void Store2x8(const uint8x8x2_t v,
                                  uint8_t* const dst, int stride) {
   vst2_lane_u8(dst + 0 * stride, v, 0);
   vst2_lane_u8(dst + 1 * stride, v, 1);
@@ -250,7 +250,7 @@ static WEBP_INLINE void Store2x8(const uint8x8x2_t v,
   vst2_lane_u8(dst + 7 * stride, v, 7);
 }
 
-static WEBP_INLINE void Store2x16(const uint8x16_t p0, const uint8x16_t q0,
+static MV_WEBP_INLINE void Store2x16(const uint8x16_t p0, const uint8x16_t q0,
                                   uint8_t* const dst, int stride) {
   uint8x8x2_t lo, hi;
   lo.val[0] = vget_low_u8(p0);
@@ -262,7 +262,7 @@ static WEBP_INLINE void Store2x16(const uint8x16_t p0, const uint8x16_t q0,
 }
 
 #if !defined(WORK_AROUND_GCC)
-static WEBP_INLINE void Store4x8(const uint8x8x4_t v,
+static MV_WEBP_INLINE void Store4x8(const uint8x8x4_t v,
                                  uint8_t* const dst, int stride) {
   vst4_lane_u8(dst + 0 * stride, v, 0);
   vst4_lane_u8(dst + 1 * stride, v, 1);
@@ -274,7 +274,7 @@ static WEBP_INLINE void Store4x8(const uint8x8x4_t v,
   vst4_lane_u8(dst + 7 * stride, v, 7);
 }
 
-static WEBP_INLINE void Store4x16(const uint8x16_t p1, const uint8x16_t p0,
+static MV_WEBP_INLINE void Store4x16(const uint8x16_t p1, const uint8x16_t p0,
                                   const uint8x16_t q0, const uint8x16_t q1,
                                   uint8_t* const dst, int stride) {
   uint8x8x4_t lo, hi;
@@ -289,20 +289,20 @@ static WEBP_INLINE void Store4x16(const uint8x16_t p1, const uint8x16_t p0,
 }
 #endif  // !WORK_AROUND_GCC
 
-static WEBP_INLINE void Store16x2(const uint8x16_t p0, const uint8x16_t q0,
+static MV_WEBP_INLINE void Store16x2(const uint8x16_t p0, const uint8x16_t q0,
                                   uint8_t* const dst, int stride) {
   vst1q_u8(dst - stride, p0);
   vst1q_u8(dst, q0);
 }
 
-static WEBP_INLINE void Store16x4(const uint8x16_t p1, const uint8x16_t p0,
+static MV_WEBP_INLINE void Store16x4(const uint8x16_t p1, const uint8x16_t p0,
                                   const uint8x16_t q0, const uint8x16_t q1,
                                   uint8_t* const dst, int stride) {
   Store16x2(p1, p0, dst - stride, stride);
   Store16x2(q0, q1, dst + stride, stride);
 }
 
-static WEBP_INLINE void Store8x2x2(const uint8x16_t p0, const uint8x16_t q0,
+static MV_WEBP_INLINE void Store8x2x2(const uint8x16_t p0, const uint8x16_t q0,
                                    uint8_t* const u, uint8_t* const v,
                                    int stride) {
   // p0 and q0 contain the u+v samples packed in low/high halves.
@@ -312,7 +312,7 @@ static WEBP_INLINE void Store8x2x2(const uint8x16_t p0, const uint8x16_t q0,
   vst1_u8(v,          vget_high_u8(q0));
 }
 
-static WEBP_INLINE void Store8x4x2(const uint8x16_t p1, const uint8x16_t p0,
+static MV_WEBP_INLINE void Store8x4x2(const uint8x16_t p1, const uint8x16_t p0,
                                    const uint8x16_t q0, const uint8x16_t q1,
                                    uint8_t* const u, uint8_t* const v,
                                    int stride) {
@@ -329,7 +329,7 @@ static WEBP_INLINE void Store8x4x2(const uint8x16_t p1, const uint8x16_t p0,
   (DST) += stride;                                \
 } while (0)
 
-static WEBP_INLINE void Store6x8x2(const uint8x16_t p2, const uint8x16_t p1,
+static MV_WEBP_INLINE void Store6x8x2(const uint8x16_t p2, const uint8x16_t p1,
                                    const uint8x16_t p0, const uint8x16_t q0,
                                    const uint8x16_t q1, const uint8x16_t q2,
                                    uint8_t* u, uint8_t* v,
@@ -358,7 +358,7 @@ static WEBP_INLINE void Store6x8x2(const uint8x16_t p2, const uint8x16_t p1,
 }
 #undef STORE6_LANE
 
-static WEBP_INLINE void Store4x8x2(const uint8x16_t p1, const uint8x16_t p0,
+static MV_WEBP_INLINE void Store4x8x2(const uint8x16_t p1, const uint8x16_t p0,
                                    const uint8x16_t q0, const uint8x16_t q1,
                                    uint8_t* const u, uint8_t* const v,
                                    int stride) {
@@ -390,13 +390,13 @@ static WEBP_INLINE void Store4x8x2(const uint8x16_t p1, const uint8x16_t p0,
 #endif  // !WORK_AROUND_GCC
 
 // Zero extend 'v' to an int16x8_t.
-static WEBP_INLINE int16x8_t ConvertU8ToS16(uint8x8_t v) {
+static MV_WEBP_INLINE int16x8_t ConvertU8ToS16(uint8x8_t v) {
   return vreinterpretq_s16_u16(vmovl_u8(v));
 }
 
 // Performs unsigned 8b saturation on 'dst01' and 'dst23' storing the result
 // to the corresponding rows of 'dst'.
-static WEBP_INLINE void SaturateAndStore4x4(uint8_t* const dst,
+static MV_WEBP_INLINE void SaturateAndStore4x4(uint8_t* const dst,
                                             const int16x8_t dst01,
                                             const int16x8_t dst23) {
   // Unsigned saturate to 8b.
@@ -410,7 +410,7 @@ static WEBP_INLINE void SaturateAndStore4x4(uint8_t* const dst,
   vst1_lane_u32((uint32_t*)(dst + 3 * BPS), vreinterpret_u32_u8(dst23_u8), 1);
 }
 
-static WEBP_INLINE void Add4x4(const int16x8_t row01, const int16x8_t row23,
+static MV_WEBP_INLINE void Add4x4(const int16x8_t row01, const int16x8_t row23,
                                uint8_t* const dst) {
   uint32x2_t dst01 = vdup_n_u32(0);
   uint32x2_t dst23 = vdup_n_u32(0);
@@ -992,7 +992,7 @@ static const int16_t kC1 = 20091;
 static const int16_t kC2 = 17734;  // half of kC2, actually. See comment above.
 
 #if defined(WEBP_USE_INTRINSICS)
-static WEBP_INLINE void Transpose8x2(const int16x8_t in0, const int16x8_t in1,
+static MV_WEBP_INLINE void Transpose8x2(const int16x8_t in0, const int16x8_t in1,
                                      int16x8x2_t* const out) {
   // a0 a1 a2 a3 | b0 b1 b2 b3   => a0 b0 c0 d0 | a1 b1 c1 d1
   // c0 c1 c2 c3 | d0 d1 d2 d3      a2 b2 c2 d2 | a3 b3 c3 d3
@@ -1001,7 +1001,7 @@ static WEBP_INLINE void Transpose8x2(const int16x8_t in0, const int16x8_t in1,
   *out = vzipq_s16(tmp0.val[0], tmp0.val[1]);
 }
 
-static WEBP_INLINE void TransformPass(int16x8x2_t* const rows) {
+static MV_WEBP_INLINE void TransformPass(int16x8x2_t* const rows) {
   // {rows} = in0 | in4
   //          in8 | in12
   // B1 = in4 | in12
@@ -1287,7 +1287,7 @@ static void DC4(uint8_t* dst) {    // DC
 }
 
 // TrueMotion (4x4 + 8x8)
-static WEBP_INLINE void TrueMotion(uint8_t* dst, int size) {
+static MV_WEBP_INLINE void TrueMotion(uint8_t* dst, int size) {
   const uint8x8_t TL = vld1_dup_u8(dst - BPS - 1);  // top-left pixel 'A[-1]'
   const uint8x8_t T = vld1_u8(dst - BPS);  // top row 'A[0..3]'
   const int16x8_t d = vreinterpretq_s16_u16(vsubl_u8(T, TL));  // A[c] - A[-1]
@@ -1407,7 +1407,7 @@ static void HE8uv(uint8_t* dst) {    // horizontal
   }
 }
 
-static WEBP_INLINE void DC8(uint8_t* dst, int do_top, int do_left) {
+static MV_WEBP_INLINE void DC8(uint8_t* dst, int do_top, int do_left) {
   uint16x8_t sum_top;
   uint16x8_t sum_left;
   uint8x8_t dc0;
@@ -1485,7 +1485,7 @@ static void HE16(uint8_t* dst) {     // horizontal
   }
 }
 
-static WEBP_INLINE void DC16(uint8_t* dst, int do_top, int do_left) {
+static MV_WEBP_INLINE void DC16(uint8_t* dst, int do_top, int do_left) {
   uint16x8_t sum_top;
   uint16x8_t sum_left;
   uint8x8_t dc0;

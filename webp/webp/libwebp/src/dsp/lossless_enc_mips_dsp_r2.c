@@ -73,7 +73,7 @@ static void SubtractGreenFromBlueAndRed(uint32_t* argb_data,
   );
 }
 
-static WEBP_INLINE uint32_t ColorTransformDelta(int8_t color_pred,
+static MV_WEBP_INLINE uint32_t ColorTransformDelta(int8_t color_pred,
                                                 int8_t color) {
   return (uint32_t)((int)(color_pred) * color) >> 5;
 }
@@ -160,7 +160,7 @@ static void TransformColor(const VP8LMultipliers* const m, uint32_t* data,
   }
 }
 
-static WEBP_INLINE uint8_t TransformColorBlue(uint8_t green_to_blue,
+static MV_WEBP_INLINE uint8_t TransformColorBlue(uint8_t green_to_blue,
                                               uint8_t red_to_blue,
                                               uint32_t argb) {
   const uint32_t green = argb >> 8;
@@ -214,7 +214,7 @@ static void CollectColorBlueTransforms(const uint32_t* argb, int stride,
   }
 }
 
-static WEBP_INLINE uint8_t TransformColorRed(uint8_t green_to_red,
+static MV_WEBP_INLINE uint8_t TransformColorRed(uint8_t green_to_red,
                                              uint32_t argb) {
   const uint32_t green = argb >> 8;
   uint32_t new_red = argb >> 16;

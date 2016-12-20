@@ -28,7 +28,7 @@
   assert(row >= 0 && num_rows > 0 && row + num_rows <= height);                \
   (void)height;  // Silence unused warning.
 
-static WEBP_INLINE void PredictLine(const uint8_t* src, const uint8_t* pred,
+static MV_WEBP_INLINE void PredictLine(const uint8_t* src, const uint8_t* pred,
                                     uint8_t* dst, int length, int inverse) {
   int i;
   if (inverse) {
@@ -41,7 +41,7 @@ static WEBP_INLINE void PredictLine(const uint8_t* src, const uint8_t* pred,
 //------------------------------------------------------------------------------
 // Horizontal filter.
 
-static WEBP_INLINE void DoHorizontalFilter(const uint8_t* in,
+static MV_WEBP_INLINE void DoHorizontalFilter(const uint8_t* in,
                                            int width, int height, int stride,
                                            int row, int num_rows,
                                            int inverse, uint8_t* out) {
@@ -78,7 +78,7 @@ static WEBP_INLINE void DoHorizontalFilter(const uint8_t* in,
 //------------------------------------------------------------------------------
 // Vertical filter.
 
-static WEBP_INLINE void DoVerticalFilter(const uint8_t* in,
+static MV_WEBP_INLINE void DoVerticalFilter(const uint8_t* in,
                                          int width, int height, int stride,
                                          int row, int num_rows,
                                          int inverse, uint8_t* out) {
@@ -116,12 +116,12 @@ static WEBP_INLINE void DoVerticalFilter(const uint8_t* in,
 //------------------------------------------------------------------------------
 // Gradient filter.
 
-static WEBP_INLINE int GradientPredictor(uint8_t a, uint8_t b, uint8_t c) {
+static MV_WEBP_INLINE int GradientPredictor(uint8_t a, uint8_t b, uint8_t c) {
   const int g = a + b - c;
   return ((g & ~0xff) == 0) ? g : (g < 0) ? 0 : 255;  // clip to 8bit
 }
 
-static WEBP_INLINE void DoGradientFilter(const uint8_t* in,
+static MV_WEBP_INLINE void DoGradientFilter(const uint8_t* in,
                                          int width, int height, int stride,
                                          int row, int num_rows,
                                          int inverse, uint8_t* out) {

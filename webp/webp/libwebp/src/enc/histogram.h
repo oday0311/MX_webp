@@ -92,7 +92,7 @@ VP8LHistogram* VP8LAllocateHistogram(int cache_bits);
 void VP8LHistogramAddSinglePixOrCopy(VP8LHistogram* const histo,
                                      const PixOrCopy* const v);
 
-static WEBP_INLINE int VP8LHistogramNumCodes(int palette_code_bits) {
+static MV_WEBP_INLINE int VP8LHistogramNumCodes(int palette_code_bits) {
   return NUM_LITERAL_CODES + NUM_LENGTH_CODES +
       ((palette_code_bits > 0) ? (1 << palette_code_bits) : 0);
 }

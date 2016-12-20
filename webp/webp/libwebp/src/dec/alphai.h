@@ -23,8 +23,8 @@ extern "C" {
 
 struct VP8LDecoder;  // Defined in dec/vp8li.h.
 
-typedef struct ALPHDecoder ALPHDecoder;
-struct ALPHDecoder {
+typedef struct MV_ALPHDecoder MV_ALPHDecoder;
+struct MV_ALPHDecoder {
   int width_;
   int height_;
   int method_;

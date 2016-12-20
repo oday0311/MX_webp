@@ -183,7 +183,7 @@ static void DefaultEncoderOptions(WebPAnimEncoderOptions* const enc_options) {
 int WebPAnimEncoderOptionsInitInternal(WebPAnimEncoderOptions* enc_options,
                                        int abi_version) {
   if (enc_options == NULL ||
-      WEBP_ABI_IS_INCOMPATIBLE(abi_version, WEBP_MUX_ABI_VERSION)) {
+      MV_WEBP_ABI_IS_INCOMPATIBLE(abi_version, WEBP_MUX_ABI_VERSION)) {
     return 0;
   }
   DefaultEncoderOptions(enc_options);
@@ -238,7 +238,7 @@ WebPAnimEncoder* WebPAnimEncoderNewInternal(
     int abi_version) {
   WebPAnimEncoder* enc;
 
-  if (WEBP_ABI_IS_INCOMPATIBLE(abi_version, WEBP_MUX_ABI_VERSION)) {
+  if (MV_WEBP_ABI_IS_INCOMPATIBLE(abi_version, WEBP_MUX_ABI_VERSION)) {
     return NULL;
   }
   if (width <= 0 || height <= 0 ||
@@ -350,7 +350,7 @@ typedef int (*ComparePixelsFunc)(const uint32_t*, int, const uint32_t*, int,
 // Returns true if 'length' number of pixels in 'src' and 'dst' are equal,
 // assuming the given step sizes between pixels.
 // 'max_allowed_diff' is unused and only there to allow function pointer use.
-static WEBP_INLINE int ComparePixelsLossless(const uint32_t* src, int src_step,
+static MV_WEBP_INLINE int ComparePixelsLossless(const uint32_t* src, int src_step,
                                              const uint32_t* dst, int dst_step,
                                              int length, int max_allowed_diff) {
   (void)max_allowed_diff;
@@ -367,7 +367,7 @@ static WEBP_INLINE int ComparePixelsLossless(const uint32_t* src, int src_step,
 
 // Helper to check if each channel in 'src' and 'dst' is at most off by
 // 'max_allowed_diff'.
-static WEBP_INLINE int PixelsAreSimilar(uint32_t src, uint32_t dst,
+static MV_WEBP_INLINE int PixelsAreSimilar(uint32_t src, uint32_t dst,
                                         int max_allowed_diff) {
   const int src_a = (src >> 24) & 0xff;
   const int src_r = (src >> 16) & 0xff;
@@ -386,7 +386,7 @@ static WEBP_INLINE int PixelsAreSimilar(uint32_t src, uint32_t dst,
 
 // Returns true if 'length' number of pixels in 'src' and 'dst' are within an
 // error bound, assuming the given step sizes between pixels.
-static WEBP_INLINE int ComparePixelsLossy(const uint32_t* src, int src_step,
+static MV_WEBP_INLINE int ComparePixelsLossy(const uint32_t* src, int src_step,
                                           const uint32_t* dst, int dst_step,
                                           int length, int max_allowed_diff) {
   assert(length > 0);
@@ -498,7 +498,7 @@ static void MinimizeChangeRectangle(const WebPPicture* const src,
 }
 
 // Snap rectangle to even offsets (and adjust dimensions if needed).
-static WEBP_INLINE void SnapToEvenOffsets(FrameRect* const rect) {
+static MV_WEBP_INLINE void SnapToEvenOffsets(FrameRect* const rect) {
   rect->width_ += (rect->x_offset_ & 1);
   rect->height_ += (rect->y_offset_ & 1);
   rect->x_offset_ &= ~1;

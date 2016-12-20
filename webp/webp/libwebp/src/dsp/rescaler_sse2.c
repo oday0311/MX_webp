@@ -169,7 +169,7 @@ static void RescalerImportRowShrinkSSE2(WebPRescaler* const wrk,
 // Row export
 
 // load *src as epi64, multiply by mult and store result in [out0 ... out3]
-static WEBP_INLINE void LoadDispatchAndMult(const rescaler_t* const src,
+static MV_WEBP_INLINE void LoadDispatchAndMult(const rescaler_t* const src,
                                             const __m128i* const mult,
                                             __m128i* const out0,
                                             __m128i* const out1,
@@ -192,7 +192,7 @@ static WEBP_INLINE void LoadDispatchAndMult(const rescaler_t* const src,
   }
 }
 
-static WEBP_INLINE void ProcessRow(const __m128i* const A0,
+static MV_WEBP_INLINE void ProcessRow(const __m128i* const A0,
                                    const __m128i* const A1,
                                    const __m128i* const A2,
                                    const __m128i* const A3,

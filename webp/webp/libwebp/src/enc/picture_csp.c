@@ -103,11 +103,11 @@ static WEBP_TSAN_IGNORE_FUNCTION void InitGammaTables(void) {
   }
 }
 
-static WEBP_INLINE uint32_t GammaToLinear(uint8_t v) {
+static MV_WEBP_INLINE uint32_t GammaToLinear(uint8_t v) {
   return kGammaToLinearTab[v];
 }
 
-static WEBP_INLINE int Interpolate(int v) {
+static MV_WEBP_INLINE int Interpolate(int v) {
   const int tab_pos = v >> (kGammaTabFix + 2);    // integer part
   const int x = v & ((kGammaTabScale << 2) - 1);  // fractional part
   const int v0 = kLinearToGammaTab[tab_pos];
@@ -119,7 +119,7 @@ static WEBP_INLINE int Interpolate(int v) {
 
 // Convert a linear value 'v' to YUV_FIX+2 fixed-point precision
 // U/V value, suitable for RGBToU/V calls.
-static WEBP_INLINE int LinearToGamma(uint32_t base_value, int shift) {
+static MV_WEBP_INLINE int LinearToGamma(uint32_t base_value, int shift) {
   const int y = Interpolate(base_value << shift);   // final uplifted value
   return (y + kGammaTabRounder) >> kGammaTabFix;    // descale
 }
@@ -127,8 +127,8 @@ static WEBP_INLINE int LinearToGamma(uint32_t base_value, int shift) {
 #else
 
 static WEBP_TSAN_IGNORE_FUNCTION void InitGammaTables(void) {}
-static WEBP_INLINE uint32_t GammaToLinear(uint8_t v) { return v; }
-static WEBP_INLINE int LinearToGamma(uint32_t base_value, int shift) {
+static MV_WEBP_INLINE uint32_t GammaToLinear(uint8_t v) { return v; }
+static MV_WEBP_INLINE int LinearToGamma(uint32_t base_value, int shift) {
   return (int)(base_value << shift);
 }
 
@@ -195,11 +195,11 @@ static WEBP_TSAN_IGNORE_FUNCTION void InitGammaTablesF(void) {
   }
 }
 
-static WEBP_INLINE float GammaToLinearF(int v) {
+static MV_WEBP_INLINE float GammaToLinearF(int v) {
   return kGammaToLinearTabF[v];
 }
 
-static WEBP_INLINE int LinearToGammaF(float value) {
+static MV_WEBP_INLINE int LinearToGammaF(float value) {
   const float v = value * kGammaTabSize;
   const int tab_pos = (int)v;
   const float x = v - (float)tab_pos;      // fractional part
@@ -212,11 +212,11 @@ static WEBP_INLINE int LinearToGammaF(float value) {
 #else
 
 static WEBP_TSAN_IGNORE_FUNCTION void InitGammaTablesF(void) {}
-static WEBP_INLINE float GammaToLinearF(int v) {
+static MV_WEBP_INLINE float GammaToLinearF(int v) {
   const float norm = 1.f / MAX_Y_T;
   return norm * v;
 }
-static WEBP_INLINE int LinearToGammaF(float value) {
+static MV_WEBP_INLINE int LinearToGammaF(float value) {
   return (int)(MAX_Y_T * value + .5);
 }
 
@@ -251,7 +251,7 @@ static int ScaleDown(int a, int b, int c, int d) {
   return LinearToGammaF(0.25f * (A + B + C + D));
 }
 
-static WEBP_INLINE void UpdateW(const fixed_y_t* src, fixed_y_t* dst, int len) {
+static MV_WEBP_INLINE void UpdateW(const fixed_y_t* src, fixed_y_t* dst, int len) {
   while (len-- > 0) {
     const float R = GammaToLinearF(src[0]);
     const float G = GammaToLinearF(src[1]);
@@ -291,7 +291,7 @@ static int UpdateChroma(const fixed_y_t* src1,
 
 //------------------------------------------------------------------------------
 
-static WEBP_INLINE int Filter(const fixed_t* const A, const fixed_t* const B,
+static MV_WEBP_INLINE int Filter(const fixed_t* const A, const fixed_t* const B,
                               int rightwise) {
   int v;
   if (!rightwise) {
@@ -302,11 +302,11 @@ static WEBP_INLINE int Filter(const fixed_t* const A, const fixed_t* const B,
   return (v + 8) >> 4;
 }
 
-static WEBP_INLINE int Filter2(int A, int B) { return (A * 3 + B + 2) >> 2; }
+static MV_WEBP_INLINE int Filter2(int A, int B) { return (A * 3 + B + 2) >> 2; }
 
 //------------------------------------------------------------------------------
 
-static WEBP_INLINE fixed_y_t UpLift(uint8_t a) {  // 8bit -> SFIX
+static MV_WEBP_INLINE fixed_y_t UpLift(uint8_t a) {  // 8bit -> SFIX
   return ((fixed_y_t)a << SFIX) | SHALF;
 }
 
@@ -366,17 +366,17 @@ static void InterpolateTwoRows(const fixed_y_t* const best_y,
   }
 }
 
-static WEBP_INLINE uint8_t ConvertRGBToY(int r, int g, int b) {
+static MV_WEBP_INLINE uint8_t ConvertRGBToY(int r, int g, int b) {
   const int luma = 16839 * r + 33059 * g + 6420 * b + SROUNDER;
   return clip_8b(16 + (luma >> (YUV_FIX + SFIX)));
 }
 
-static WEBP_INLINE uint8_t ConvertRGBToU(int r, int g, int b) {
+static MV_WEBP_INLINE uint8_t ConvertRGBToU(int r, int g, int b) {
   const int u =  -9719 * r - 19081 * g + 28800 * b + SROUNDER;
   return clip_8b(128 + (u >> (YUV_FIX + SFIX)));
 }
 
-static WEBP_INLINE uint8_t ConvertRGBToV(int r, int g, int b) {
+static MV_WEBP_INLINE uint8_t ConvertRGBToV(int r, int g, int b) {
   const int v = +28800 * r - 24116 * g -  4684 * b + SROUNDER;
   return clip_8b(128 + (v >> (YUV_FIX + SFIX)));
 }
@@ -726,7 +726,7 @@ static const uint32_t kInvAlpha[4 * 0xff + 1] = {
 
 #endif  // USE_INVERSE_ALPHA_TABLE
 
-static WEBP_INLINE int LinearToGammaWeighted(const uint8_t* src,
+static MV_WEBP_INLINE int LinearToGammaWeighted(const uint8_t* src,
                                              const uint8_t* a_ptr,
                                              uint32_t total_a, int step,
                                              int rgb_stride) {
@@ -742,7 +742,7 @@ static WEBP_INLINE int LinearToGammaWeighted(const uint8_t* src,
   return LinearToGamma(DIVIDE_BY_ALPHA(sum, total_a), 0);
 }
 
-static WEBP_INLINE void ConvertRowToY(const uint8_t* const r_ptr,
+static MV_WEBP_INLINE void ConvertRowToY(const uint8_t* const r_ptr,
                                       const uint8_t* const g_ptr,
                                       const uint8_t* const b_ptr,
                                       int step,
@@ -755,7 +755,7 @@ static WEBP_INLINE void ConvertRowToY(const uint8_t* const r_ptr,
   }
 }
 
-static WEBP_INLINE void AccumulateRGBA(const uint8_t* const r_ptr,
+static MV_WEBP_INLINE void AccumulateRGBA(const uint8_t* const r_ptr,
                                        const uint8_t* const g_ptr,
                                        const uint8_t* const b_ptr,
                                        const uint8_t* const a_ptr,
@@ -799,7 +799,7 @@ static WEBP_INLINE void AccumulateRGBA(const uint8_t* const r_ptr,
   }
 }
 
-static WEBP_INLINE void AccumulateRGB(const uint8_t* const r_ptr,
+static MV_WEBP_INLINE void AccumulateRGB(const uint8_t* const r_ptr,
                                       const uint8_t* const g_ptr,
                                       const uint8_t* const b_ptr,
                                       int step, int rgb_stride,
@@ -817,7 +817,7 @@ static WEBP_INLINE void AccumulateRGB(const uint8_t* const r_ptr,
   }
 }
 
-static WEBP_INLINE void ConvertRowsToUV(const uint16_t* rgb,
+static MV_WEBP_INLINE void ConvertRowsToUV(const uint16_t* rgb,
                                         uint8_t* const dst_u,
                                         uint8_t* const dst_v,
                                         int width,

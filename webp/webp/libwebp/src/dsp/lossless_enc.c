@@ -381,8 +381,8 @@ static float FastLog2Slow(uint32_t v) {
 }
 
 // Mostly used to reduce code size + readability
-static WEBP_INLINE int GetMin(int a, int b) { return (a > b) ? b : a; }
-static WEBP_INLINE int GetMax(int a, int b) { return (a < b) ? b : a; }
+static MV_WEBP_INLINE int GetMin(int a, int b) { return (a > b) ? b : a; }
+static MV_WEBP_INLINE int GetMax(int a, int b) { return (a < b) ? b : a; }
 
 //------------------------------------------------------------------------------
 // Methods to calculate Entropy (Shannon).
@@ -462,7 +462,7 @@ void VP8LBitsEntropyUnrefined(const uint32_t* const array, int n,
   entropy->entropy += VP8LFastSLog2(entropy->sum);
 }
 
-static WEBP_INLINE void GetEntropyUnrefinedHelper(
+static MV_WEBP_INLINE void GetEntropyUnrefinedHelper(
     uint32_t val, int i, uint32_t* const val_prev, int* const i_prev,
     VP8LBitEntropy* const bit_entropy, VP8LStreaks* const stats) {
   const int streak = i - *i_prev;
@@ -530,7 +530,7 @@ void VP8LGetCombinedEntropyUnrefined(const uint32_t* const X,
   bit_entropy->entropy += VP8LFastSLog2(bit_entropy->sum);
 }
 
-static WEBP_INLINE void UpdateHisto(int histo_argb[4][256], uint32_t argb) {
+static MV_WEBP_INLINE void UpdateHisto(int histo_argb[4][256], uint32_t argb) {
   ++histo_argb[0][argb >> 24];
   ++histo_argb[1][(argb >> 16) & 0xff];
   ++histo_argb[2][(argb >> 8) & 0xff];
@@ -539,7 +539,7 @@ static WEBP_INLINE void UpdateHisto(int histo_argb[4][256], uint32_t argb) {
 
 //------------------------------------------------------------------------------
 
-static WEBP_INLINE uint32_t Predict(VP8LPredictorFunc pred_func,
+static MV_WEBP_INLINE uint32_t Predict(VP8LPredictorFunc pred_func,
                                     int x, int y,
                                     const uint32_t* current_row,
                                     const uint32_t* upper_row) {
@@ -684,7 +684,7 @@ static uint32_t NearLossless(uint32_t value, uint32_t predict,
 // Returns the difference between the pixel and its prediction. In case of a
 // lossy encoding, updates the source image to avoid propagating the deviation
 // further to pixels which depend on the current pixel for their predictions.
-static WEBP_INLINE uint32_t GetResidual(int width, int height,
+static MV_WEBP_INLINE uint32_t GetResidual(int width, int height,
                                         uint32_t* const upper_row,
                                         uint32_t* const current_row,
                                         const uint8_t* const max_diffs,
@@ -930,25 +930,25 @@ void VP8LSubtractGreenFromBlueAndRed_C(uint32_t* argb_data, int num_pixels) {
   }
 }
 
-static WEBP_INLINE void MultipliersClear(VP8LMultipliers* const m) {
+static MV_WEBP_INLINE void MultipliersClear(VP8LMultipliers* const m) {
   m->green_to_red_ = 0;
   m->green_to_blue_ = 0;
   m->red_to_blue_ = 0;
 }
 
-static WEBP_INLINE uint32_t ColorTransformDelta(int8_t color_pred,
+static MV_WEBP_INLINE uint32_t ColorTransformDelta(int8_t color_pred,
                                                 int8_t color) {
   return (uint32_t)((int)(color_pred) * color) >> 5;
 }
 
-static WEBP_INLINE void ColorCodeToMultipliers(uint32_t color_code,
+static MV_WEBP_INLINE void ColorCodeToMultipliers(uint32_t color_code,
                                                VP8LMultipliers* const m) {
   m->green_to_red_  = (color_code >>  0) & 0xff;
   m->green_to_blue_ = (color_code >>  8) & 0xff;
   m->red_to_blue_   = (color_code >> 16) & 0xff;
 }
 
-static WEBP_INLINE uint32_t MultipliersToColorCode(
+static MV_WEBP_INLINE uint32_t MultipliersToColorCode(
     const VP8LMultipliers* const m) {
   return 0xff000000u |
          ((uint32_t)(m->red_to_blue_) << 16) |
@@ -974,7 +974,7 @@ void VP8LTransformColor_C(const VP8LMultipliers* const m, uint32_t* data,
   }
 }
 
-static WEBP_INLINE uint8_t TransformColorRed(uint8_t green_to_red,
+static MV_WEBP_INLINE uint8_t TransformColorRed(uint8_t green_to_red,
                                              uint32_t argb) {
   const uint32_t green = argb >> 8;
   uint32_t new_red = argb >> 16;
@@ -982,7 +982,7 @@ static WEBP_INLINE uint8_t TransformColorRed(uint8_t green_to_red,
   return (new_red & 0xff);
 }
 
-static WEBP_INLINE uint8_t TransformColorBlue(uint8_t green_to_blue,
+static MV_WEBP_INLINE uint8_t TransformColorBlue(uint8_t green_to_blue,
                                               uint8_t red_to_blue,
                                               uint32_t argb) {
   const uint32_t green = argb >> 8;

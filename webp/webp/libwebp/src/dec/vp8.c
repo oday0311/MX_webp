@@ -35,7 +35,7 @@ static void SetOk(VP8Decoder* const dec) {
 }
 
 int VP8InitIoInternal(VP8Io* const io, int version) {
-  if (WEBP_ABI_IS_INCOMPATIBLE(version, WEBP_DECODER_ABI_VERSION)) {
+  if (MV_WEBP_ABI_IS_INCOMPATIBLE(version, MV_WEBP_DECODER_ABI_VERSION)) {
     return 0;  // mismatch error
   }
   if (io != NULL) {
@@ -447,7 +447,7 @@ static int GetCoeffs(VP8BitReader* const br, const VP8BandProbas* const prob[],
   return 16;
 }
 
-static WEBP_INLINE uint32_t NzCodeBits(uint32_t nz_coeffs, int nz, int dc_nz) {
+static MV_WEBP_INLINE uint32_t NzCodeBits(uint32_t nz_coeffs, int nz, int dc_nz) {
   nz_coeffs <<= 2;
   nz_coeffs |= (nz > 3) ? 3 : (nz > 1) ? 2 : dc_nz;
   return nz_coeffs;

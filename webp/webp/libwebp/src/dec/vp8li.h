@@ -29,9 +29,9 @@ typedef enum {
   READ_DATA = 0,
   READ_HDR = 1,
   READ_DIM = 2
-} VP8LDecodeState;
+} MV_MVP8LDecodeState;
 
-typedef struct VP8LTransform VP8LTransform;
+typedef struct MV_VP8LTransform VP8LTransform;
 struct VP8LTransform {
   VP8LImageTransformType type_;   // transform type.
   int                    bits_;   // subsampling bits defining transform window.
@@ -93,20 +93,20 @@ struct VP8LDecoder {
 //------------------------------------------------------------------------------
 // internal functions. Not public.
 
-struct ALPHDecoder;  // Defined in dec/alphai.h.
+struct MV_ALPHDecoder;  // Defined in dec/alphai.h.
 
 // in vp8l.c
 
 // Decodes image header for alpha data stored using lossless compression.
 // Returns false in case of error.
-int VP8LDecodeAlphaHeader(struct ALPHDecoder* const alph_dec,
+int VP8LDecodeAlphaHeader(struct MV_ALPHDecoder* const alph_dec,
                           const uint8_t* const data, size_t data_size);
 
 // Decodes *at least* 'last_row' rows of alpha. If some of the initial rows are
 // already decoded in previous call(s), it will resume decoding from where it
 // was paused.
 // Returns false in case of bitstream error.
-int VP8LDecodeAlphaImageStream(struct ALPHDecoder* const alph_dec,
+int VP8LDecodeAlphaImageStream(struct MV_ALPHDecoder* const alph_dec,
                                int last_row);
 
 // Allocates and initialize a new lossless decoder instance.

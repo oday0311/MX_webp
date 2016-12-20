@@ -17,7 +17,7 @@
 
 static int done = 0;
 
-static WEBP_INLINE uint8_t clip(int v, int max_value) {
+static MV_WEBP_INLINE uint8_t clip(int v, int max_value) {
   return v < 0 ? 0 : v > max_value ? max_value : v;
 }
 

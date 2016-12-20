@@ -13,7 +13,7 @@
 
 #include "./dsp.h"
 
-static WEBP_INLINE uint32_t MakeARGB32(int a, int r, int g, int b) {
+static MV_WEBP_INLINE uint32_t MakeARGB32(int a, int r, int g, int b) {
   return (((uint32_t)a << 24) | (r << 16) | (g << 8) | b);
 }
 

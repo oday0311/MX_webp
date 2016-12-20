@@ -101,7 +101,7 @@
     );                                                                         \
   } while (0)
 
-static WEBP_INLINE void PredictLine(const uint8_t* src, uint8_t* dst,
+static MV_WEBP_INLINE void PredictLine(const uint8_t* src, uint8_t* dst,
                                     int length) {
   DO_PREDICT_LINE(src, dst, length, 0);
 }
@@ -192,7 +192,7 @@ static WEBP_INLINE void PredictLine(const uint8_t* src, uint8_t* dst,
     }                                                                          \
   } while (0)
 
-static WEBP_INLINE void DoHorizontalFilter(const uint8_t* in,
+static MV_WEBP_INLINE void DoHorizontalFilter(const uint8_t* in,
                                            int width, int height, int stride,
                                            int row, int num_rows,
                                            uint8_t* out) {
@@ -237,7 +237,7 @@ static void HorizontalFilter(const uint8_t* data, int width, int height,
     }                                                                          \
   } while (0)
 
-static WEBP_INLINE void DoVerticalFilter(const uint8_t* in,
+static MV_WEBP_INLINE void DoVerticalFilter(const uint8_t* in,
                                          int width, int height, int stride,
                                          int row, int num_rows, uint8_t* out) {
   const uint8_t* preds;
@@ -274,7 +274,7 @@ static void VerticalFilter(const uint8_t* data, int width, int height,
 //------------------------------------------------------------------------------
 // Gradient filter.
 
-static WEBP_INLINE int GradientPredictor(uint8_t a, uint8_t b, uint8_t c) {
+static MV_WEBP_INLINE int GradientPredictor(uint8_t a, uint8_t b, uint8_t c) {
   int temp0;
   __asm__ volatile (
     "addu             %[temp0],   %[a],       %[b]        \n\t"
@@ -304,7 +304,7 @@ static WEBP_INLINE int GradientPredictor(uint8_t a, uint8_t b, uint8_t c) {
     }                                                                          \
   } while (0)
 
-static WEBP_INLINE void DoGradientFilter(const uint8_t* in,
+static MV_WEBP_INLINE void DoGradientFilter(const uint8_t* in,
                                          int width, int height, int stride,
                                          int row, int num_rows, uint8_t* out) {
   const uint8_t* preds;

@@ -53,7 +53,7 @@ static void DefaultDecoderOptions(WebPAnimDecoderOptions* const dec_options) {
 int WebPAnimDecoderOptionsInitInternal(WebPAnimDecoderOptions* dec_options,
                                        int abi_version) {
   if (dec_options == NULL ||
-      WEBP_ABI_IS_INCOMPATIBLE(abi_version, WEBP_DEMUX_ABI_VERSION)) {
+      MV_WEBP_ABI_IS_INCOMPATIBLE(abi_version, WEBP_DEMUX_ABI_VERSION)) {
     return 0;
   }
   DefaultDecoderOptions(dec_options);
@@ -62,7 +62,7 @@ int WebPAnimDecoderOptionsInitInternal(WebPAnimDecoderOptions* dec_options,
 
 static int ApplyDecoderOptions(const WebPAnimDecoderOptions* const dec_options,
                                WebPAnimDecoder* const dec) {
-  WEBP_CSP_MODE mode;
+  MV_WEBP_CSP_MODE mode;
   WebPDecoderConfig* config = &dec->config_;
   assert(dec_options != NULL);
 
@@ -88,7 +88,7 @@ WebPAnimDecoder* WebPAnimDecoderNewInternal(
   WebPAnimDecoderOptions options;
   WebPAnimDecoder* dec = NULL;
   if (webp_data == NULL ||
-      WEBP_ABI_IS_INCOMPATIBLE(abi_version, WEBP_DEMUX_ABI_VERSION)) {
+      MV_WEBP_ABI_IS_INCOMPATIBLE(abi_version, WEBP_DEMUX_ABI_VERSION)) {
     return NULL;
   }
 
@@ -243,7 +243,7 @@ static void BlendPixelRowNonPremult(uint32_t* const src,
 }
 
 // Individually multiply each channel in 'pix' by 'scale'.
-static WEBP_INLINE uint32_t ChannelwiseMultiply(uint32_t pix, uint32_t scale) {
+static MV_WEBP_INLINE uint32_t ChannelwiseMultiply(uint32_t pix, uint32_t scale) {
   uint32_t mask = 0x00FF00FF;
   uint32_t rb = ((pix & mask) * scale) >> 8;
   uint32_t ag = ((pix >> 8) & mask) * scale;
